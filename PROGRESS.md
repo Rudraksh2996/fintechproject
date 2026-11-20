@@ -4,6 +4,12 @@ Client date: **2026-11-21 (Asia/Calcutta)**.
 
 ## macOS checkpoint (current)
 
+Retry: restarted OrbStack and confirmed Docker 29.8.2 on aarch64. With 1.0 GiB
+free at the start, `COMPOSE_PROGRESS=plain bash infra/scripts/gate1.sh` exited 1
+while extracting Neo4j's `libjvm.so`: `no space left on device`. The host then
+reported 179 MiB free. Full output: `infra/verification/phase1/macos-retry.log`.
+Free several GiB on the Mac data volume and rerun the commands below.
+
 Gate 1 exited 1 during Docker image extraction. OrbStack has 7.816 GiB and
 Compose v5.5.0. The arm64 smoke test passed. Installed uv Python 3.13.14,
 pinned 3.13, synced all workspace packages and installed frontend dependencies.
