@@ -16,16 +16,21 @@ def verify_postgres(settings: Settings) -> None:
         conn.cursor() as cursor,
     ):
         cursor.execute(
-            "SELECT conname FROM pg_constraint WHERE conrelid = "
+            "SELECT conname, pg_get_constraintdef(oid) FROM pg_constraint WHERE conrelid = "
             "'form4_transactions'::regclass AND contype = 'u'"
         )
-        names = {str(row[0]) for row in cursor.fetchall()}
-        assert "uq_form4_accession_line" in names, names
+        constraints = dict(cursor.fetchall())
+        assert (
+            constraints.get("uq_form4_accession_line") == "UNIQUE (accession_number, line_number)"
+        )
         cursor.execute(
             "SELECT indexdef FROM pg_indexes WHERE indexname = %s", ("ix_form4_ticker_date",)
         )
         row = cursor.fetchone()
-        assert row is not None and "(ticker, transaction_date)" in str(row[0]), row
+        assert row == (
+            "CREATE INDEX ix_form4_ticker_date ON public.form4_transactions "
+            "USING btree (ticker, transaction_date)",
+        ), row
         cursor.execute("SELECT count(*) FROM detection_configs WHERE is_active")
         assert cursor.fetchone() == (1,)
         cursor.execute("SELECT tgname FROM pg_trigger WHERE tgrelid = 'cluster_alerts'::regclass")
@@ -70,19 +75,32 @@ def verify_neo4j(settings: GraphSettings) -> None:
     with GraphDatabase.driver(
         settings.neo4j_uri, auth=(user, password), connection_timeout=10
     ) as driver:
-        records, _, _ = driver.execute_query("SHOW CONSTRAINTS YIELD name RETURN name")
-        names = {str(record["name"]) for record in records}
-        expected = {
-            "account_id_unique",
-            "device_id_unique",
-            "ip_unique",
-            "label_account_unique",
-            "transfer_id_unique",
+        records, _, _ = driver.execute_query("SHOW CONSTRAINTS")
+        definitions = {
+            (r["name"], r["type"], tuple(r["labelsOrTypes"]), tuple(r["properties"]))
+            for r in records
         }
-        assert expected <= names, names
-        records, _, _ = driver.execute_query("SHOW INDEXES YIELD name, state RETURN name, state")
-        indexes = {str(record["name"]): str(record["state"]) for record in records}
-        assert indexes.get("transferred_ts") == "ONLINE", indexes
+        expected = {
+            ("account_id_unique", "UNIQUENESS", ("Account",), ("account_id",)),
+            ("device_id_unique", "UNIQUENESS", ("Device",), ("device_id",)),
+            ("ip_unique", "UNIQUENESS", ("IP",), ("ip",)),
+            ("label_account_unique", "UNIQUENESS", ("Label",), ("account_id",)),
+            ("transfer_id_unique", "RELATIONSHIP_UNIQUENESS", ("TRANSFERRED",), ("txn_id",)),
+        }
+        assert expected <= definitions, definitions
+        records, _, _ = driver.execute_query("SHOW INDEXES WHERE name = 'transferred_ts'")
+        assert len(records) == 1
+        index = records[0]
+        assert (index["entityType"], index["labelsOrTypes"], index["properties"]) == (
+            "RELATIONSHIP",
+            ["TRANSFERRED"],
+            ["ts"],
+        )
+        assert (index["type"], index["state"], index["owningConstraint"]) == (
+            "RANGE",
+            "ONLINE",
+            None,
+        )
     print(json.dumps({"neo4j": "passed", "constraints": sorted(expected), "time_index": True}))
 
 

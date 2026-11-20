@@ -1,5 +1,7 @@
 services:
   postgres:
+    mem_limit: 512m
+    command: ["postgres", "-c", "shared_buffers=128MB"]
     image: postgres:16.11-bookworm
     environment:
       POSTGRES_USER: ${POSTGRES_USER:?Set POSTGRES_USER in .env}
@@ -21,6 +23,7 @@ services:
       start_period: 10s
     restart: unless-stopped
   neo4j:
+    mem_limit: 1280m
     image: neo4j:5.26-community
     environment:
       NEO4J_AUTH: ${NEO4J_AUTH:?Set NEO4J_AUTH in .env}
@@ -43,6 +46,7 @@ services:
       start_period: 30s
     restart: unless-stopped
   schema:
+    mem_limit: 384m
     profiles: [tools]
     build:
       context: .

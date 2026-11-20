@@ -2,7 +2,34 @@
 
 Client date: **2026-11-21 (Asia/Calcutta)**.
 
-## Overall status
+## macOS checkpoint (current)
+
+Gate 1 exited 1 during Docker image extraction. OrbStack has 7.816 GiB and
+Compose v5.5.0. The arm64 smoke test passed. Installed uv Python 3.13.14,
+pinned 3.13, synced all workspace packages and installed frontend dependencies.
+Applied Section 10 resource and schema-verification changes. Local checks:
+
+```text
+uv run --frozen ruff check .   -> All checks passed!
+uv run --frozen mypy --strict  -> Success: no issues found in 10 source files
+uv run --frozen pytest -q      -> 5 passed in 1.09s
+```
+
+After copying .env.example to .env, ran `bash infra/scripts/gate1.sh`.
+The full command output is in `infra/verification/phase1/macos-attempt.log`.
+Docker returned `no space left on device` before either database became healthy.
+The Mac reported 122 MiB free after failure. The integration checks remain pending.
+Free space on the Mac data volume, then in the repository run:
+
+```sh
+export PATH="$HOME/.orbstack/bin:/usr/local/bin:$PATH"
+df -h .
+bash infra/scripts/gate1.sh
+```
+
+Record a passing run, commit and push before starting Phase 2.
+
+## Original Windows checkpoint
 
 **Phase 1 implemented; Gate 1 BLOCKED. Phases 2–6 NOT STARTED.**
 
