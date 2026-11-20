@@ -1,0 +1,47 @@
+[
+  {
+    "check": "ruff",
+    "command": "C:\\Users\\shiva\\Documents\\Codex\\2026-11-21\\files-pasted-by-the-user-master\\outputs\\fintech-platform\\.venv\\Scripts\\python.exe -m ruff check .",
+    "exit_code": 0
+  },
+  {
+    "check": "mypy",
+    "command": "C:\\Users\\shiva\\Documents\\Codex\\2026-11-21\\files-pasted-by-the-user-master\\outputs\\fintech-platform\\.venv\\Scripts\\python.exe -m mypy --strict",
+    "exit_code": 0
+  },
+  {
+    "check": "pytest",
+    "command": "C:\\Users\\shiva\\Documents\\Codex\\2026-11-21\\files-pasted-by-the-user-master\\outputs\\fintech-platform\\.venv\\Scripts\\python.exe -m pytest -q",
+    "exit_code": 0
+  },
+  {
+    "check": "eslint",
+    "command": "\"C:/Program Files/nodejs/npm.cmd\" --prefix frontend run lint",
+    "exit_code": 0
+  },
+  {
+    "check": "tsc",
+    "command": "\"C:/Program Files/nodejs/npm.cmd\" --prefix frontend run typecheck",
+    "exit_code": 0
+  },
+  {
+    "check": "upgrade-offline",
+    "command": "C:\\Users\\shiva\\Documents\\Codex\\2026-11-21\\files-pasted-by-the-user-master\\outputs\\fintech-platform\\.venv\\Scripts\\python.exe -m alembic upgrade head --sql",
+    "exit_code": 0
+  },
+  {
+    "check": "downgrade-offline",
+    "command": "C:\\Users\\shiva\\Documents\\Codex\\2026-11-21\\files-pasted-by-the-user-master\\outputs\\fintech-platform\\.venv\\Scripts\\python.exe -m alembic downgrade 0001:base --sql",
+    "exit_code": 0
+  },
+  {
+    "check": "bash-syntax",
+    "command": "\"C:\\Program Files\\Git\\bin\\bash.exe\" -n infra/scripts/gate1.sh",
+    "exit_code": 0
+  },
+  {
+    "check": "gate-1",
+    "command": "\"C:\\Program Files\\Git\\bin\\bash.exe\" infra/scripts/gate1.sh",
+    "exit_code": 127
+  }
+]

@@ -1,0 +1,4 @@
+
+> fintech-command-center@0.1.0 lint
+> eslint src --max-warnings 0
+

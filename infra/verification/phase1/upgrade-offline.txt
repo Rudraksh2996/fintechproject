@@ -1,0 +1,250 @@
+BEGIN;
+
+CREATE TABLE alembic_version (
+    version_num VARCHAR(32) NOT NULL, 
+    CONSTRAINT alembic_version_pkc PRIMARY KEY (version_num)
+);
+
+-- Running upgrade  -> 0001
+
+CREATE TABLE companies (
+    id BIGSERIAL NOT NULL, 
+    cik VARCHAR(10) NOT NULL, 
+    ticker VARCHAR(32), 
+    name TEXT NOT NULL, 
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL, 
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL, 
+    CONSTRAINT pk_companies PRIMARY KEY (id), 
+    CONSTRAINT uq_companies_cik UNIQUE (cik)
+);
+
+CREATE TABLE detection_configs (
+    id BIGSERIAL NOT NULL, 
+    name TEXT NOT NULL, 
+    is_active BOOLEAN DEFAULT false NOT NULL, 
+    window_days INTEGER DEFAULT '14' NOT NULL, 
+    min_insiders INTEGER DEFAULT '3' NOT NULL, 
+    min_insider_value_usd NUMERIC(24, 6) DEFAULT '25000' NOT NULL, 
+    min_cluster_value_usd NUMERIC(24, 6) DEFAULT '100000' NOT NULL, 
+    include_ten_percent_owners BOOLEAN DEFAULT false NOT NULL, 
+    exclude_10b5_1 BOOLEAN DEFAULT false NOT NULL, 
+    new_position_pct NUMERIC(18, 8) DEFAULT '1' NOT NULL, 
+    cap_insiders INTEGER DEFAULT '8' NOT NULL, 
+    value_cap_multiple NUMERIC(18, 8) DEFAULT '100' NOT NULL, 
+    holdings_cap NUMERIC(18, 8) DEFAULT '0.5' NOT NULL, 
+    w_b NUMERIC(9, 8) DEFAULT '0.30' NOT NULL, 
+    w_c NUMERIC(9, 8) DEFAULT '0.25' NOT NULL, 
+    w_v NUMERIC(9, 8) DEFAULT '0.25' NOT NULL, 
+    w_h NUMERIC(9, 8) DEFAULT '0.20' NOT NULL, 
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL, 
+    CONSTRAINT pk_detection_configs PRIMARY KEY (id), 
+    CONSTRAINT ck_detection_configs_window_and_buyers CHECK (window_days > 0 AND min_insiders >= 2 AND cap_insiders >= min_insiders), 
+    CONSTRAINT ck_detection_configs_positive_thresholds CHECK (min_insider_value_usd > 0 AND min_cluster_value_usd > 0), 
+    CONSTRAINT ck_detection_configs_positive_caps CHECK (value_cap_multiple > 1 AND holdings_cap > 0 AND new_position_pct > 0), 
+    CONSTRAINT ck_detection_configs_weights CHECK (w_b >= 0 AND w_c >= 0 AND w_v >= 0 AND w_h >= 0 AND w_b + w_c + w_v + w_h = 1)
+);
+
+CREATE TABLE ingestion_runs (
+    id BIGSERIAL NOT NULL, 
+    source VARCHAR(16) NOT NULL, 
+    parameters JSONB NOT NULL, 
+    status VARCHAR(16) DEFAULT 'running' NOT NULL, 
+    filings_seen INTEGER DEFAULT '0' NOT NULL, 
+    transactions_inserted INTEGER DEFAULT '0' NOT NULL, 
+    errors INTEGER DEFAULT '0' NOT NULL, 
+    error_detail TEXT, 
+    started_at TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL, 
+    finished_at TIMESTAMP WITH TIME ZONE, 
+    CONSTRAINT pk_ingestion_runs PRIMARY KEY (id), 
+    CONSTRAINT ck_ingestion_runs_status CHECK (status IN ('running', 'completed', 'failed'))
+);
+
+CREATE TABLE insiders (
+    id BIGSERIAL NOT NULL, 
+    cik VARCHAR(10) NOT NULL, 
+    name TEXT NOT NULL, 
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL, 
+    CONSTRAINT pk_insiders PRIMARY KEY (id), 
+    CONSTRAINT uq_insiders_cik UNIQUE (cik)
+);
+
+CREATE TABLE price_bars (
+    ticker VARCHAR(32) NOT NULL, 
+    date DATE NOT NULL, 
+    close NUMERIC(28, 8) NOT NULL, 
+    source VARCHAR(32) NOT NULL, 
+    CONSTRAINT pk_price_bars PRIMARY KEY (ticker, date), 
+    CONSTRAINT ck_price_bars_positive_close CHECK (close > 0)
+);
+
+CREATE TABLE cluster_alerts (
+    id BIGSERIAL NOT NULL, 
+    company_id BIGINT NOT NULL, 
+    ticker VARCHAR(32) NOT NULL, 
+    window_start DATE NOT NULL, 
+    window_end DATE NOT NULL, 
+    first_filing_date DATE NOT NULL, 
+    alert_filing_date DATE NOT NULL, 
+    n_insiders INTEGER NOT NULL, 
+    n_csuite INTEGER NOT NULL, 
+    total_value_usd NUMERIC(28, 8) NOT NULL, 
+    avg_pct_holdings_increase NUMERIC(28, 8), 
+    conviction_score NUMERIC(5, 2) NOT NULL, 
+    score_breakdown JSONB NOT NULL, 
+    config_id BIGINT NOT NULL, 
+    status VARCHAR(16) DEFAULT 'new' NOT NULL, 
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL, 
+    CONSTRAINT pk_cluster_alerts PRIMARY KEY (id), 
+    CONSTRAINT uq_cluster_window_config UNIQUE (company_id, window_start, config_id), 
+    CONSTRAINT ck_cluster_alerts_status CHECK (status IN ('new', 'acknowledged', 'dismissed')), 
+    CONSTRAINT ck_cluster_alerts_score CHECK (conviction_score BETWEEN 0 AND 100), 
+    CONSTRAINT ck_cluster_alerts_dates CHECK (window_end >= window_start AND alert_filing_date >= first_filing_date), 
+    CONSTRAINT fk_cluster_alerts_company_id_companies FOREIGN KEY(company_id) REFERENCES companies (id), 
+    CONSTRAINT fk_cluster_alerts_config_id_detection_configs FOREIGN KEY(config_id) REFERENCES detection_configs (id)
+);
+
+CREATE TABLE form4_filings (
+    accession_number VARCHAR(32) NOT NULL, 
+    company_id BIGINT NOT NULL, 
+    filing_date DATE NOT NULL, 
+    period_of_report DATE, 
+    form_type VARCHAR(3) NOT NULL, 
+    supersedes_accession VARCHAR(32), 
+    source VARCHAR(16) NOT NULL, 
+    raw_xml_url TEXT NOT NULL, 
+    raw_xml TEXT NOT NULL, 
+    sha256 VARCHAR(64) NOT NULL, 
+    ingested_at TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL, 
+    CONSTRAINT pk_form4_filings PRIMARY KEY (accession_number), 
+    CONSTRAINT ck_form4_filings_form_type CHECK (form_type IN ('4', '4/A')), 
+    CONSTRAINT ck_form4_filings_source CHECK (source IN ('synthetic', 'sec_edgar')), 
+    CONSTRAINT fk_form4_filings_company_id_companies FOREIGN KEY(company_id) REFERENCES companies (id), 
+    CONSTRAINT fk_form4_filings_supersedes_accession_form4_filings FOREIGN KEY(supersedes_accession) REFERENCES form4_filings (accession_number)
+);
+
+CREATE TABLE parse_errors (
+    id BIGSERIAL NOT NULL, 
+    accession_number VARCHAR(32), 
+    ingestion_run_id BIGINT, 
+    raw_xml_url TEXT NOT NULL, 
+    raw_xml TEXT NOT NULL, 
+    error_type TEXT NOT NULL, 
+    error_detail TEXT NOT NULL, 
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL, 
+    CONSTRAINT pk_parse_errors PRIMARY KEY (id), 
+    CONSTRAINT fk_parse_errors_ingestion_run_id_ingestion_runs FOREIGN KEY(ingestion_run_id) REFERENCES ingestion_runs (id)
+);
+
+CREATE TABLE form4_transactions (
+    id BIGSERIAL NOT NULL, 
+    accession_number VARCHAR(32) NOT NULL, 
+    line_number INTEGER NOT NULL, 
+    company_id BIGINT NOT NULL, 
+    insider_id BIGINT NOT NULL, 
+    ticker VARCHAR(32), 
+    transaction_date DATE NOT NULL, 
+    filing_date DATE NOT NULL, 
+    transaction_code VARCHAR(1) NOT NULL, 
+    acquired_disposed VARCHAR(1) NOT NULL, 
+    shares NUMERIC(28, 8) NOT NULL, 
+    price NUMERIC(28, 8), 
+    value_usd NUMERIC(28, 8), 
+    shares_owned_after NUMERIC(28, 8), 
+    pct_holdings_increase NUMERIC(28, 8), 
+    is_director BOOLEAN DEFAULT false NOT NULL, 
+    is_officer BOOLEAN DEFAULT false NOT NULL, 
+    is_ten_percent_owner BOOLEAN DEFAULT false NOT NULL, 
+    is_other BOOLEAN DEFAULT false NOT NULL, 
+    officer_title TEXT, 
+    is_csuite BOOLEAN DEFAULT false NOT NULL, 
+    is_10b5_1 BOOLEAN DEFAULT false NOT NULL, 
+    is_amendment BOOLEAN DEFAULT false NOT NULL, 
+    superseded BOOLEAN DEFAULT false NOT NULL, 
+    is_new_position BOOLEAN DEFAULT false NOT NULL, 
+    missing_price BOOLEAN DEFAULT false NOT NULL, 
+    direct_or_indirect VARCHAR(1), 
+    footnote_refs JSONB DEFAULT '[]'::jsonb NOT NULL, 
+    raw_xml_url TEXT NOT NULL, 
+    ingested_at TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL, 
+    CONSTRAINT pk_form4_transactions PRIMARY KEY (id), 
+    CONSTRAINT uq_form4_accession_line UNIQUE (accession_number, line_number), 
+    CONSTRAINT ck_form4_transactions_positive_line_shares CHECK (line_number > 0 AND shares >= 0), 
+    CONSTRAINT ck_form4_transactions_acquired_disposed CHECK (acquired_disposed IN ('A', 'D')), 
+    CONSTRAINT fk_form4_transactions_accession_number_form4_filings FOREIGN KEY(accession_number) REFERENCES form4_filings (accession_number), 
+    CONSTRAINT fk_form4_transactions_company_id_companies FOREIGN KEY(company_id) REFERENCES companies (id), 
+    CONSTRAINT fk_form4_transactions_insider_id_insiders FOREIGN KEY(insider_id) REFERENCES insiders (id)
+);
+
+CREATE TABLE cluster_alert_members (
+    alert_id BIGINT NOT NULL, 
+    transaction_id BIGINT NOT NULL, 
+    CONSTRAINT pk_cluster_alert_members PRIMARY KEY (alert_id, transaction_id), 
+    CONSTRAINT fk_cluster_alert_members_alert_id_cluster_alerts FOREIGN KEY(alert_id) REFERENCES cluster_alerts (id) ON DELETE CASCADE, 
+    CONSTRAINT fk_cluster_alert_members_transaction_id_form4_transactions FOREIGN KEY(transaction_id) REFERENCES form4_transactions (id)
+);
+
+CREATE UNIQUE INDEX uq_detection_configs_active ON detection_configs (is_active) WHERE is_active;
+
+CREATE INDEX ix_cluster_alerts_filing_date ON cluster_alerts (alert_filing_date);
+
+CREATE INDEX ix_form4_company_date ON form4_transactions (company_id, transaction_date);
+
+CREATE INDEX ix_form4_filing_date ON form4_transactions (filing_date);
+
+CREATE INDEX ix_form4_ticker_date ON form4_transactions (ticker, transaction_date);
+
+CREATE FUNCTION notify_cluster_alert() RETURNS trigger LANGUAGE plpgsql AS $$
+        BEGIN
+            PERFORM pg_notify('cluster_alerts', NEW.id::text);
+            RETURN NEW;
+        END;
+        $$;
+
+CREATE TRIGGER cluster_alert_inserted AFTER INSERT ON cluster_alerts
+        FOR EACH ROW EXECUTE FUNCTION notify_cluster_alert();
+
+CREATE FUNCTION enforce_one_active_config() RETURNS trigger LANGUAGE plpgsql AS $$
+        BEGIN
+            IF (SELECT count(*) FROM detection_configs WHERE is_active) <> 1 THEN
+                RAISE EXCEPTION 'Exactly one detection config must be active'
+                    USING ERRCODE = '23514';
+            END IF;
+            RETURN NULL;
+        END;
+        $$;
+
+CREATE CONSTRAINT TRIGGER detection_configs_one_active
+        AFTER INSERT OR UPDATE OR DELETE ON detection_configs
+        DEFERRABLE INITIALLY DEFERRED FOR EACH ROW
+        EXECUTE FUNCTION enforce_one_active_config();
+
+CREATE FUNCTION touch_company_updated_at() RETURNS trigger LANGUAGE plpgsql AS $$
+        BEGIN
+            NEW.updated_at = now();
+            RETURN NEW;
+        END;
+        $$;
+
+CREATE TRIGGER companies_updated BEFORE UPDATE ON companies
+        FOR EACH ROW EXECUTE FUNCTION touch_company_updated_at();
+
+INSERT INTO detection_configs (name, is_active) VALUES ('Default', true);
+
+GRANT SELECT, INSERT, UPDATE, DELETE ON companies, detection_configs, ingestion_runs, insiders, price_bars, cluster_alerts, form4_filings, parse_errors, form4_transactions, cluster_alert_members TO fintech_app;
+
+GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO fintech_app;
+
+GRANT SELECT ON companies, detection_configs, ingestion_runs, insiders, price_bars, cluster_alerts, form4_filings, parse_errors, form4_transactions, cluster_alert_members TO workbench_ro;
+
+REVOKE ALL ON ALL SEQUENCES IN SCHEMA public FROM workbench_ro;
+
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT ON TABLES TO workbench_ro;
+
+INSERT INTO alembic_version (version_num) VALUES ('0001') RETURNING alembic_version.version_num;
+
+COMMIT;
+
+INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
+INFO  [alembic.runtime.migration] Generating static SQL
+INFO  [alembic.runtime.migration] Will assume transactional DDL.
+INFO  [alembic.runtime.migration] Running upgrade  -> 0001, Initial insider schema, database invariants, role grants, and notifications.

@@ -1,0 +1,16 @@
+[build-system]
+requires = ["hatchling==1.27.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "fintech-gateway"
+version = "0.1.0"
+requires-python = ">=3.12,<3.14"
+dependencies = ["fastapi==0.121.3", "uvicorn==0.38.0", "edgar-pipeline", "ml-pipeline"]
+
+[tool.uv.sources]
+edgar-pipeline = { workspace = true }
+ml-pipeline = { workspace = true }
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/app"]

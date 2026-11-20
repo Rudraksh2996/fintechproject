@@ -1,0 +1,36 @@
+[project]
+name = "fintech-platform"
+version = "0.1.0"
+description = "Dual-engine financial threat and signal platform workspace"
+requires-python = ">=3.12,<3.14"
+dependencies = ["edgar-pipeline", "ml-pipeline", "fintech-gateway"]
+
+[tool.uv.workspace]
+members = ["edgar_pipeline", "ml_pipeline", "backend", "streamlit_workbench"]
+
+[tool.uv.sources]
+edgar-pipeline = { workspace = true }
+ml-pipeline = { workspace = true }
+fintech-gateway = { workspace = true }
+
+[dependency-groups]
+dev = ["ruff==0.14.5", "mypy==1.18.2", "pytest==8.4.2", "pytest-cov==7.0.0", "pyyaml==6.0.3", "types-PyYAML==6.0.12.20250915"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+extend-exclude = ["frontend/node_modules"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+files = ["backend/src", "edgar_pipeline/src", "ml_pipeline/src", "edgar_pipeline/migrations"]
+plugins = ["pydantic.mypy"]
+
+[tool.pytest.ini_options]
+testpaths = ["infra/tests", "edgar_pipeline/tests", "ml_pipeline/tests", "backend/tests", "streamlit_workbench/tests"]
+addopts = "-ra --strict-markers"
+markers = ["integration: requires real PostgreSQL and Neo4j"]

@@ -1,0 +1,15 @@
+[build-system]
+requires = ["hatchling==1.27.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "quant-workbench"
+version = "0.1.0"
+requires-python = ">=3.12,<3.14"
+dependencies = ["edgar-pipeline"]
+
+[tool.uv.sources]
+edgar-pipeline = { workspace = true }
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/quant_workbench"]

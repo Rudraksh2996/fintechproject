@@ -1,0 +1,48 @@
+BEGIN;
+
+-- Running downgrade 0001 -> 
+
+DROP TRIGGER cluster_alert_inserted ON cluster_alerts;
+
+DROP FUNCTION notify_cluster_alert();
+
+DROP TRIGGER detection_configs_one_active ON detection_configs;
+
+DROP FUNCTION enforce_one_active_config();
+
+DROP TRIGGER companies_updated ON companies;
+
+DROP FUNCTION touch_company_updated_at();
+
+ALTER DEFAULT PRIVILEGES IN SCHEMA public REVOKE SELECT ON TABLES FROM workbench_ro;
+
+DROP TABLE cluster_alert_members;
+
+DROP TABLE form4_transactions;
+
+DROP TABLE parse_errors;
+
+DROP TABLE form4_filings;
+
+DROP TABLE cluster_alerts;
+
+DROP TABLE price_bars;
+
+DROP TABLE insiders;
+
+DROP TABLE ingestion_runs;
+
+DROP TABLE detection_configs;
+
+DROP TABLE companies;
+
+DELETE FROM alembic_version WHERE alembic_version.version_num = '0001';
+
+DROP TABLE alembic_version;
+
+COMMIT;
+
+INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
+INFO  [alembic.runtime.migration] Generating static SQL
+INFO  [alembic.runtime.migration] Will assume transactional DDL.
+INFO  [alembic.runtime.migration] Running downgrade 0001 -> , Initial insider schema, database invariants, role grants, and notifications.
