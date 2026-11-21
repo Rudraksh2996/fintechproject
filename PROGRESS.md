@@ -2,7 +2,25 @@
 
 Client date: **2026-11-21 (Asia/Calcutta)**.
 
-## Current status — Gate 2 passed; Phase 3 next
+## Current status — Gate 2 passed; Phase 3 in progress
+
+Implemented the incoming and outgoing temporal trail query with whitelisted
+depth (1–6), parameterized values, a time window and a maximum inter-hop gap.
+A live Neo4j test proved both directions, rejecting a backward timestamp and
+an excessive gap, then rolled back the test graph. Additional tests reject
+out-of-bounds, boolean and injection inputs.
+
+```text
+UV_NO_EDITABLE=1 uv run pytest -q ml_pipeline -> 5 passed in 7.06s
+uv run mypy --strict -> Success: no issues found in 20 source files
+```
+
+Resume Phase 3 with the seeded lite/demo/full Parquet generator and manifest.
+Then build the batched Neo4j loader, remaining graph queries, NetworkX features,
+leakage-safe ring splits, baseline, CPU training and inference. Run the complete
+Gate 3 and record measured PR-AUC, precision and training time before Phase 4.
+
+## Phase 2 live gate
 
 Ran `bash infra/scripts/gate2.sh` against the local Compose PostgreSQL service.
 The initial seed inserted 254 transactions from 843 filings with one quarantine.
