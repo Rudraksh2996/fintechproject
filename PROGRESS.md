@@ -1,5 +1,29 @@
 # Build progress
 
+## Phase 4 gateway checkpoint — Gate 4 pending
+
+The gateway loads the shipped model at startup. Transfer submission scores the updated
+graph using the inductive evaluation path, persists affected scores, and publishes
+upward account threshold crossings. The read routes use Postgres, Neo4j and bootstrap
+artifacts. Live checks against the seeded databases returned HTTP 200 for a ring graph,
+demo ground truth, timeline, bounded overview, account detail and transfer trail.
+
+Gateway integration tests used the seeded Postgres database, bootstrap artifacts,
+and a disposable Neo4j instance for writes. The two tests exercised health, alert
+drilldown, radar, metrics, a WebSocket crossing, idempotent replay, and a conflicting
+duplicate transaction ID. Recorded test output:
+
+```text
+2 passed, 42 warnings in 2.94s
+```
+
+Resume with config CRUD and activation, detection/ingestion jobs, Postgres LISTEN and
+alert WebSocket delivery, ring events, and the replay scheduler through real ingestion.
+Finish the Streamlit workbench (display inductive evaluation and cold-start limits),
+gateway/workbench Compose services, OpenAPI type generation, and the full Gate 4
+integration, coverage and AppTest checks. Run `bash infra/scripts/gate4.sh` once
+implemented and record its output here before advancing.
+
 ## 2026-11-22 — Gate 3 PASSED on macOS / OrbStack linux/arm64
 
 Ran `bash infra/scripts/gate3.sh` against Neo4j and the four-thread one-shot
