@@ -2,7 +2,63 @@
 
 Client date: **2026-11-21 (Asia/Calcutta)**.
 
-## macOS checkpoint (current)
+## Current status — Gate 1 passed on macOS arm64
+
+Both Compose services reached healthy. Docker 29.8.2, Compose v5.5.0 and uv Python
+3.13.14. The first attempts in this session passed the live database checks but
+pytest could not import the editable package: Python skipped the macOS-hidden
+editable .pth files. Installed the same revision as ordinary wheels with
+`uv sync --all-packages --frozen --no-editable`. Exact successful invocation:
+`UV_NO_EDITABLE=1 COMPOSE_PROGRESS=quiet bash infra/scripts/gate1.sh` (exit 0).
+
+```text
+Docker Compose version v5.5.0
+INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
+INFO  [alembic.runtime.migration] Will assume transactional DDL.
+INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
+INFO  [alembic.runtime.migration] Will assume transactional DDL.
+INFO  [alembic.runtime.migration] Running downgrade 0001 -> , Initial insider schema, database invariants, role grants, and notifications.
+INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
+INFO  [alembic.runtime.migration] Will assume transactional DDL.
+INFO  [alembic.runtime.migration] Running upgrade  -> 0001, Initial insider schema, database invariants, role grants, and notifications.
+id, name, type, entityType, labelsOrTypes, properties, ownedIndex, propertyType
+4, "account_id_unique", "UNIQUENESS", "NODE", ["Account"], ["account_id"], "account_id_unique", NULL
+6, "device_id_unique", "UNIQUENESS", "NODE", ["Device"], ["device_id"], "device_id_unique", NULL
+8, "ip_unique", "UNIQUENESS", "NODE", ["IP"], ["ip"], "ip_unique", NULL
+10, "label_account_unique", "UNIQUENESS", "NODE", ["Label"], ["account_id"], "label_account_unique", NULL
+12, "transfer_id_unique", "RELATIONSHIP_UNIQUENESS", "RELATIONSHIP", ["TRANSFERRED"], ["txn_id"], "transfer_id_unique", NULL
+         conname         
+-------------------------
+ uq_form4_accession_line
+(1 row)
+
+      indexname       
+----------------------
+ ix_form4_ticker_date
+(1 row)
+
+Checking PostgreSQL and Neo4j definitions and workbench_ro INSERT permissions
+{"postgres": "passed", "unique_constraint": true, "ticker_date_index": true, "readonly_insert_denied": true}
+{"neo4j": "passed", "constraints": [["account_id_unique", "UNIQUENESS", ["Account"], ["account_id"]], ["device_id_unique", "UNIQUENESS", ["Device"], ["device_id"]], ["ip_unique", "UNIQUENESS", ["IP"], ["ip"]], ["label_account_unique", "UNIQUENESS", ["Label"], ["account_id"]], ["transfer_id_unique", "RELATIONSHIP_UNIQUENESS", ["TRANSFERRED"], ["txn_id"]]], "time_index": true}
+All checks passed!
+Success: no issues found in 10 source files
+.....                                                                    [100%]
+5 passed in 0.13s
+
+> fintech-command-center@0.1.0 lint
+> eslint src --max-warnings 0
+
+
+> fintech-command-center@0.1.0 typecheck
+> tsc --noEmit
+
+Gate 1 PASSED
+```
+
+Resume with Phase 2, Sections 3.1–3.6. Implement ingestion, detection and
+backtesting, then run Gate 2 against Postgres before starting Phase 3.
+
+## Historical macOS attempts
 
 Retry: restarted OrbStack and confirmed Docker 29.8.2 on aarch64. With 1.0 GiB
 free at the start, `COMPOSE_PROGRESS=plain bash infra/scripts/gate1.sh` exited 1
