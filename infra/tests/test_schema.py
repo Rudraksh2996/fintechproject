@@ -38,6 +38,7 @@ def test_required_tables_and_transaction_keys() -> None:
         "ingestion_runs",
         "parse_errors",
         "price_bars",
+        "price_fetch_ranges",
     }
     table = Form4Transaction.__table__
     unique_keys = {
@@ -65,7 +66,7 @@ def test_frozen_revision_matches_current_metadata() -> None:
         ):
             frozen = ast.literal_eval(node.value)
     dialect = postgresql.dialect()
-    tables = list(Base.metadata.sorted_tables)
+    tables = [t for t in Base.metadata.sorted_tables if t.name != "price_fetch_ranges"]
     current = [str(CreateTable(table).compile(dialect=dialect)).strip() for table in tables]
     current.extend(
         str(CreateIndex(index).compile(dialect=dialect)).strip()

@@ -39,7 +39,7 @@ def verify_postgres(settings: Settings) -> None:
             "SELECT count(*) FROM information_schema.tables WHERE table_schema = "
             "'public' AND table_type = 'BASE TABLE'"
         )
-        assert cursor.fetchone() == (11,)  # ten domain tables plus Alembic version
+        assert cursor.fetchone() == (12,)  # eleven domain tables plus Alembic version
     readonly_url = settings.database_url(readonly=True).render_as_string(hide_password=False)
     with psycopg.connect(readonly_url.replace("postgresql+psycopg:", "postgresql:")) as conn:
         with conn.cursor() as cursor:

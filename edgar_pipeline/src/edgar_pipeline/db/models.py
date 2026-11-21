@@ -238,6 +238,14 @@ class ParseError(Base):
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
 
 
+class PriceFetchRange(Base):
+    __tablename__ = "price_fetch_ranges"
+    __table_args__ = (CheckConstraint("end_date >= start_date", name="ordered_dates"),)
+    ticker: Mapped[str] = mapped_column(String(32), primary_key=True)
+    start_date: Mapped[date] = mapped_column(Date, primary_key=True)
+    end_date: Mapped[date] = mapped_column(Date, primary_key=True)
+
+
 class PriceBar(Base):
     __tablename__ = "price_bars"
     __table_args__ = (CheckConstraint("close > 0", name="positive_close"),)

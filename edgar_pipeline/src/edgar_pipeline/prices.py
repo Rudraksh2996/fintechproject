@@ -15,7 +15,7 @@ from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session
 
-from edgar_pipeline.db.models import PriceBar
+from edgar_pipeline.db.models import PriceBar, PriceFetchRange
 
 
 class PriceError(Exception):
@@ -86,6 +86,19 @@ class LivePrices:
             raise ValueError("Invalid price ticker")
         try:
             with self.sessions() as db:
+                next_day = self.start
+                for span in db.scalars(
+                    select(PriceFetchRange)
+                    .where(
+                        PriceFetchRange.ticker == ticker,
+                        PriceFetchRange.end_date >= self.start,
+                        PriceFetchRange.start_date <= self.end,
+                    )
+                    .order_by(PriceFetchRange.start_date)
+                ):
+                    if span.start_date > next_day:
+                        break
+                    next_day = max(next_day, span.end_date + timedelta(days=1))
                 cached = {
                     r.date: r.close
                     for r in db.scalars(
@@ -98,7 +111,7 @@ class LivePrices:
                 }
             # Avoid treating a disjoint or partial range as a complete cache hit.
             weekdays = pd.bdate_range(self.start, self.end)
-            if all(d.date() in cached for d in weekdays):
+            if next_day > self.end or all(d.date() in cached for d in weekdays):
                 return cached
             try:
                 bars = self._validate(self._stooq(ticker))
@@ -107,6 +120,13 @@ class LivePrices:
                 bars = self._validate(_yahoo(ticker, self.start, self.end))
                 source = "yfinance"
             with self.sessions() as db, db.begin():
+                completed_end = min(self.end, date.today() - timedelta(days=1))
+                if completed_end >= self.start:
+                    db.execute(
+                        insert(PriceFetchRange)
+                        .values(ticker=ticker, start_date=self.start, end_date=completed_end)
+                        .on_conflict_do_nothing()
+                    )
                 for batch in batched(bars.items(), 500):
                     stmt = insert(PriceBar).values(
                         [

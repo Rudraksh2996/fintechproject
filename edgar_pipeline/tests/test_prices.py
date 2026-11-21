@@ -16,18 +16,19 @@ from sqlalchemy.orm import Session, sessionmaker
 def test_vendor_fallback_and_persistent_cache(
     status: int, source: str, monkeypatch: pytest.MonkeyPatch
 ) -> None:
-    start, end = date(2025, 1, 6), date(2025, 1, 7)
+    # MLK Day (Monday Jan 20) has no bar; the fetched interval still covers it.
+    start, end = date(2025, 1, 17), date(2025, 1, 21)
     requests = []
     fallback = []
 
     def stooq(req: httpx.Request) -> httpx.Response:
         requests.append(req)
         assert req.url.params["s"] == "qxtest.us"
-        return httpx.Response(status, text="Date,Close\n2025-01-06,10.50\n2025-01-07,11.75\n")
+        return httpx.Response(status, text="Date,Close\n2025-01-17,10.50\n2025-01-21,11.75\n")
 
     def history(self: object, **kwargs: object) -> pd.DataFrame:
         fallback.append(kwargs)
-        assert kwargs["end"] == "2025-01-08" and kwargs["auto_adjust"] is False
+        assert kwargs["end"] == "2025-01-22" and kwargs["auto_adjust"] is False
         return pd.DataFrame({"Close": [10.5, 11.75]}, index=pd.to_datetime([start, end]))
 
     monkeypatch.setattr(yfinance.Ticker, "history", history)
