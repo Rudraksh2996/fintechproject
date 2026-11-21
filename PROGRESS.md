@@ -2,7 +2,47 @@
 
 Client date: **2026-11-21 (Asia/Calcutta)**.
 
-## Current status — Gate 1 passed on macOS arm64
+## Current status — Gate 2 passed; Phase 3 next
+
+Ran `bash infra/scripts/gate2.sh` against the local Compose PostgreSQL service.
+The initial seed inserted 254 transactions from 843 filings with one quarantine.
+Repeated seeds inserted zero additional transactions. Joint filings preserve all
+owners in raw XML; each XML purchase is attributed once to the first listed owner.
+The SEC contact in .env is the example identity, so no live request was made.
+Live-price retrieval and chronological replay still require integration before
+the final application gate. Exact gate output (exit 0):
+
+```text
+   Building edgar-pipeline @ file:///Users/ishan_mac/Documents/Codex/2026-11-21/remotio/fintech-platform/edgar_pipeline
+      Built edgar-pipeline @ file:///Users/ishan_mac/Documents/Codex/2026-11-21/remotio/fintech-platform/edgar_pipeline
+Prepared 1 package in 193ms
+Uninstalled 3 packages in 1ms
+Installed 3 packages in 3ms
+ ~ edgar-pipeline==0.1.0 (from file:///Users/ishan_mac/Documents/Codex/2026-11-21/remotio/fintech-platform/edgar_pipeline)
+ ~ fintech-gateway==0.1.0 (from file:///Users/ishan_mac/Documents/Codex/2026-11-21/remotio/fintech-platform/backend)
+ ~ ml-pipeline==0.1.0 (from file:///Users/ishan_mac/Documents/Codex/2026-11-21/remotio/fintech-platform/ml_pipeline)
+ Container fintech-platform-postgres-1 Running
+ Container fintech-platform-postgres-1 Waiting
+ Container fintech-platform-postgres-1 Healthy
+..100000 transactions, 100 merged alerts, 0.188 seconds
+..........
+12 passed in 5.72s
+All checks passed!
+Success: no issues found in 19 source files
+{"run_id": 7, "seen": 843, "inserted": 0, "quarantined": 1}
+{"alerts": ["ZXQ00", "ZXQ01", "ZXQ02", "ZXQ03", "ZXQ04", "ZXQ05", "ZXQ06", "ZXQ07", "ZXQ08", "ZXQ09"]}
+{"run_id": 8, "seen": 843, "inserted": 0, "quarantined": 1}
+{"alerts": ["ZXQ00", "ZXQ01", "ZXQ02", "ZXQ03", "ZXQ04", "ZXQ05", "ZXQ06", "ZXQ07", "ZXQ08", "ZXQ09"]}
+Verified 10 planted alerts, 30 trap issuers, 2 amendments and 450 benchmark closes.
+Optional live EDGAR: skipped, offline (no configured SEC contact)
+Gate 2 PASSED
+```
+
+Next: implement the Section 4 synthetic graph generator, loader, temporal
+queries, features, leakage tests, baseline and CPU-only bootstrap training.
+Run Gate 3 before starting Phase 4.
+
+## Historical Phase 1 verification on macOS arm64
 
 Both Compose services reached healthy. Docker 29.8.2, Compose v5.5.0 and uv Python
 3.13.14. The first attempts in this session passed the live database checks but
