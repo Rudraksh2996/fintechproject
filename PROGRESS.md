@@ -1,5 +1,51 @@
 # Build progress
 
+## 2026-11-22 — Gate 3 PASSED on macOS / OrbStack linux/arm64
+
+Ran `bash infra/scripts/gate3.sh` against Neo4j and the four-thread one-shot
+CPU bootstrap. Exit 0. Full output: `infra/verification/phase3/gate3-macos.log`.
+Saved `metrics-lite.json` alongside it with all 15 fold assignments, both
+estimators' fold results, chosen epochs, thresholds and measured duration.
+The artifacts volume contains model.pt, model_config.json, feature_scaler.json,
+metrics.json, scores.parquet and ring_scores.parquet.
+
+```text
+10 passed in 2.15s
+All checks passed!
+Success: no issues found in 34 source files
+{"accounts": 6000, "transactions": 80000, "labels": 180}
+{"accounts": 6000, "communities": 61}
+mean CV PR-AUC=0.9504; CV and final fit took 50.61s
+ring_precision_at_10 {'value': 1.0, 'hits': 10, 'candidates': 10, 'definition': 'contains >=2 members and >=50% of one planted ring'}
+inference label isolation passed
+Gate 3 PASSED
+```
+
+Sample mean ± SD over the same five grouped folds at each of three seeds:
+
+| Metric | GraphSAGE | Feature-only logistic regression |
+|---|---:|---:|
+| PR-AUC | .950 ± .047 | .692 ± .118 |
+| ROC-AUC | .998 ± .002 | .985 ± .006 |
+| Recall at 1% FPR | .939 ± .082 | .554 ± .208 |
+| Cycle recall | .969 ± .083 | 1.000 ± .000 |
+| Dispersion recall | .910 ± .178 | .838 ± .134 |
+| Pass-through recall | .882 ± .120 | .840 ± .096 |
+| Shared infrastructure recall | .905 ± .133 | .837 ± .189 |
+| Structuring recall | 1.000 ± .000 | .981 ± .050 |
+
+This is synthetic transductive evaluation: observable graph topology and
+unsupervised graph features are available across partitions. Model parameters,
+scaling and early stopping use training/validation accounts. Final refit runs
+once per bootstrap invocation on all accounts with the median selected epoch
+count. The GNN mean fell between the 0.75 and 0.98 gates. Ring precision is a
+full-demo coverage diagnostic; it does not measure candidate purity.
+Neo4j cgroup peak 1,057,607,680 bytes / limit 1,342,177,280; no OOM or restart.
+PyG used the native arm64 torch-sparse sampler; PyG warns this fallback is deprecated.
+
+Next phase: Phase 4 gateway and Streamlit. Use the verified artifacts and
+databases, implement the Section 5 contracts, replay and workbench, then run Gate 4.
+
 ## 2026-11-22 — revised lite evaluation, Gate 3 still open
 
 Migration 0002 records fetched historical price intervals atomically with bars.

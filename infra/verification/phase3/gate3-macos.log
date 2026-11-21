@@ -1,0 +1,151 @@
+   Building edgar-pipeline @ file:///Users/ishan_mac/Documents/Codex/2026-11-21/remotio/fintech-platform/edgar_pipeline
+   Building fintech-gateway @ file:///Users/ishan_mac/Documents/Codex/2026-11-21/remotio/fintech-platform/backend
+   Building ml-pipeline @ file:///Users/ishan_mac/Documents/Codex/2026-11-21/remotio/fintech-platform/ml_pipeline
+      Built fintech-gateway @ file:///Users/ishan_mac/Documents/Codex/2026-11-21/remotio/fintech-platform/backend
+      Built edgar-pipeline @ file:///Users/ishan_mac/Documents/Codex/2026-11-21/remotio/fintech-platform/edgar_pipeline
+      Built ml-pipeline @ file:///Users/ishan_mac/Documents/Codex/2026-11-21/remotio/fintech-platform/ml_pipeline
+Prepared 3 packages in 254ms
+Uninstalled 3 packages in 2ms
+Installed 3 packages in 2ms
+ ~ edgar-pipeline==0.1.0 (from file:///Users/ishan_mac/Documents/Codex/2026-11-21/remotio/fintech-platform/edgar_pipeline)
+ ~ fintech-gateway==0.1.0 (from file:///Users/ishan_mac/Documents/Codex/2026-11-21/remotio/fintech-platform/backend)
+ ~ ml-pipeline==0.1.0 (from file:///Users/ishan_mac/Documents/Codex/2026-11-21/remotio/fintech-platform/ml_pipeline)
+ Container fintech-platform-neo4j-1 Running 
+ Container fintech-platform-neo4j-1 Waiting 
+ Container fintech-platform-neo4j-1 Healthy 
+..........                                                               [100%]
+10 passed in 2.15s
+All checks passed!
+Success: no issues found in 34 source files
+ Image fintech-platform-bootstrap Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 641B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from bootstrap.Dockerfile
+#2 transferring dockerfile: 841B done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for ghcr.io/astral-sh/uv:0.9.11
+#3 DONE 1.6s
+
+#4 [internal] load metadata for docker.io/library/python:3.12.12-slim-bookworm
+#4 DONE 2.2s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 159B done
+#5 DONE 0.0s
+
+#6 [stage-1 1/8] FROM docker.io/library/python:3.12.12-slim-bookworm@sha256:593bd06efe90efa80dc4eee3948be7c0fde4134606dd40d8dd8dbcade98e669c
+#6 resolve docker.io/library/python:3.12.12-slim-bookworm@sha256:593bd06efe90efa80dc4eee3948be7c0fde4134606dd40d8dd8dbcade98e669c 0.0s done
+#6 DONE 0.0s
+
+#7 [uv 1/1] FROM ghcr.io/astral-sh/uv:0.9.11@sha256:5aa820129de0a600924f166aec9cb51613b15b68f1dcd2a02f31a500d2ede568
+#7 resolve ghcr.io/astral-sh/uv:0.9.11@sha256:5aa820129de0a600924f166aec9cb51613b15b68f1dcd2a02f31a500d2ede568 0.0s done
+#7 DONE 0.0s
+
+#8 [internal] load build context
+#8 transferring context: 51.73kB done
+#8 DONE 0.0s
+
+#9 [stage-1 3/8] WORKDIR /platform
+#9 CACHED
+
+#10 [stage-1 2/8] COPY --from=uv /uv /usr/local/bin/uv
+#10 CACHED
+
+#11 [stage-1 4/8] RUN uv venv /opt/ml && uv pip install torch==2.8.0 --index-url https://download.pytorch.org/whl/cpu
+#11 CACHED
+
+#12 [stage-1 5/8] RUN uv pip install torch-geometric==2.6.1 scipy==1.15.3 && uv pip install --no-deps --no-index --find-links https://data.pyg.org/whl/torch-2.8.0+cpu.html torch-scatter==2.1.2+pt28cpu torch-sparse==0.6.18+pt28cpu
+#12 CACHED
+
+#13 [stage-1 6/8] COPY ml_pipeline ./ml_pipeline
+#13 DONE 0.0s
+
+#14 [stage-1 7/8] RUN uv pip install ./ml_pipeline && mkdir /artifacts && chown 65532:65532 /artifacts
+#14 0.297 Using Python 3.12.12 environment at: /opt/ml
+#14 1.048 Resolved 16 packages in 741ms
+#14 1.049    Building ml-pipeline @ file:///platform/ml_pipeline
+#14 1.088 Downloading pydantic-core (2.0MiB)
+#14 1.089 Downloading pyarrow (38.8MiB)
+#14 1.089 Downloading networkx (1.9MiB)
+#14 1.089 Downloading pandas (11.2MiB)
+#14 1.683  Downloaded networkx
+#14 1.699  Downloaded pydantic-core
+#14 1.711       Built ml-pipeline @ file:///platform/ml_pipeline
+#14 4.116  Downloaded pandas
+#14 22.00  Downloaded pyarrow
+#14 22.00 Prepared 14 packages in 20.95s
+#14 22.04 Uninstalled 1 package in 34ms
+#14 22.35 Installed 14 packages in 315ms
+#14 22.35  + annotated-types==0.8.0
+#14 22.35  + ml-pipeline==0.1.0 (from file:///platform/ml_pipeline)
+#14 22.35  + neo4j==5.28.2
+#14 22.35  - networkx==3.7
+#14 22.35  + networkx==3.5
+#14 22.35  + pandas==2.3.3
+#14 22.35  + pyarrow==20.0.0
+#14 22.35  + pydantic==2.14.4
+#14 22.35  + pydantic-core==2.50.5
+#14 22.35  + pydantic-settings==2.12.0
+#14 22.35  + python-dateutil==4.0.0
+#14 22.35  + python-dotenv==1.2.4
+#14 22.35  + pytz==2026.6
+#14 22.35  + typing-inspection==0.4.5
+#14 22.35  + tzdata==2026.6
+#14 DONE 22.6s
+
+#15 [stage-1 8/8] COPY infra/scripts/verify_model.py /platform/verify_model.py
+#15 DONE 0.0s
+
+#16 exporting to image
+#16 exporting layers
+#16 exporting layers 5.0s done
+#16 exporting manifest sha256:a975d2af9271b61ff5efde523def4a618451bd838ddbbadc14a8114090ebe2ec 0.0s done
+#16 exporting config sha256:7ae733c2472f26d72c5a3bd76bb600fbd61fab68c34dc5bfc80a4d47b82b77ad 0.0s done
+#16 exporting attestation manifest sha256:24f57c855252ecdefeae438eae4c5095161c44e65ea36a869ca7638a968dd069 0.0s done
+#16 exporting manifest list sha256:310e1e0542aa2bc65dfe5dad4c8b2215b379ea8e6201d01913ce7a4de0797cb6 0.0s done
+#16 naming to docker.io/library/fintech-platform-bootstrap:latest done
+#16 unpacking to docker.io/library/fintech-platform-bootstrap:latest
+#16 unpacking to docker.io/library/fintech-platform-bootstrap:latest 1.1s done
+#16 DONE 6.2s
+
+#17 resolving provenance for metadata file
+#17 DONE 0.0s
+ Image fintech-platform-bootstrap Built 
+ Container fintech-platform-bootstrap-run-d4e63018196d Creating 
+ Container fintech-platform-bootstrap-run-d4e63018196d Created 
+ Container fintech-platform-bootstrap-run-ba2c8ba31cd1 Creating 
+ Container fintech-platform-bootstrap-run-ba2c8ba31cd1 Created 
+{"accounts": 6000, "transactions": 80000, "labels": 180}
+ Container fintech-platform-bootstrap-run-aef6b7f76582 Creating 
+ Container fintech-platform-bootstrap-run-aef6b7f76582 Created 
+{"accounts": 6000, "communities": 61}
+ Container fintech-platform-bootstrap-run-a82ed3ff69e3 Creating 
+ Container fintech-platform-bootstrap-run-a82ed3ff69e3 Created 
+/opt/ml/lib/python3.12/site-packages/torch_geometric/sampler/neighbor_sampler.py:61: UserWarning: Using 'NeighborSampler' without a 'pyg-lib' installation is deprecated and will be removed soon. Please install 'pyg-lib' for accelerated neighborhood sampling
+  warnings.warn(f"Using '{self.__class__.__name__}' without a "
+seed=42 fold=0 PR-AUC=0.9880 epochs=23
+seed=42 fold=1 PR-AUC=0.9640 epochs=24
+seed=42 fold=2 PR-AUC=0.9626 epochs=23
+seed=42 fold=3 PR-AUC=0.9457 epochs=15
+seed=42 fold=4 PR-AUC=0.9200 epochs=12
+seed=43 fold=0 PR-AUC=0.9218 epochs=24
+seed=43 fold=1 PR-AUC=0.8174 epochs=8
+seed=43 fold=2 PR-AUC=0.9480 epochs=18
+seed=43 fold=3 PR-AUC=0.9776 epochs=14
+seed=43 fold=4 PR-AUC=0.9979 epochs=15
+seed=44 fold=0 PR-AUC=0.8984 epochs=8
+seed=44 fold=1 PR-AUC=0.9783 epochs=10
+seed=44 fold=2 PR-AUC=0.9864 epochs=15
+seed=44 fold=3 PR-AUC=0.9834 epochs=23
+seed=44 fold=4 PR-AUC=0.9664 epochs=11
+mean CV PR-AUC=0.9504; CV and final fit took 50.61s
+ Container fintech-platform-bootstrap-run-12419bded158 Creating 
+ Container fintech-platform-bootstrap-run-12419bded158 Created 
+baseline {"pr_auc": {"mean": 0.691654671762059, "std": 0.11836180678153495}, "precision_at_k": {"mean": 0.35, "std": 0.018898223650461354}, "recall/cycle": {"mean": 1, "std": 0.0}, "recall/dispersion": {"mean": 0.8380952380952381, "std": 0.13440444138447802}, "recall/pass_through": {"mean": 0.8401322751322752, "std": 0.09591969187601447}, "recall/shared_infrastructure": {"mean": 0.8369047619047619, "std": 0.1888455928008673}, "recall/structuring": {"mean": 0.9809523809523809, "std": 0.05026653932492836}, "recall_at_1pct_fpr": {"mean": 0.5537462617698311, "std": 0.20808985794559054}, "roc_auc": {"mean": 0.9852387136844261, "std": 0.0062323989025288105}}
+gnn {"pr_auc": {"mean": 0.9503887061588335, "std": 0.04654059268458708}, "precision_at_k": {"mean": 0.358, "std": 0.023052734575936353}, "recall/cycle": {"mean": 0.9685185185185186, "std": 0.08324510320448275}, "recall/dispersion": {"mean": 0.9095238095238095, "std": 0.17760794497589827}, "recall/pass_through": {"mean": 0.8817724867724868, "std": 0.11989386175630375}, "recall/shared_infrastructure": {"mean": 0.9045238095238095, "std": 0.1330872668684977}, "recall/structuring": {"mean": 1, "std": 0.0}, "recall_at_1pct_fpr": {"mean": 0.9388928344925549, "std": 0.08221671859459166}, "roc_auc": {"mean": 0.9976545963005908, "std": 0.0021975195457843845}}
+ring_precision_at_10 {'value': 1.0, 'hits': 10, 'candidates': 10, 'definition': 'contains >=2 members and >=50% of one planted ring'}
+inference label isolation passed
+Gate 3 PASSED
