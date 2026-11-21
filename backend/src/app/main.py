@@ -193,6 +193,11 @@ def create_app() -> FastAPI:
     for error in (Neo4jError, ServiceUnavailable, SQLAlchemyError):
         app.add_exception_handler(error, db_error)
 
+    @app.exception_handler(Exception)
+    async def internal_error(_: Request, exc: Exception) -> JSONResponse:
+        logging.getLogger("gateway").exception("Unhandled gateway error")
+        return problem(500, "Internal server error", "The request could not be completed.")
+
     @app.get("/api/v1/health")
     async def health() -> Health:
         pg = neo = False

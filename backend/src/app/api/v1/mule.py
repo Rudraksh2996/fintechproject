@@ -205,7 +205,16 @@ def routes(driver: AsyncDriver, directory: Path, demo: bool) -> APIRouter:
         t1: int = 2**62,
         max_gap: Annotated[int, Query(ge=0)] = 3600,
     ) -> list[Trail]:
+        if t0 > t1:
+            raise HTTPException(422, "Invalid time window")
         async with driver.session() as session:
+            found = await (
+                await session.run(
+                    "MATCH (a:Account {account_id:$id}) RETURN a.account_id", id=account_id
+                )
+            ).single()
+            if found is None:
+                raise HTTPException(404, "Unknown account")
             data = await (
                 await session.run(
                     trail_query(k, direction),

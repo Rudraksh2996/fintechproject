@@ -131,6 +131,8 @@ def routes(engine: AsyncEngine) -> APIRouter:
         start: Annotated[date | None, Query(alias="from")] = None,
         to: date | None = None,
     ) -> list[TradeView]:
+        if start and to and start > to:
+            raise HTTPException(422, "Invalid transaction date range")
         q = select(Form4Transaction).where(
             Form4Transaction.ticker == ticker.upper(), Form4Transaction.superseded.is_(False)
         )
@@ -148,6 +150,8 @@ def routes(engine: AsyncEngine) -> APIRouter:
     async def radar(
         start: Annotated[date | None, Query(alias="from")] = None, to: date | None = None
     ) -> list[AlertView]:
+        if start and to and start > to:
+            raise HTTPException(422, "Invalid filing date range")
         q = select(ClusterAlert)
         if start:
             q = q.where(ClusterAlert.alert_filing_date >= start)
