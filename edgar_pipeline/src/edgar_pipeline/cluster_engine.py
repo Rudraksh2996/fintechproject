@@ -71,7 +71,14 @@ def _trigger(rows: list[Trade], c: Config) -> date:
 DEFAULT_CONFIG = Config()
 
 
-def detect(trades: Iterable[Trade], config: Config = DEFAULT_CONFIG) -> list[Cluster]:
+@dataclass
+class DetectionStats:
+    window_entries: int = 0
+
+
+def detect(
+    trades: Iterable[Trade], config: Config = DEFAULT_CONFIG, *, stats: DetectionStats | None = None
+) -> list[Cluster]:
     eligible = sorted(
         (
             t
@@ -90,6 +97,8 @@ def detect(trades: Iterable[Trade], config: Config = DEFAULT_CONFIG) -> list[Clu
         totals: defaultdict[int, Decimal] = defaultdict(Decimal)
         for right, t in enumerate(rows):
             totals[t.insider] += t.value or Decimal(0)
+            if stats is not None:
+                stats.window_entries += 1
             if right + 1 < len(rows) and rows[right + 1].day == t.day:
                 continue
             start = t.day - timedelta(days=config.window_days - 1)

@@ -3,7 +3,7 @@ from decimal import Decimal
 from time import perf_counter
 
 from edgar_pipeline.backtest import Signal, backtest
-from edgar_pipeline.cluster_engine import Trade, detect
+from edgar_pipeline.cluster_engine import DetectionStats, Trade, detect
 from edgar_pipeline.conviction import Config, conviction
 
 BASE = date(2024, 1, 1)
@@ -59,7 +59,14 @@ def test_100k_rows() -> None:
         for i in range(100000)
     ]
     start = perf_counter()
-    alerts = detect(rows)
+    stats = DetectionStats()
+    alerts = detect(rows, stats=stats)
     elapsed = perf_counter() - start
-    print(f"100000 transactions, {len(alerts)} merged alerts, {elapsed:.3f} seconds")
+    print(
+        f"{stats.window_entries} window entries, {len(alerts)} merged alerts, {elapsed:.3f} seconds"
+    )
+    assert stats.window_entries == 100_000
+    assert [a.company for a in alerts] == list(range(100))
+    for a in alerts:
+        assert set(a.members) == set(range(a.company, 100_000, 100))
     assert len(alerts) == 100 and elapsed < 10
