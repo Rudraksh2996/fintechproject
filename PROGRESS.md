@@ -1,5 +1,60 @@
 # Build progress
 
+## 2026-11-22 — revised lite evaluation, Gate 3 still open
+
+Migration 0002 records fetched historical price intervals atomically with bars.
+The vendor/cache tests span MLK Day and check fresh provider instances. Ran
+`uv run alembic upgrade head` then `uv run pytest -q infra/tests edgar_pipeline/tests/test_prices.py`:
+7 passed in 2.13s.
+
+The approved lite preset supersedes the older numbers below. At seed 42 it has
+6,000 accounts, 80,000 transfers and 180 positive accounts in 40 disjoint rings.
+Each of the five typologies has eight rings. Sizes range from three to seven
+(mean 4.5). The deterministic generation test compares every output byte.
+
+```text
+uv run mule generate --output ../work/lite-v2
+uv run mule load --output ../work/lite-v2
+{"accounts": 6000, "transactions": 80000, "labels": 180}
+uv run mule load --output ../work/lite-v2
+{"accounts": 6000, "transactions": 80000, "labels": 180}
+Neo4j counts after replay: 6000 accounts, 80000 transfers, 180 labels, 0 label edges
+cgroup memory.peak: 1055997952 bytes; memory.max: 1342177280 bytes
+docker inspect: OOMKilled=false restarts=0
+uv run mule features --output ../work/lite-v2
+{"accounts": 6000, "communities": 61}
+uv run mule baseline --output ../work/lite-v2
+uv run pytest -q ml_pipeline -> 10 passed in 1.61s
+uv run mypy --strict -> Success: no issues found in 31 source files
+```
+
+The fold generator groups positives by ring and legitimate accounts by Louvain
+community. Seeds 42/43/44 each use five test folds. Each rotation holds one
+other fold for validation and fits preprocessing on training accounts only.
+All 15 baseline fold records and their sample standard deviations are in
+`infra/verification/phase3/baseline-lite.json`. Baseline PR-AUC (average
+precision) 0.692 ± 0.118; ROC-AUC 0.985 ± 0.006; recall@1%FPR 0.554 ± 0.208.
+Per-typology recall at threshold 0.5: cycle 1.000 ± 0.000, dispersion 0.838 ± 0.134,
+pass-through 0.840 ± 0.096, shared infrastructure 0.837 ± 0.189,
+structuring 0.981 ± 0.050. These are baseline diagnostics only.
+
+Training image storage is the immediate resource constraint. The Linux arm64
+CPython 3.12 Torch 2.8.0 CPU wheel measured 101905972 bytes compressed and
+410939507 bytes of uncompressed files (wheel directory). At the last disk
+check the Mac had 482 MiB free, below even the combined wheel and unpacked
+files, before PyG, build layers and artifacts. Free several GiB on the Mac.
+Keep the approved lite scale unless measured runtime or Neo4j memory requires
+the approved 5,000/65,000 fallback.
+
+Resume with `df -h .` and `export PATH="$HOME/.orbstack/bin:/usr/local/bin:$PATH" UV_NO_EDITABLE=1`.
+Use the saved lite-v2 CV assignments (or regenerate with the baseline command).
+Implement bootstrap-only GNN CV on identical folds with training-only transforms,
+the inference-path isolation test, risk score and top-10 precision. Time the
+four-thread bootstrap. Record both estimators' fold/seed config and all metrics
+in metrics.json. Apply the 0.75 minimum and 0.98 difficulty threshold to mean
+GNN PR-AUC, preserve both runs if difficulty changes, then fit the shipping
+model once on all data. Run the full Gate 3 before advancing.
+
 ### Phase 3 generator checkpoint
 
 Added `mule generate --output DIRECTORY` for lite/demo/full, using SEED and
