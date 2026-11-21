@@ -55,8 +55,26 @@ Success: no issues found in 10 source files
 Gate 1 PASSED
 ```
 
-Resume with Phase 2, Sections 3.1–3.6. Implement ingestion, detection and
-backtesting, then run Gate 2 against Postgres before starting Phase 3.
+## Phase 2 — in progress
+
+Implemented the typed lxml parser and focused tests for joint owners, XML namespaces,
+4/A identification, filtering transaction codes and dispositions, stable XML line
+numbers, footnote-only prices, and typed parse errors. Local checks:
+
+```text
+uv run ruff check . -> All checks passed!
+uv run mypy --strict -> Success: no issues found in 11 source files
+UV_NO_EDITABLE=1 uv run --frozen pytest -q -> 9 passed in 0.77s
+```
+
+On this host refresh the local package wheel after parser changes with
+`uv sync --frozen --all-packages --no-editable --reinstall-package edgar-pipeline`.
+Next implement the shared rate-limited SEC client and filing discovery, followed by
+transactional Postgres ingestion with quarantine, multi-owner attribution, amendment
+supersession and idempotency tests. Then implement the detector, conviction score,
+price providers, backtester, fixtures and CLI. Run the complete Gate 2 specified in
+Section 8 (including the 100k-row benchmark and planted-cluster/trap assertions)
+before starting Phase 3. Gate 2 has not run.
 
 ## Historical macOS attempts
 
