@@ -12,7 +12,7 @@ def test_lite_determinism_and_camouflage(tmp_path: Path) -> None:
     for file in first.iterdir():
         assert file.read_bytes() == (second / file.name).read_bytes()
     manifest = json.loads((first / "manifest.json").read_text())
-    assert (manifest["accounts"], manifest["transactions"], manifest["days"]) == (3000, 40000, 60)
+    assert (manifest["accounts"], manifest["transactions"], manifest["days"]) == (6000, 80000, 60)
     labels = pd.read_parquet(first / "labels.parquet")
     transfers = pd.read_parquet(first / "transactions.parquet")
     neg = pd.read_parquet(first / "hard_negatives.parquet")
@@ -20,7 +20,10 @@ def test_lite_determinism_and_camouflage(tmp_path: Path) -> None:
     assert set(neg.pattern) == {"payroll", "merchant", "family"}
     assert set(neg.account_id).isdisjoint(labels.account_id)
     assert set(labels.account_id) <= set(transfers.loc[transfers.channel == "card", "src"])
-    assert 0.01 <= len(labels) / 3000 <= 0.03
+    assert len(labels) == labels.account_id.nunique() == 180
+    assert labels.groupby("typology").ring_id.nunique().to_dict() == dict.fromkeys(TYPOLOGIES, 8)
+    sizes = labels.groupby("ring_id").size()
+    assert len(sizes) == 40 and sizes.min() == 3 and sizes.max() == 7 and sizes.mean() == 4.5
     # Inspect the actual negative transfers within each dedicated group.
     for _, group in neg.groupby(neg.index // 6):
         ids = group.account_id.to_list()

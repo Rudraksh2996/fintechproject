@@ -7,8 +7,8 @@ from pathlib import Path
 
 import pandas as pd
 
-SCALES = {"lite": (3000, 40000, 60), "demo": (8000, 120000, 90), "full": (50000, 1000000, 90)}
-TYPOLOGIES = ("dispersion", "pass_through", "cycle", "structuring")
+SCALES = {"lite": (6000, 80000, 60), "demo": (8000, 120000, 90), "full": (50000, 1000000, 90)}
+TYPOLOGIES = ("dispersion", "pass_through", "cycle", "structuring", "shared_infrastructure")
 START = 1704067200
 
 
@@ -28,9 +28,11 @@ def generate(
     merchants = [i for i in accounts if roles[i] == "merchant"]
     payroll = [i for i in accounts if roles[i] == "payroll"]
     shuffled = rng.sample(accounts, n)
-    ring_count = n // 250
-    members = shuffled[: 5 * ring_count]
-    ordinary = shuffled[5 * ring_count :]
+    sizes = [3, 3, 4, 4, 5, 5, 5, 7] * 5 if scale == "lite" else [5] * (n // 250)
+    rng.shuffle(sizes)
+    ring_count = len(sizes)
+    members = iter(shuffled[: sum(sizes)])
+    ordinary = shuffled[sum(sizes) :]
     devices = [f"d{i}" for i in accounts]
     ips = [f"ip{rng.randrange(max(1, n // 2))}" for i in accounts]
     for i in accounts:
@@ -52,8 +54,9 @@ def generate(
         return day * 86400 + int(max(0, min(23.99, rng.gauss(14, 4))) * 3600)
 
     for ring in range(ring_count):
-        group = members[5 * ring : 5 * ring + 5]
-        kind = TYPOLOGIES[ring % 4]
+        group = [next(members) for _ in range(sizes[ring])]
+        kind = TYPOLOGIES[ring % len(TYPOLOGIES)]
+        beneficiary = rng.choice(ordinary)
         for a in group:
             labels.append((a, ring, kind, int(rng.random() >= label_noise)))
             # Independent ordinary merchant payments guarantee mule camouflage.
@@ -64,7 +67,7 @@ def generate(
                 rng.lognormvariate(4, 1),
                 "card",
             )
-            if rng.random() < 0.65:
+            if kind == "shared_infrastructure" or rng.random() < 0.65:
                 devices[a] = devices[group[0]]
                 ips[a] = ips[group[0]]
         for _ in range(rng.randint(3, 7)):
@@ -74,6 +77,9 @@ def generate(
                 for j, a in enumerate(group[1:]):
                     emit(a, group[0], ts + j * 60, amount / 4)
                     emit(group[0], a, ts + 1200 + j * 80, amount * rng.uniform(0.88, 0.99) / 4)
+            elif kind == "shared_infrastructure":
+                for a in group:
+                    emit(a, beneficiary, ts + rng.randrange(3600), amount * rng.uniform(0.5, 1.5))
             elif kind == "structuring":
                 for j, a in enumerate(group[1:]):
                     emit(a, group[0], ts + j * 180, threshold * rng.uniform(0.91, 0.998))
