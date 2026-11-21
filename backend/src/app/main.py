@@ -39,6 +39,7 @@ from app.services.transfers import (
     apply_transfer,
 )
 from app.settings import GatewaySettings
+from app.ws.alerts import AlertHub, Heartbeat, stop_task
 
 
 class Problem(BaseModel):
@@ -70,12 +71,6 @@ class ScoreEvent(BaseModel):
     payload: AccountScore
 
 
-class Heartbeat(BaseModel):
-    type: Literal["heartbeat"] = "heartbeat"
-    version: Literal[1] = 1
-    ts: datetime
-
-
 def create_app() -> FastAPI:
     config = GatewaySettings()
     sql = Settings()
@@ -93,6 +88,7 @@ def create_app() -> FastAPI:
     driver = AsyncGraphDatabase.driver(
         graph.neo4j_uri, auth=(user, password), connection_timeout=config.database_timeout_seconds
     )
+    alerts = AlertHub(engine, sql.database_url(), config.database_timeout_seconds)
     model: RuntimeModel | None = None
     subscribers: set[asyncio.Queue[ScoreEvent]] = set()
 
@@ -126,10 +122,13 @@ def create_app() -> FastAPI:
                         "FOR (s:ScoringState) REQUIRE s.name IS UNIQUE"
                     )
                 ).consume()
+            listener = asyncio.create_task(alerts.listen())
             worker = asyncio.create_task(process_jobs())
             try:
+                await asyncio.wait_for(alerts.ready.wait(), config.database_timeout_seconds)
                 yield
             finally:
+                await stop_task(listener)
                 stopping.set()
                 await worker
         finally:
@@ -242,6 +241,10 @@ def create_app() -> FastAPI:
                     for queue in subscribers:
                         queue.put_nowait(ScoreEvent(payload=score))
         return result
+
+    @app.websocket("/ws/alerts")
+    async def ws_alerts(ws: WebSocket) -> None:
+        await alerts.serve(ws, config.origin)
 
     @app.websocket("/ws/mule")
     async def ws_mule(ws: WebSocket) -> None:

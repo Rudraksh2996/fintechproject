@@ -429,6 +429,7 @@ dependencies = [
     { name = "ml-pipeline" },
     { name = "sqlalchemy", extra = ["asyncio"] },
     { name = "uvicorn" },
+    { name = "websockets" },
 ]
 
 [package.metadata]
@@ -438,6 +439,7 @@ requires-dist = [
     { name = "ml-pipeline", editable = "ml_pipeline" },
     { name = "sqlalchemy", extras = ["asyncio"], specifier = "==2.0.44" },
     { name = "uvicorn", specifier = "==0.38.0" },
+    { name = "websockets", specifier = "==17.4" },
 ]
 
 [[package]]
