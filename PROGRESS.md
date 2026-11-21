@@ -1,5 +1,34 @@
 # Build progress
 
+### Phase 2 live prices
+
+LivePrices implements the backtest PriceProvider and requests US daily closes
+from Stooq, falling back to yfinance on transport or data failure. Results are
+cached in price_bars with source provenance. The integration tests mock the
+Stooq transport and yfinance history boundary, use real Postgres, and verify a
+second provider instance reads cached prices without a vendor call. Ranges
+containing an exchange holiday can trigger another fetch because the cache
+checks weekday coverage. Replay scheduling belongs to Phase 4.
+
+Gate command: `bash infra/scripts/gate2.sh`.
+
+```text
+ Container fintech-platform-postgres-1 Waiting
+ Container fintech-platform-postgres-1 Healthy
+...100000 window entries, 100 merged alerts, 0.233 seconds
+............
+15 passed in 7.71s
+All checks passed!
+Success: no issues found in 21 source files
+{"run_id": 17, "seen": 853, "inserted": 0, "quarantined": 1}
+{"alerts": ["ZXQ00", "ZXQ01", "ZXQ02", "ZXQ03", "ZXQ04", "ZXQ05", "ZXQ06", "ZXQ07", "ZXQ08", "ZXQ09", "ZXQ40", "ZXQ42"]}
+{"run_id": 18, "seen": 853, "inserted": 0, "quarantined": 1}
+{"alerts": ["ZXQ00", "ZXQ01", "ZXQ02", "ZXQ03", "ZXQ04", "ZXQ05", "ZXQ06", "ZXQ07", "ZXQ08", "ZXQ09", "ZXQ40", "ZXQ42"]}
+Verified 12 planted alerts, 31 trap issuers, 3 amendments and 450 benchmark closes.
+Optional live EDGAR: skipped, offline (no configured SEC contact)
+Gate 2 PASSED
+```
+
 ### Phase 2 benchmark and threshold audit
 
 Counted entries inside the rolling loop and verified the 1,000 unique member IDs
