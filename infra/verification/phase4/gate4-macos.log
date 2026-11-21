@@ -1,0 +1,51 @@
+Docker 29.8.2 aarch64
+ Container fintech-platform-postgres-1 Running 
+ Container fintech-platform-neo4j-1 Running 
+ Container fintech-platform-postgres-1 Waiting 
+ Container fintech-platform-neo4j-1 Waiting 
+ Container fintech-platform-postgres-1 Healthy 
+ Container fintech-platform-neo4j-1 Healthy 
+   Building quant-workbench @ file:///Users/ishan_mac/Documents/Codex/2026-11-21/remotio/fintech-platform/streamlit_workbench
+      Built quant-workbench @ file:///Users/ishan_mac/Documents/Codex/2026-11-21/remotio/fintech-platform/streamlit_workbench
+Prepared 1 package in 282ms
+Uninstalled 1 package in 1ms
+Installed 1 package in 2ms
+ ~ quant-workbench==0.1.0 (from file:///Users/ishan_mac/Documents/Codex/2026-11-21/remotio/fintech-platform/streamlit_workbench)
+INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
+INFO  [alembic.runtime.migration] Will assume transactional DDL.
+INFO  [alembic.runtime.migration] Running upgrade  -> 0001, Initial insider schema, database invariants, role grants, and notifications.
+INFO  [alembic.runtime.migration] Running upgrade 0001 -> 0002, Record completed historical price fetches, including exchange holidays.
+{"run_id": 1, "seen": 853, "inserted": 264, "quarantined": 1}
+{"alerts": ["ZXQ00", "ZXQ01", "ZXQ02", "ZXQ03", "ZXQ04", "ZXQ05", "ZXQ06", "ZXQ07", "ZXQ08", "ZXQ09", "ZXQ40", "ZXQ42"]}
+ Container fintech-platform-bootstrap-run-791a96d91e5a Creating 
+ Container fintech-platform-bootstrap-run-791a96d91e5a Created 
+All checks passed!
+Success: no issues found in 44 source files
+......                                                                   [100%]
+================================ tests coverage ================================
+______________ coverage: platform darwin, python 3.13.14-final-0 _______________
+
+Name                                    Stmts   Miss  Cover   Missing
+---------------------------------------------------------------------
+backend/src/app/__init__.py                 1      0   100%
+backend/src/app/api/v1/configs.py         130     25    81%   59-61, 97, 109, 111-114, 139, 145-154, 161, 171-173, 179-181
+backend/src/app/api/v1/insider.py         103     20    81%   75, 78, 80, 82, 84, 86, 89, 98-99, 108, 115-126, 140, 142, 147, 157, 159
+backend/src/app/api/v1/mule.py            125      5    96%   95-97, 161, 209
+backend/src/app/main.py                   188     20    89%   107-108, 132, 141, 191, 198-199, 206-208, 212-213, 244, 249-250, 260, 265-266, 276, 278
+backend/src/app/services/replay.py         41     27    34%   21-38, 42-57
+backend/src/app/services/transfers.py      88      4    95%   43, 45, 134, 157
+backend/src/app/settings.py                10      0   100%
+backend/src/app/ws/alerts.py               82     28    66%   59, 63, 66-71, 73, 78, 81-100
+---------------------------------------------------------------------
+TOTAL                                     768    129    83%
+Required test coverage of 80% reached. Total coverage: 83.20%
+6 passed, 82 warnings in 11.45s
+{'status': 'ok', 'postgres': True, 'neo4j': True, 'model_loaded': True, 'demo_mode': True, 'version': '0.1.0'}
+ok.....                                                                    [100%]
+5 passed in 1.60s
+PYTHONPATH=backend/src:edgar_pipeline/src:ml_pipeline/src .venv/bin/python infra/scripts/export_openapi.py
+cd frontend && ./node_modules/.bin/openapi-typescript ../backend/openapi.json -o src/api/generated/schema.d.ts
+✨ openapi-typescript 7.13.0
+🚀 ../backend/openapi.json → src/api/generated/schema.d.ts [46.3ms]
+Gate 4 PASSED
+infra/scripts/gate4.sh: line 24: 16562 Terminated: 15          uvicorn app.main:create_app --factory --port "$api_port" > "$scratch/api.log" 2>&1

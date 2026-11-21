@@ -1,5 +1,31 @@
 # Build progress
 
+## Gate 4 PASSED — macOS, OrbStack arm64
+
+Ran `bash infra/scripts/gate4.sh`, exit 0. The gate used a fresh PostgreSQL
+database, the seeded Neo4j for reads, an ephemeral Neo4j for transfer writes,
+and artifacts from the Gate 3 volume. FastAPI and Streamlit ran on the host.
+The TCP WebSocket tests covered both a detector job insert and a chronological
+fixture replay. The Tuner saved and activated a config through the running gateway.
+Full output: `infra/verification/phase4/gate4-macos.log`.
+
+```text
+All checks passed!
+Success: no issues found in 44 source files
+Required test coverage of 80% reached. Total coverage: 83.20%
+6 passed, 82 warnings in 11.45s
+{'status': 'ok', 'postgres': True, 'neo4j': True, 'model_loaded': True, 'demo_mode': True, 'version': '0.1.0'}
+ok
+5 passed in 1.60s
+Gate 4 PASSED
+```
+
+Regenerating both OpenAPI files left the tracked contracts clean. End-to-end
+nginx deployment and the operational UI remain for Phase 5. Implement the React
+routes, typed request and event hooks, Radar and Mule scenes, analytical deep
+links, live-score confidence wording, and bounded time controls. Verify all
+routes through nginx and run lint, typecheck, Vitest and the production build.
+
 ## Phase 4 cold-start evaluation
 
 The bootstrap diagnostic used 10 held-out positives and 30 held-out negatives
