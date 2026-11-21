@@ -23,6 +23,8 @@ dev = [
     "types-PyYAML==6.0.12.20250915",
     "types-lxml>=2026.2.16",
     "pandas-stubs>=3.1.0.261029",
+    "torch==2.8.0 ; sys_platform == 'darwin'",
+    "torch-geometric==2.6.1 ; sys_platform == 'darwin'",
 ]
 
 [tool.ruff]

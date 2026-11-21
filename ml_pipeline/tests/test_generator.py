@@ -24,6 +24,28 @@ def test_lite_determinism_and_camouflage(tmp_path: Path) -> None:
     assert labels.groupby("typology").ring_id.nunique().to_dict() == dict.fromkeys(TYPOLOGIES, 8)
     sizes = labels.groupby("ring_id").size()
     assert len(sizes) == 40 and sizes.min() == 3 and sizes.max() == 7 and sizes.mean() == 4.5
+    accounts = pd.read_parquet(first / "accounts.parquet").set_index("account_id")
+    for _, group in labels.groupby("ring_id"):
+        ids = group.account_id.tolist()
+        kind = group.typology.iloc[0]
+        sent = transfers[transfers.src.isin(ids)]
+        edges = sent[sent.dst.isin(ids)]
+        pairs = set(zip(edges.src, edges.dst, strict=True))
+        hops = set(zip(ids[:-1], ids[1:], strict=True))
+        if kind == "cycle":
+            assert hops | {(ids[-1], ids[0])} <= pairs
+        elif kind == "pass_through":
+            assert hops <= pairs
+        elif kind == "dispersion":
+            assert all((v, ids[0]) in pairs and (ids[0], v) in pairs for v in ids[1:])
+        elif kind == "structuring":
+            near = edges[(edges.amount >= 9000) & (edges.amount < 10000) & (edges.dst == ids[0])]
+            assert set(ids[1:]) <= set(near.src)
+        else:
+            assert (
+                accounts.loc[ids, "device_id"].nunique() == accounts.loc[ids, "ip"].nunique() == 1
+            )
+            assert sent.groupby("dst").src.nunique().max() >= len(ids)
     # Inspect the actual negative transfers within each dedicated group.
     for _, group in neg.groupby(neg.index // 6):
         ids = group.account_id.to_list()

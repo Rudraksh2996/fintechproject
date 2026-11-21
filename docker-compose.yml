@@ -45,6 +45,19 @@ services:
       retries: 30
       start_period: 30s
     restart: unless-stopped
+  bootstrap:
+    profiles: [tools]
+    mem_limit: 2304m
+    cpus: 4
+    build:
+      context: .
+      dockerfile: infra/docker/bootstrap.Dockerfile
+    env_file: .env
+    environment:
+      TORCH_NUM_THREADS: ${TORCH_NUM_THREADS:-4}
+      NEO4J_URI: bolt://neo4j:7687
+    volumes:
+      - artifacts:/artifacts
   schema:
     mem_limit: 384m
     profiles: [tools]
