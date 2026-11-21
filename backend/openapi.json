@@ -1,0 +1,2298 @@
+{
+  "components": {
+    "schemas": {
+      "AccountDetail": {
+        "properties": {
+          "account": {
+            "$ref": "#/components/schemas/Node"
+          },
+          "community": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Community"
+          },
+          "devices": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Devices",
+            "type": "array"
+          },
+          "features": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/JsonValue"
+            },
+            "title": "Features",
+            "type": "object"
+          },
+          "ips": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Ips",
+            "type": "array"
+          }
+        },
+        "required": [
+          "account",
+          "community",
+          "features",
+          "devices",
+          "ips"
+        ],
+        "title": "AccountDetail",
+        "type": "object"
+      },
+      "AccountInput": {
+        "properties": {
+          "account_id": {
+            "minimum": 0.0,
+            "title": "Account Id",
+            "type": "integer"
+          },
+          "created_at": {
+            "minimum": 0.0,
+            "title": "Created At",
+            "type": "integer"
+          },
+          "device_id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Device Id",
+            "type": "string"
+          },
+          "home_country": {
+            "pattern": "^[A-Z]{2}$",
+            "title": "Home Country",
+            "type": "string"
+          },
+          "ip": {
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Ip",
+            "type": "string"
+          },
+          "type": {
+            "enum": [
+              "retail",
+              "business",
+              "merchant",
+              "payroll"
+            ],
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "account_id",
+          "type",
+          "created_at",
+          "home_country",
+          "device_id",
+          "ip"
+        ],
+        "title": "AccountInput",
+        "type": "object"
+      },
+      "AccountScore": {
+        "properties": {
+          "account_id": {
+            "title": "Account Id",
+            "type": "integer"
+          },
+          "crossed_threshold": {
+            "title": "Crossed Threshold",
+            "type": "boolean"
+          },
+          "probability": {
+            "title": "Probability",
+            "type": "number"
+          }
+        },
+        "required": [
+          "account_id",
+          "probability",
+          "crossed_threshold"
+        ],
+        "title": "AccountScore",
+        "type": "object"
+      },
+      "AlertDetail": {
+        "properties": {
+          "alert_filing_date": {
+            "format": "date",
+            "title": "Alert Filing Date",
+            "type": "string"
+          },
+          "config_id": {
+            "title": "Config Id",
+            "type": "integer"
+          },
+          "conviction_score": {
+            "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+            "title": "Conviction Score",
+            "type": "string"
+          },
+          "id": {
+            "title": "Id",
+            "type": "integer"
+          },
+          "members": {
+            "items": {
+              "$ref": "#/components/schemas/TradeView"
+            },
+            "title": "Members",
+            "type": "array"
+          },
+          "n_csuite": {
+            "title": "N Csuite",
+            "type": "integer"
+          },
+          "n_insiders": {
+            "title": "N Insiders",
+            "type": "integer"
+          },
+          "score_breakdown": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/JsonValue"
+            },
+            "title": "Score Breakdown",
+            "type": "object"
+          },
+          "status": {
+            "enum": [
+              "new",
+              "acknowledged",
+              "dismissed"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "ticker": {
+            "title": "Ticker",
+            "type": "string"
+          },
+          "total_value_usd": {
+            "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+            "title": "Total Value Usd",
+            "type": "string"
+          },
+          "window_end": {
+            "format": "date",
+            "title": "Window End",
+            "type": "string"
+          },
+          "window_start": {
+            "format": "date",
+            "title": "Window Start",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "ticker",
+          "window_start",
+          "window_end",
+          "alert_filing_date",
+          "n_insiders",
+          "n_csuite",
+          "total_value_usd",
+          "conviction_score",
+          "score_breakdown",
+          "config_id",
+          "status",
+          "members"
+        ],
+        "title": "AlertDetail",
+        "type": "object"
+      },
+      "AlertPage": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/AlertView"
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Cursor"
+          }
+        },
+        "required": [
+          "items",
+          "next_cursor"
+        ],
+        "title": "AlertPage",
+        "type": "object"
+      },
+      "AlertView": {
+        "properties": {
+          "alert_filing_date": {
+            "format": "date",
+            "title": "Alert Filing Date",
+            "type": "string"
+          },
+          "config_id": {
+            "title": "Config Id",
+            "type": "integer"
+          },
+          "conviction_score": {
+            "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+            "title": "Conviction Score",
+            "type": "string"
+          },
+          "id": {
+            "title": "Id",
+            "type": "integer"
+          },
+          "n_csuite": {
+            "title": "N Csuite",
+            "type": "integer"
+          },
+          "n_insiders": {
+            "title": "N Insiders",
+            "type": "integer"
+          },
+          "score_breakdown": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/JsonValue"
+            },
+            "title": "Score Breakdown",
+            "type": "object"
+          },
+          "status": {
+            "enum": [
+              "new",
+              "acknowledged",
+              "dismissed"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "ticker": {
+            "title": "Ticker",
+            "type": "string"
+          },
+          "total_value_usd": {
+            "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+            "title": "Total Value Usd",
+            "type": "string"
+          },
+          "window_end": {
+            "format": "date",
+            "title": "Window End",
+            "type": "string"
+          },
+          "window_start": {
+            "format": "date",
+            "title": "Window Start",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "ticker",
+          "window_start",
+          "window_end",
+          "alert_filing_date",
+          "n_insiders",
+          "n_csuite",
+          "total_value_usd",
+          "conviction_score",
+          "score_breakdown",
+          "config_id",
+          "status"
+        ],
+        "title": "AlertView",
+        "type": "object"
+      },
+      "ConfigInput": {
+        "additionalProperties": false,
+        "properties": {
+          "cap_insiders": {
+            "default": 8,
+            "title": "Cap Insiders",
+            "type": "integer"
+          },
+          "exclude_10b5_1": {
+            "default": false,
+            "title": "Exclude 10B5 1",
+            "type": "boolean"
+          },
+          "holdings_cap": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                "type": "string"
+              }
+            ],
+            "default": "0.5",
+            "title": "Holdings Cap"
+          },
+          "include_ten_percent_owners": {
+            "default": false,
+            "title": "Include Ten Percent Owners",
+            "type": "boolean"
+          },
+          "min_cluster_value_usd": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                "type": "string"
+              }
+            ],
+            "default": "100000",
+            "title": "Min Cluster Value Usd"
+          },
+          "min_insider_value_usd": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                "type": "string"
+              }
+            ],
+            "default": "25000",
+            "title": "Min Insider Value Usd"
+          },
+          "min_insiders": {
+            "default": 3,
+            "title": "Min Insiders",
+            "type": "integer"
+          },
+          "name": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Name",
+            "type": "string"
+          },
+          "new_position_pct": {
+            "anyOf": [
+              {
+                "exclusiveMinimum": 0.0,
+                "type": "number"
+              },
+              {
+                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                "type": "string"
+              }
+            ],
+            "default": "1",
+            "title": "New Position Pct"
+          },
+          "value_cap_multiple": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                "type": "string"
+              }
+            ],
+            "default": "100",
+            "title": "Value Cap Multiple"
+          },
+          "w_b": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                "type": "string"
+              }
+            ],
+            "default": "0.30",
+            "title": "W B"
+          },
+          "w_c": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                "type": "string"
+              }
+            ],
+            "default": "0.25",
+            "title": "W C"
+          },
+          "w_h": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                "type": "string"
+              }
+            ],
+            "default": "0.20",
+            "title": "W H"
+          },
+          "w_v": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                "type": "string"
+              }
+            ],
+            "default": "0.25",
+            "title": "W V"
+          },
+          "window_days": {
+            "default": 14,
+            "title": "Window Days",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "title": "ConfigInput",
+        "type": "object"
+      },
+      "ConfigView": {
+        "additionalProperties": false,
+        "properties": {
+          "cap_insiders": {
+            "default": 8,
+            "title": "Cap Insiders",
+            "type": "integer"
+          },
+          "exclude_10b5_1": {
+            "default": false,
+            "title": "Exclude 10B5 1",
+            "type": "boolean"
+          },
+          "holdings_cap": {
+            "default": "0.5",
+            "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+            "title": "Holdings Cap",
+            "type": "string"
+          },
+          "id": {
+            "title": "Id",
+            "type": "integer"
+          },
+          "include_ten_percent_owners": {
+            "default": false,
+            "title": "Include Ten Percent Owners",
+            "type": "boolean"
+          },
+          "is_active": {
+            "title": "Is Active",
+            "type": "boolean"
+          },
+          "min_cluster_value_usd": {
+            "default": "100000",
+            "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+            "title": "Min Cluster Value Usd",
+            "type": "string"
+          },
+          "min_insider_value_usd": {
+            "default": "25000",
+            "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+            "title": "Min Insider Value Usd",
+            "type": "string"
+          },
+          "min_insiders": {
+            "default": 3,
+            "title": "Min Insiders",
+            "type": "integer"
+          },
+          "name": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Name",
+            "type": "string"
+          },
+          "new_position_pct": {
+            "default": "1",
+            "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+            "title": "New Position Pct",
+            "type": "string"
+          },
+          "value_cap_multiple": {
+            "default": "100",
+            "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+            "title": "Value Cap Multiple",
+            "type": "string"
+          },
+          "w_b": {
+            "default": "0.30",
+            "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+            "title": "W B",
+            "type": "string"
+          },
+          "w_c": {
+            "default": "0.25",
+            "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+            "title": "W C",
+            "type": "string"
+          },
+          "w_h": {
+            "default": "0.20",
+            "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+            "title": "W H",
+            "type": "string"
+          },
+          "w_v": {
+            "default": "0.25",
+            "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+            "title": "W V",
+            "type": "string"
+          },
+          "window_days": {
+            "default": 14,
+            "title": "Window Days",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "name",
+          "id",
+          "is_active"
+        ],
+        "title": "ConfigView",
+        "type": "object"
+      },
+      "Graph": {
+        "properties": {
+          "links": {
+            "items": {
+              "$ref": "#/components/schemas/Link"
+            },
+            "title": "Links",
+            "type": "array"
+          },
+          "nodes": {
+            "items": {
+              "$ref": "#/components/schemas/Node"
+            },
+            "title": "Nodes",
+            "type": "array"
+          },
+          "truncated": {
+            "title": "Truncated",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "nodes",
+          "links",
+          "truncated"
+        ],
+        "title": "Graph",
+        "type": "object"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "title": "Detail",
+            "type": "array"
+          }
+        },
+        "title": "HTTPValidationError",
+        "type": "object"
+      },
+      "Health": {
+        "properties": {
+          "demo_mode": {
+            "title": "Demo Mode",
+            "type": "boolean"
+          },
+          "model_loaded": {
+            "title": "Model Loaded",
+            "type": "boolean"
+          },
+          "neo4j": {
+            "title": "Neo4J",
+            "type": "boolean"
+          },
+          "postgres": {
+            "title": "Postgres",
+            "type": "boolean"
+          },
+          "status": {
+            "enum": [
+              "ok",
+              "degraded"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "version": {
+            "title": "Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "status",
+          "postgres",
+          "neo4j",
+          "model_loaded",
+          "demo_mode",
+          "version"
+        ],
+        "title": "Health",
+        "type": "object"
+      },
+      "IngestInput": {
+        "properties": {
+          "end": {
+            "format": "date",
+            "title": "End",
+            "type": "string"
+          },
+          "issuer": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Issuer"
+          },
+          "quarterly": {
+            "default": false,
+            "title": "Quarterly",
+            "type": "boolean"
+          },
+          "start": {
+            "format": "date",
+            "title": "Start",
+            "type": "string"
+          }
+        },
+        "required": [
+          "start",
+          "end"
+        ],
+        "title": "IngestInput",
+        "type": "object"
+      },
+      "Job": {
+        "properties": {
+          "error_detail": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error Detail"
+          },
+          "finished_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Finished At"
+          },
+          "id": {
+            "title": "Id",
+            "type": "integer"
+          },
+          "parameters": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/JsonValue"
+            },
+            "title": "Parameters",
+            "type": "object"
+          },
+          "source": {
+            "enum": [
+              "gateway_detect",
+              "gateway_ingest"
+            ],
+            "title": "Source",
+            "type": "string"
+          },
+          "started_at": {
+            "format": "date-time",
+            "title": "Started At",
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "running",
+              "completed",
+              "failed"
+            ],
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "source",
+          "status",
+          "parameters",
+          "error_detail",
+          "started_at",
+          "finished_at"
+        ],
+        "title": "Job",
+        "type": "object"
+      },
+      "JsonValue": {},
+      "Link": {
+        "properties": {
+          "amount": {
+            "title": "Amount",
+            "type": "number"
+          },
+          "channel": {
+            "title": "Channel",
+            "type": "string"
+          },
+          "dst": {
+            "title": "Dst",
+            "type": "integer"
+          },
+          "src": {
+            "title": "Src",
+            "type": "integer"
+          },
+          "ts": {
+            "title": "Ts",
+            "type": "integer"
+          },
+          "txn_id": {
+            "title": "Txn Id",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "txn_id",
+          "src",
+          "dst",
+          "ts",
+          "amount",
+          "channel"
+        ],
+        "title": "Link",
+        "type": "object"
+      },
+      "Node": {
+        "properties": {
+          "account_id": {
+            "title": "Account Id",
+            "type": "integer"
+          },
+          "probability": {
+            "title": "Probability",
+            "type": "number"
+          },
+          "type": {
+            "title": "Type",
+            "type": "string"
+          },
+          "volume": {
+            "title": "Volume",
+            "type": "number"
+          }
+        },
+        "required": [
+          "account_id",
+          "type",
+          "probability",
+          "volume"
+        ],
+        "title": "Node",
+        "type": "object"
+      },
+      "Period": {
+        "properties": {
+          "amount": {
+            "title": "Amount",
+            "type": "number"
+          },
+          "transfers": {
+            "title": "Transfers",
+            "type": "integer"
+          },
+          "ts": {
+            "title": "Ts",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "ts",
+          "transfers",
+          "amount"
+        ],
+        "title": "Period",
+        "type": "object"
+      },
+      "Ring": {
+        "properties": {
+          "community": {
+            "title": "Community",
+            "type": "integer"
+          },
+          "mean_probability": {
+            "title": "Mean Probability",
+            "type": "number"
+          },
+          "risk": {
+            "title": "Risk",
+            "type": "number"
+          },
+          "shared_infra_factor": {
+            "title": "Shared Infra Factor",
+            "type": "number"
+          },
+          "structural_factor": {
+            "title": "Structural Factor",
+            "type": "number"
+          },
+          "top_k": {
+            "title": "Top K",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "community",
+          "risk",
+          "mean_probability",
+          "structural_factor",
+          "shared_infra_factor",
+          "top_k"
+        ],
+        "title": "Ring",
+        "type": "object"
+      },
+      "StatusChange": {
+        "properties": {
+          "status": {
+            "enum": [
+              "new",
+              "acknowledged",
+              "dismissed"
+            ],
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "status"
+        ],
+        "title": "StatusChange",
+        "type": "object"
+      },
+      "SystemInfo": {
+        "properties": {
+          "demo_mode": {
+            "title": "Demo Mode",
+            "type": "boolean"
+          },
+          "model_architecture": {
+            "title": "Model Architecture",
+            "type": "string"
+          },
+          "scoring_note": {
+            "title": "Scoring Note",
+            "type": "string"
+          },
+          "version": {
+            "title": "Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "version",
+          "demo_mode",
+          "model_architecture",
+          "scoring_note"
+        ],
+        "title": "SystemInfo",
+        "type": "object"
+      },
+      "TradeView": {
+        "properties": {
+          "accession_number": {
+            "title": "Accession Number",
+            "type": "string"
+          },
+          "filing_date": {
+            "format": "date",
+            "title": "Filing Date",
+            "type": "string"
+          },
+          "id": {
+            "title": "Id",
+            "type": "integer"
+          },
+          "insider_id": {
+            "title": "Insider Id",
+            "type": "integer"
+          },
+          "line_number": {
+            "title": "Line Number",
+            "type": "integer"
+          },
+          "price": {
+            "anyOf": [
+              {
+                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Price"
+          },
+          "raw_xml_url": {
+            "title": "Raw Xml Url",
+            "type": "string"
+          },
+          "shares": {
+            "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+            "title": "Shares",
+            "type": "string"
+          },
+          "ticker": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ticker"
+          },
+          "transaction_date": {
+            "format": "date",
+            "title": "Transaction Date",
+            "type": "string"
+          },
+          "value_usd": {
+            "anyOf": [
+              {
+                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Value Usd"
+          }
+        },
+        "required": [
+          "id",
+          "insider_id",
+          "accession_number",
+          "line_number",
+          "ticker",
+          "transaction_date",
+          "filing_date",
+          "shares",
+          "price",
+          "value_usd",
+          "raw_xml_url"
+        ],
+        "title": "TradeView",
+        "type": "object"
+      },
+      "Trail": {
+        "properties": {
+          "accounts": {
+            "items": {
+              "type": "integer"
+            },
+            "title": "Accounts",
+            "type": "array"
+          },
+          "transfers": {
+            "items": {
+              "type": "integer"
+            },
+            "title": "Transfers",
+            "type": "array"
+          }
+        },
+        "required": [
+          "accounts",
+          "transfers"
+        ],
+        "title": "Trail",
+        "type": "object"
+      },
+      "TransferInput": {
+        "properties": {
+          "amount": {
+            "exclusiveMinimum": 0.0,
+            "title": "Amount",
+            "type": "number"
+          },
+          "channel": {
+            "maxLength": 32,
+            "minLength": 1,
+            "title": "Channel",
+            "type": "string"
+          },
+          "dst": {
+            "minimum": 0.0,
+            "title": "Dst",
+            "type": "integer"
+          },
+          "new_accounts": {
+            "items": {
+              "$ref": "#/components/schemas/AccountInput"
+            },
+            "maxItems": 2,
+            "title": "New Accounts",
+            "type": "array"
+          },
+          "src": {
+            "minimum": 0.0,
+            "title": "Src",
+            "type": "integer"
+          },
+          "ts": {
+            "minimum": 0.0,
+            "title": "Ts",
+            "type": "integer"
+          },
+          "txn_id": {
+            "minimum": 0.0,
+            "title": "Txn Id",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "txn_id",
+          "src",
+          "dst",
+          "ts",
+          "amount",
+          "channel"
+        ],
+        "title": "TransferInput",
+        "type": "object"
+      },
+      "TransferResult": {
+        "properties": {
+          "replayed": {
+            "title": "Replayed",
+            "type": "boolean"
+          },
+          "scores": {
+            "items": {
+              "$ref": "#/components/schemas/AccountScore"
+            },
+            "title": "Scores",
+            "type": "array"
+          },
+          "txn_id": {
+            "title": "Txn Id",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "txn_id",
+          "replayed",
+          "scores"
+        ],
+        "title": "TransferResult",
+        "type": "object"
+      },
+      "Truth": {
+        "properties": {
+          "account_id": {
+            "title": "Account Id",
+            "type": "integer"
+          },
+          "ring_id": {
+            "title": "Ring Id",
+            "type": "integer"
+          },
+          "typology": {
+            "title": "Typology",
+            "type": "string"
+          }
+        },
+        "required": [
+          "account_id",
+          "ring_id",
+          "typology"
+        ],
+        "title": "Truth",
+        "type": "object"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "title": "Location",
+            "type": "array"
+          },
+          "msg": {
+            "title": "Message",
+            "type": "string"
+          },
+          "type": {
+            "title": "Error Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError",
+        "type": "object"
+      }
+    }
+  },
+  "info": {
+    "title": "FinTech Threat and Signal Gateway",
+    "version": "0.1.0"
+  },
+  "openapi": "3.1.0",
+  "paths": {
+    "/api/v1/health": {
+      "get": {
+        "operationId": "health_api_v1_health_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Health"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Health"
+      }
+    },
+    "/api/v1/insider/alerts": {
+      "get": {
+        "operationId": "alerts_api_v1_insider_alerts_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "ticker",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Ticker"
+            }
+          },
+          {
+            "in": "query",
+            "name": "min_score",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "maximum": 100,
+              "minimum": 0,
+              "title": "Min Score",
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "from",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "format": "date",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "From"
+            }
+          },
+          {
+            "in": "query",
+            "name": "to",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "format": "date",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "To"
+            }
+          },
+          {
+            "in": "query",
+            "name": "status",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "new",
+                    "acknowledged",
+                    "dismissed"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Status"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 50,
+              "maximum": 500,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "exclusiveMinimum": 0,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Cursor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AlertPage"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Alerts"
+      }
+    },
+    "/api/v1/insider/alerts/{alert_id}": {
+      "get": {
+        "operationId": "detail_api_v1_insider_alerts__alert_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "alert_id",
+            "required": true,
+            "schema": {
+              "title": "Alert Id",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AlertDetail"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Detail"
+      },
+      "patch": {
+        "operationId": "patch_api_v1_insider_alerts__alert_id__patch",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "alert_id",
+            "required": true,
+            "schema": {
+              "title": "Alert Id",
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StatusChange"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AlertView"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Patch"
+      }
+    },
+    "/api/v1/insider/companies/{ticker}/transactions": {
+      "get": {
+        "operationId": "transactions_api_v1_insider_companies__ticker__transactions_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "ticker",
+            "required": true,
+            "schema": {
+              "title": "Ticker",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "from",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "format": "date",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "From"
+            }
+          },
+          {
+            "in": "query",
+            "name": "to",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "format": "date",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "To"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/TradeView"
+                  },
+                  "title": "Response Transactions Api V1 Insider Companies  Ticker  Transactions Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Transactions"
+      }
+    },
+    "/api/v1/insider/configs": {
+      "get": {
+        "operationId": "configs_api_v1_insider_configs_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/ConfigView"
+                  },
+                  "title": "Response Configs Api V1 Insider Configs Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Configs"
+      },
+      "post": {
+        "operationId": "save_api_v1_insider_configs_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConfigInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConfigView"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Save"
+      }
+    },
+    "/api/v1/insider/configs/{id}/activate": {
+      "post": {
+        "operationId": "activate_api_v1_insider_configs__id__activate_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "title": "Id",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConfigView"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Activate"
+      }
+    },
+    "/api/v1/insider/detect": {
+      "post": {
+        "operationId": "detect_job_api_v1_insider_detect_post",
+        "responses": {
+          "202": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Job"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Detect Job"
+      }
+    },
+    "/api/v1/insider/ingest": {
+      "post": {
+        "operationId": "ingest_job_api_v1_insider_ingest_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "anyOf": [
+                  {
+                    "$ref": "#/components/schemas/IngestInput"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Request"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Job"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Ingest Job"
+      }
+    },
+    "/api/v1/insider/jobs/{id}": {
+      "get": {
+        "operationId": "get_job_api_v1_insider_jobs__id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "title": "Id",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Job"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Get Job"
+      }
+    },
+    "/api/v1/insider/radar": {
+      "get": {
+        "operationId": "radar_api_v1_insider_radar_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "from",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "format": "date",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "From"
+            }
+          },
+          {
+            "in": "query",
+            "name": "to",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "format": "date",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "To"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/AlertView"
+                  },
+                  "title": "Response Radar Api V1 Insider Radar Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Radar"
+      }
+    },
+    "/api/v1/mule/accounts/{account_id}": {
+      "get": {
+        "operationId": "account_api_v1_mule_accounts__account_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "account_id",
+            "required": true,
+            "schema": {
+              "title": "Account Id",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountDetail"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Account"
+      }
+    },
+    "/api/v1/mule/accounts/{account_id}/trail": {
+      "get": {
+        "operationId": "trail_api_v1_mule_accounts__account_id__trail_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "account_id",
+            "required": true,
+            "schema": {
+              "title": "Account Id",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "k",
+            "required": false,
+            "schema": {
+              "default": 2,
+              "maximum": 6,
+              "minimum": 1,
+              "title": "K",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "direction",
+            "required": false,
+            "schema": {
+              "default": "out",
+              "enum": [
+                "in",
+                "out"
+              ],
+              "title": "Direction",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "t0",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "title": "T0",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "t1",
+            "required": false,
+            "schema": {
+              "default": 4611686018427387904,
+              "title": "T1",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "max_gap",
+            "required": false,
+            "schema": {
+              "default": 3600,
+              "minimum": 0,
+              "title": "Max Gap",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/Trail"
+                  },
+                  "title": "Response Trail Api V1 Mule Accounts  Account Id  Trail Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Trail"
+      }
+    },
+    "/api/v1/mule/graph/overview": {
+      "get": {
+        "operationId": "overview_api_v1_mule_graph_overview_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "t0",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "title": "T0",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "t1",
+            "required": false,
+            "schema": {
+              "default": 4611686018427387904,
+              "title": "T1",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "max_nodes",
+            "required": false,
+            "schema": {
+              "default": 500,
+              "maximum": 3000,
+              "minimum": 2,
+              "title": "Max Nodes",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Graph"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Overview"
+      }
+    },
+    "/api/v1/mule/ground-truth/{ring_id}": {
+      "get": {
+        "operationId": "ground_truth_api_v1_mule_ground_truth__ring_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "ring_id",
+            "required": true,
+            "schema": {
+              "title": "Ring Id",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/Truth"
+                  },
+                  "title": "Response Ground Truth Api V1 Mule Ground Truth  Ring Id  Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Ground Truth"
+      }
+    },
+    "/api/v1/mule/model/metrics": {
+      "get": {
+        "operationId": "model_metrics_api_v1_mule_model_metrics_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": {
+                    "$ref": "#/components/schemas/JsonValue"
+                  },
+                  "title": "Response Model Metrics Api V1 Mule Model Metrics Get",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Model Metrics"
+      }
+    },
+    "/api/v1/mule/rings": {
+      "get": {
+        "operationId": "rings_api_v1_mule_rings_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "min_risk",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "maximum": 100,
+              "minimum": 0,
+              "title": "Min Risk",
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "typology",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Typology"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 100,
+              "maximum": 500,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/Ring"
+                  },
+                  "title": "Response Rings Api V1 Mule Rings Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Rings"
+      }
+    },
+    "/api/v1/mule/rings/{ring_id}/graph": {
+      "get": {
+        "operationId": "ring_graph_api_v1_mule_rings__ring_id__graph_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "ring_id",
+            "required": true,
+            "schema": {
+              "title": "Ring Id",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "t0",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "title": "T0",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "t1",
+            "required": false,
+            "schema": {
+              "default": 4611686018427387904,
+              "title": "T1",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Graph"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Ring Graph"
+      }
+    },
+    "/api/v1/mule/timeline": {
+      "get": {
+        "operationId": "timeline_api_v1_mule_timeline_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "ring_id",
+            "required": true,
+            "schema": {
+              "title": "Ring Id",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/Period"
+                  },
+                  "title": "Response Timeline Api V1 Mule Timeline Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Timeline"
+      }
+    },
+    "/api/v1/mule/transactions": {
+      "post": {
+        "operationId": "transfer_api_v1_mule_transactions_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TransferInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransferResult"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Transfer"
+      }
+    },
+    "/api/v1/system/info": {
+      "get": {
+        "operationId": "info_api_v1_system_info_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemInfo"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Info"
+      }
+    }
+  }
+}

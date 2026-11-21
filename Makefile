@@ -23,3 +23,8 @@ typecheck:
 
 test:
 	uv run --frozen pytest -q
+
+.PHONY: gen-types
+gen-types:
+	PYTHONPATH=backend/src:edgar_pipeline/src:ml_pipeline/src .venv/bin/python infra/scripts/export_openapi.py
+	cd frontend && ./node_modules/.bin/openapi-typescript ../backend/openapi.json -o src/api/generated/schema.d.ts
