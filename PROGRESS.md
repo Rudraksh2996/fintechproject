@@ -1,5 +1,35 @@
 # Build progress
 
+## Phase 5 checkpoint — disk stop
+
+Gate 4 passed on main in `005190d`. Phase 5 is incomplete. The workspace had
+8.7 GiB free before the session. During the Streamlit image export it crossed
+the 5 GiB stop threshold. The bootstrap image built; its dangling-image prune
+reclaimed 0 B. The Streamlit build was interrupted during unpack, the wrapper
+ran its prune (0 B), and the following Compose startup was never executed.
+
+```text
+Build stopped: only 3882840 KiB available (5 GiB minimum).
+```
+
+Resume after freeing space on the Mac data volume. Run `df -h .` and confirm
+more than 5 GiB free with room for build layers, then:
+
+1. Check out `phase-5/work-in-progress`. It contains the draft Compose changes,
+   bootstrap entry point, Streamlit image, frontend dependencies, generated-type
+   client, WebSocket hooks and React entry point. It is not a runnable frontend.
+2. Run `export PATH="$HOME/.orbstack/bin:$PATH"`, then
+   `bash infra/scripts/build_images.sh streamlit` and
+   `docker compose up -d --no-build backend streamlit`. Inspect bootstrap output
+   and service health. Preserve pgdata, neo4jdata and artifacts.
+3. Finish the React app shell, CSS, command center, radar, graph explorer and
+   workbench iframe. Show the measured cold-start curve, validate ring crossing
+   delivery on /ws/mule, and implement the time scrubber and drilldowns.
+4. Build the frontend/nginx service with the prune wrapper, test the same-origin
+   routes, add the Section 8 frontend tests, and run Gate 5. Merge after it passes.
+   Keep the Phase 6 Chromium-only plan.
+
+
 ## Gate 4 PASSED — macOS, OrbStack arm64
 
 Ran `bash infra/scripts/gate4.sh`, exit 0. The gate used a fresh PostgreSQL
