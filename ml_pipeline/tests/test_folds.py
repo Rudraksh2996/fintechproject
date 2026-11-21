@@ -1,6 +1,20 @@
 from collections import Counter
 
 from ml_pipeline.evaluation.folds import SEEDS, grouped_folds
+from ml_pipeline.evaluation.metrics import metrics, summary
+
+
+def test_tied_predictions_and_typology_recall() -> None:
+    row = metrics([1, 0, 1, 0], [0.8, 0.8, 0.2, 0.2], ["a", None, "b", None], 0.5, 2)
+    assert row == {
+        "pr_auc": 0.5,
+        "roc_auc": 0.5,
+        "precision_at_k": 0.5,
+        "recall_at_1pct_fpr": 0.0,
+        "recall/a": 1.0,
+        "recall/b": 0.0,
+    }
+    assert summary([row] * 15)["pr_auc"] == {"mean": 0.5, "std": 0.0}
 
 
 def test_identical_reproducible_partitions_and_group_isolation() -> None:

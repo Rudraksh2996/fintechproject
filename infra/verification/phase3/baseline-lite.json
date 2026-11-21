@@ -1,0 +1,215 @@
+{
+  "model": "weighted_logistic",
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "folds": [
+    {
+      "pr_auc": 0.8528765089548368,
+      "roc_auc": 0.9909520246890307,
+      "recall_at_1pct_fpr": 0.7297297297297297,
+      "precision_at_k": 0.36,
+      "recall/cycle": 1,
+      "recall/dispersion": 0.7777777777777778,
+      "recall/pass_through": 0.8571428571428571,
+      "recall/shared_infrastructure": 1,
+      "recall/structuring": 0.8571428571428571
+    },
+    {
+      "pr_auc": 0.6645313370629305,
+      "roc_auc": 0.9790231026186174,
+      "recall_at_1pct_fpr": 0.5135135135135135,
+      "precision_at_k": 0.36,
+      "recall/cycle": 1,
+      "recall/dispersion": 0.8571428571428571,
+      "recall/pass_through": 0.8888888888888888,
+      "recall/shared_infrastructure": 0.75,
+      "recall/structuring": 1
+    },
+    {
+      "pr_auc": 0.6849546237448361,
+      "roc_auc": 0.984156279961662,
+      "recall_at_1pct_fpr": 0.5142857142857142,
+      "precision_at_k": 0.34,
+      "recall/cycle": 1,
+      "recall/dispersion": 0.5,
+      "recall/pass_through": 0.75,
+      "recall/shared_infrastructure": 0.42857142857142855,
+      "recall/structuring": 1
+    },
+    {
+      "pr_auc": 0.7343309510408443,
+      "roc_auc": 0.9882636582814097,
+      "recall_at_1pct_fpr": 0.7894736842105263,
+      "precision_at_k": 0.37,
+      "recall/cycle": 1,
+      "recall/dispersion": 0.8888888888888888,
+      "recall/pass_through": 0.875,
+      "recall/shared_infrastructure": 0.7142857142857143,
+      "recall/structuring": 1
+    },
+    {
+      "pr_auc": 0.5304775871321163,
+      "roc_auc": 0.9823886533731289,
+      "recall_at_1pct_fpr": 0.36363636363636365,
+      "precision_at_k": 0.33,
+      "recall/cycle": 1,
+      "recall/dispersion": 1,
+      "recall/pass_through": 0.8,
+      "recall/shared_infrastructure": 1,
+      "recall/structuring": 1
+    },
+    {
+      "pr_auc": 0.7160310574447635,
+      "roc_auc": 0.9889674106462047,
+      "recall_at_1pct_fpr": 0.5294117647058824,
+      "precision_at_k": 0.34,
+      "recall/cycle": 1,
+      "recall/dispersion": 0.8571428571428571,
+      "recall/pass_through": 1,
+      "recall/shared_infrastructure": 0.75,
+      "recall/structuring": 1
+    },
+    {
+      "pr_auc": 0.5975491034728581,
+      "roc_auc": 0.9779719217921566,
+      "recall_at_1pct_fpr": 0.35135135135135137,
+      "precision_at_k": 0.35,
+      "recall/cycle": 1,
+      "recall/dispersion": 0.75,
+      "recall/pass_through": 0.75,
+      "recall/shared_infrastructure": 0.8571428571428571,
+      "recall/structuring": 1
+    },
+    {
+      "pr_auc": 0.7200380074071303,
+      "roc_auc": 0.9856711915535263,
+      "recall_at_1pct_fpr": 0.5897435897435898,
+      "precision_at_k": 0.37,
+      "recall/cycle": 1,
+      "recall/dispersion": 1,
+      "recall/pass_through": 0.7777777777777778,
+      "recall/shared_infrastructure": 1,
+      "recall/structuring": 0.8571428571428571
+    },
+    {
+      "pr_auc": 0.6128796387201124,
+      "roc_auc": 0.9821283302827042,
+      "recall_at_1pct_fpr": 0.45454545454545453,
+      "precision_at_k": 0.32,
+      "recall/cycle": 1,
+      "recall/dispersion": 0.7777777777777778,
+      "recall/pass_through": 0.8571428571428571,
+      "recall/shared_infrastructure": 0.8571428571428571,
+      "recall/structuring": 1
+    },
+    {
+      "pr_auc": 0.887991514474387,
+      "roc_auc": 0.9968491807870248,
+      "recall_at_1pct_fpr": 0.9459459459459459,
+      "precision_at_k": 0.37,
+      "recall/cycle": 1,
+      "recall/dispersion": 1,
+      "recall/pass_through": 0.875,
+      "recall/shared_infrastructure": 1,
+      "recall/structuring": 1
+    },
+    {
+      "pr_auc": 0.5535895956996891,
+      "roc_auc": 0.9789205800441859,
+      "recall_at_1pct_fpr": 0.3333333333333333,
+      "precision_at_k": 0.35,
+      "recall/cycle": 1,
+      "recall/dispersion": 0.75,
+      "recall/pass_through": 0.8888888888888888,
+      "recall/shared_infrastructure": 1,
+      "recall/structuring": 1
+    },
+    {
+      "pr_auc": 0.819257164358512,
+      "roc_auc": 0.9907342575736559,
+      "recall_at_1pct_fpr": 0.8108108108108109,
+      "precision_at_k": 0.35,
+      "recall/cycle": 1,
+      "recall/dispersion": 1,
+      "recall/pass_through": 0.625,
+      "recall/shared_infrastructure": 0.625,
+      "recall/structuring": 1
+    },
+    {
+      "pr_auc": 0.8447326131664176,
+      "roc_auc": 0.9914746961726958,
+      "recall_at_1pct_fpr": 0.7567567567567568,
+      "precision_at_k": 0.36,
+      "recall/cycle": 1,
+      "recall/dispersion": 0.8571428571428571,
+      "recall/pass_through": 0.8571428571428571,
+      "recall/shared_infrastructure": 0.5714285714285714,
+      "recall/structuring": 1
+    },
+    {
+      "pr_auc": 0.6081552758529603,
+      "roc_auc": 0.9872306019460888,
+      "recall_at_1pct_fpr": 0.2903225806451613,
+      "precision_at_k": 0.31,
+      "recall/cycle": 1,
+      "recall/dispersion": 0.7777777777777778,
+      "recall/pass_through": 0.8,
+      "recall/shared_infrastructure": 1,
+      "recall/structuring": 1
+    },
+    {
+      "pr_auc": 0.5474250978984898,
+      "roc_auc": 0.9738488155442996,
+      "recall_at_1pct_fpr": 0.3333333333333333,
+      "precision_at_k": 0.37,
+      "recall/cycle": 1,
+      "recall/dispersion": 0.7777777777777778,
+      "recall/pass_through": 1,
+      "recall/shared_infrastructure": 1,
+      "recall/structuring": 1
+    }
+  ],
+  "summary": {
+    "pr_auc": {
+      "mean": 0.691654671762059,
+      "std": 0.11836180678153495
+    },
+    "roc_auc": {
+      "mean": 0.9852387136844261,
+      "std": 0.0062323989025288105
+    },
+    "recall_at_1pct_fpr": {
+      "mean": 0.5537462617698311,
+      "std": 0.20808985794559054
+    },
+    "precision_at_k": {
+      "mean": 0.35,
+      "std": 0.018898223650461354
+    },
+    "recall/cycle": {
+      "mean": 1,
+      "std": 0.0
+    },
+    "recall/dispersion": {
+      "mean": 0.8380952380952381,
+      "std": 0.13440444138447802
+    },
+    "recall/pass_through": {
+      "mean": 0.8401322751322752,
+      "std": 0.09591969187601447
+    },
+    "recall/shared_infrastructure": {
+      "mean": 0.8369047619047619,
+      "std": 0.1888455928008673
+    },
+    "recall/structuring": {
+      "mean": 0.9809523809523809,
+      "std": 0.05026653932492836
+    }
+  },
+  "decision_threshold": 0.5,
+  "std": "sample across 15 fold scores"
+}
