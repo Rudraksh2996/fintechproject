@@ -1,9 +1,12 @@
 """EDGAR command-line entry point for synthetic ingestion and database detection."""
 
 import argparse
+import asyncio
 import json
+from datetime import date
 from decimal import Decimal
 from itertools import batched
+from pathlib import Path
 from statistics import mean
 
 from sqlalchemy import create_engine, delete, select, text
@@ -22,8 +25,10 @@ from edgar_pipeline.db.models import (
     IngestionRun,
     PriceBar,
 )
-from edgar_pipeline.db.repository import ingest
+from edgar_pipeline.db.repository import FilingInput, ingest
 from edgar_pipeline.demo import fixtures, price_rows
+from edgar_pipeline.discovery import by_index, by_issuer
+from edgar_pipeline.http_client import SecClient
 
 
 def seed_demo(db: Session, seed: int) -> dict[str, int]:
@@ -121,9 +126,43 @@ def detect_database(db: Session, source: str) -> list[str]:
     return sorted(emitted)
 
 
+async def live_ingest(
+    db: Session,
+    settings: Settings,
+    start: date,
+    end: date,
+    issuer: str | None,
+    quarterly: bool,
+    cache: Path,
+) -> list[int]:
+    client = SecClient(settings.sec_user_agent, cache, settings.sec_max_rps)
+    try:
+        refs = (
+            await by_issuer(client, issuer, start, end)
+            if issuer
+            else await by_index(client, start, end, "quarterly" if quarterly else "daily")
+        )
+        runs = []
+        for batch in batched(refs, 50):
+            inputs = [
+                FilingInput(
+                    ref.accession, ref.filing_date, ref.xml_url, await client.get(ref.xml_url)
+                )
+                for ref in batch
+            ]
+            runs.append(ingest(db, inputs, "sec_edgar"))
+        return runs
+    finally:
+        await client.aclose()
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(prog="edgar")
-    parser.add_argument("command", choices=["seed-demo", "detect"])
+    parser.add_argument("command", choices=["seed-demo", "detect", "ingest", "backfill"])
+    parser.add_argument("--start", type=date.fromisoformat)
+    parser.add_argument("--end", type=date.fromisoformat)
+    parser.add_argument("--issuer", help="Ticker or numeric issuer CIK")
+    parser.add_argument("--cache", type=Path, default=Path(".cache/edgar"))
     args = parser.parse_args()
     settings = Settings()
     engine = create_engine(settings.database_url())
@@ -133,6 +172,28 @@ def main() -> None:
                 if not settings.demo_mode:
                     parser.error("seed-demo requires DEMO_MODE=true")
                 print(json.dumps(seed_demo(db, settings.seed)))
+            elif args.command in {"ingest", "backfill"}:
+                if settings.demo_mode or settings.sec_user_agent == "YourOrg you@example.com":
+                    parser.error("Live ingestion requires DEMO_MODE=false and a real SEC contact")
+                if args.start is None or args.end is None:
+                    parser.error("Live ingestion requires --start and --end dates")
+                print(
+                    json.dumps(
+                        {
+                            "runs": asyncio.run(
+                                live_ingest(
+                                    db,
+                                    settings,
+                                    args.start,
+                                    args.end,
+                                    args.issuer,
+                                    args.command == "backfill",
+                                    args.cache,
+                                )
+                            )
+                        }
+                    )
+                )
             else:
                 print(
                     json.dumps(
