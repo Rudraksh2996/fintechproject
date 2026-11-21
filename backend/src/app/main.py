@@ -20,12 +20,14 @@ from ml_pipeline.config import GraphSettings
 from neo4j import AsyncGraphDatabase
 from neo4j.exceptions import Neo4jError, ServiceUnavailable
 from pydantic import BaseModel, JsonValue
-from sqlalchemy import text
+from sqlalchemy import create_engine, text
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.ext.asyncio import create_async_engine
 from starlette.exceptions import HTTPException
 from starlette.responses import JSONResponse, Response
 
+from app.api.v1.configs import routes as config_routes
+from app.api.v1.configs import run_next_job
 from app.api.v1.insider import routes as insider_routes
 from app.api.v1.mule import routes as mule_routes
 from app.services.transfers import (
@@ -97,6 +99,21 @@ def create_app() -> FastAPI:
     @asynccontextmanager
     async def lifespan(_: FastAPI) -> AsyncIterator[None]:
         nonlocal model
+        worker_engine = create_engine(sql.database_url(), pool_pre_ping=True)
+        stopping = asyncio.Event()
+
+        async def process_jobs() -> None:
+            while not stopping.is_set():
+                try:
+                    if await asyncio.to_thread(run_next_job, worker_engine, sql):
+                        continue
+                except SQLAlchemyError:
+                    logging.getLogger("gateway").exception("Job queue unavailable")
+                try:
+                    await asyncio.wait_for(stopping.wait(), 0.5)
+                except TimeoutError:
+                    continue
+
         try:
             torch.set_num_threads(graph.torch_num_threads)
             model = await asyncio.to_thread(
@@ -109,8 +126,14 @@ def create_app() -> FastAPI:
                         "FOR (s:ScoringState) REQUIRE s.name IS UNIQUE"
                     )
                 ).consume()
-            yield
+            worker = asyncio.create_task(process_jobs())
+            try:
+                yield
+            finally:
+                stopping.set()
+                await worker
         finally:
+            worker_engine.dispose()
             model = None
             await driver.close()
             await engine.dispose()
@@ -240,6 +263,7 @@ def create_app() -> FastAPI:
         finally:
             subscribers.discard(queue)
 
+    app.include_router(config_routes(engine, sql))
     app.include_router(insider_routes(engine))
     app.include_router(mule_routes(driver, artifacts, config.demo_mode))
     return app
