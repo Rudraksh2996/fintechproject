@@ -1,5 +1,24 @@
 # Build progress
 
+## Phase 4 cold-start evaluation
+
+The bootstrap diagnostic used 10 held-out positives and 30 held-out negatives
+from the first saved ring-disjoint fold, all with at least ten transfers. At each
+account's exact milestone it rebuilt the graph from transactions observed by then
+and scored with the transfer endpoint's inference function. Average precision
+was weighted back to the eligible test fold's class prevalence. Model fitting
+used other accounts across the synthetic period. This small experiment measures
+ranking, not individual probability calibration.
+
+| Observed transfers | 1 | 3 | 5 | 10 |
+|---|---:|---:|---:|---:|
+| Held-out PR-AUC | .329 | .424 | .431 | .688 |
+
+The full results and account IDs are in the artifact volume's metrics.json and
+the tracked phase3/metrics-lite.json snapshot. GET /api/v1/mule/model/metrics
+serves that artifact. Reproduce inside the bootstrap container with
+`python -m ml_pipeline.evaluation.cold_start /artifacts`.
+
 ## Phase 4 gateway checkpoint — Gate 4 pending
 
 The gateway loads the shipped model at startup. Transfer submission scores the updated
