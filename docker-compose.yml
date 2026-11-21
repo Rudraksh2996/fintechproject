@@ -46,7 +46,8 @@ services:
       start_period: 30s
     restart: unless-stopped
   bootstrap:
-    profiles: [tools]
+    image: fintech-platform-bootstrap:latest
+    pull_policy: never
     mem_limit: 2304m
     cpus: 4
     build:
@@ -56,8 +57,52 @@ services:
     environment:
       TORCH_NUM_THREADS: ${TORCH_NUM_THREADS:-4}
       NEO4J_URI: bolt://neo4j:7687
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
     volumes:
       - artifacts:/artifacts
+    command: [python, /platform/bootstrap.py]
+    depends_on:
+      postgres: {condition: service_healthy}
+      neo4j: {condition: service_healthy}
+  backend:
+    image: fintech-platform-bootstrap:latest
+    pull_policy: never
+    mem_limit: 1450m
+    env_file: .env
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      NEO4J_URI: bolt://neo4j:7687
+      EDGAR_CACHE: /cache
+    volumes:
+      - artifacts:/artifacts:ro
+      - edgar_cache:/cache
+    command: [uvicorn, "app.main:create_app", --factory, --host, 0.0.0.0, --port, "8000"]
+    depends_on:
+      bootstrap: {condition: service_completed_successfully}
+    healthcheck:
+      test: [CMD, python, -c, "import json,urllib.request; assert json.load(urllib.request.urlopen('http://localhost:8000/api/v1/health'))['status']=='ok'"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+  streamlit:
+    build:
+      context: .
+      dockerfile: infra/docker/streamlit.Dockerfile
+    mem_limit: 512m
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_DB: ${POSTGRES_DB}
+      WORKBENCH_RO_PASSWORD: ${WORKBENCH_RO_PASSWORD}
+      DEMO_MODE: ${DEMO_MODE:-true}
+      GATEWAY_URL: http://backend:8000
+    depends_on:
+      backend: {condition: service_healthy}
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; assert urllib.request.urlopen('http://localhost:8501/workbench/_stcore/health').status==200"]
+      interval: 10s
+      retries: 20
   schema:
     mem_limit: 384m
     profiles: [tools]

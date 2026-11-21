@@ -10,3 +10,13 @@ RUN uv pip install ./ml_pipeline && mkdir /artifacts && chown 65532:65532 /artif
 COPY infra/scripts/verify_model.py /platform/verify_model.py
 USER 65532:65532
 CMD ["python", "-m", "ml_pipeline.gnn.train", "/artifacts"]
+
+USER root
+COPY pyproject.toml uv.lock alembic.ini ./
+COPY edgar_pipeline ./edgar_pipeline
+COPY backend ./backend
+COPY streamlit_workbench/pyproject.toml ./streamlit_workbench/pyproject.toml
+RUN uv export --frozen --package fintech-gateway --no-dev --no-emit-workspace --no-hashes -o /tmp/runtime.txt && uv pip install -r /tmp/runtime.txt && uv pip install --no-deps ./backend ./edgar_pipeline
+COPY infra/scripts/bootstrap.py infra/neo4j/constraints.cypher infra/verification/phase3/metrics-lite.json ./
+RUN mkdir -p /cache && chown 65532:65532 /cache
+USER 65532:65532

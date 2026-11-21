@@ -12,6 +12,6 @@ bash infra/scripts/build_images.sh bootstrap
 for stage in generate load features; do
   docker compose --profile tools run --rm bootstrap mule "$stage" --output /artifacts
 done
-docker compose --profile tools run --rm bootstrap
+docker compose --profile tools run --rm bootstrap python -m ml_pipeline.gnn.train /artifacts
 docker compose --profile tools run --rm bootstrap python /platform/verify_model.py /artifacts
 echo 'Gate 3 PASSED'
