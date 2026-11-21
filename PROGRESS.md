@@ -69,8 +69,21 @@ UV_NO_EDITABLE=1 uv run --frozen pytest -q -> 9 passed in 0.77s
 
 On this host refresh the local package wheel after parser changes with
 `uv sync --frozen --all-packages --no-editable --reinstall-package edgar-pipeline`.
-Next implement the shared rate-limited SEC client and filing discovery, followed by
-transactional Postgres ingestion with quarantine, multi-owner attribution, amendment
+The SEC client and filing discovery are implemented in commits ef9e02f and 3068a6c.
+The mock-transport client tests measured 21 requests across two concurrent clients,
+enforcing at least one second between each request and the tenth following request.
+Tests also exercised Retry-After, shared 403 cooldown, identity checks and cache hits.
+Discovery tests resolved a daily index, quarterly index and archived submissions
+through ticker lookup to the same raw primary XML. No live SEC check was run.
+
+```text
+UV_NO_EDITABLE=1 uv run pytest -q edgar_pipeline/tests/test_http_client.py -> 3 passed in 4.22s
+UV_NO_EDITABLE=1 uv run pytest -q edgar_pipeline/tests/test_discovery.py -> 1 passed in 0.68s
+uv run ruff check . -> All checks passed!
+uv run mypy --strict -> Success: no issues found in 13 source files
+```
+
+Next implement transactional Postgres ingestion with quarantine, multi-owner attribution, amendment
 supersession and idempotency tests. Then implement the detector, conviction score,
 price providers, backtester, fixtures and CLI. Run the complete Gate 2 specified in
 Section 8 (including the 100k-row benchmark and planted-cluster/trap assertions)
