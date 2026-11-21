@@ -1,12 +1,5 @@
+[theme]
+base = "dark"
 [server]
 baseUrlPath = "workbench"
 headless = true
-enableCORS = true
-enableXsrfProtection = true
-
-[theme]
-base = "dark"
-primaryColor = "#22d3ee"
-backgroundColor = "#080f1c"
-secondaryBackgroundColor = "#131f31"
-textColor = "#e2e8f0"

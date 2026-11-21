@@ -58,10 +58,9 @@ def store_demo_prices(db: Session, seed: int, start: date) -> None:
         )
 
 
-def detect_database(db: Session, source: str) -> list[str]:
-    db.execute(text("SELECT pg_advisory_xact_lock(733451)"))
-    active = db.scalars(select(DetectionConfig).where(DetectionConfig.is_active)).one()
-    config = Config(**{k: getattr(active, k) for k in Config.__dataclass_fields__})
+def load_trades(
+    db: Session, source: str, new_position_pct: Decimal
+) -> tuple[list[Trade], dict[int, str]]:
     query = (
         select(Form4Transaction)
         .join(Form4Filing)
@@ -81,7 +80,7 @@ def detect_database(db: Session, source: str) -> list[str]:
                 r.transaction_date,
                 r.filing_date,
                 r.value_usd,
-                active.new_position_pct if r.is_new_position else r.pct_holdings_increase,
+                new_position_pct if r.is_new_position else r.pct_holdings_increase,
                 r.officer_title or "",
                 r.is_director,
                 r.is_officer,
@@ -89,6 +88,14 @@ def detect_database(db: Session, source: str) -> list[str]:
                 r.is_10b5_1,
             )
         )
+    return trades, tickers
+
+
+def detect_database(db: Session, source: str) -> list[str]:
+    db.execute(text("SELECT pg_advisory_xact_lock(733451)"))
+    active = db.scalars(select(DetectionConfig).where(DetectionConfig.is_active)).one()
+    config = Config(**{k: getattr(active, k) for k in Config.__dataclass_fields__})
+    trades, tickers = load_trades(db, source, active.new_position_pct)
     emitted = []
     for cluster in detect(trades, config):
         members = list(cluster.members.values())
