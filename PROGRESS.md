@@ -1,5 +1,28 @@
 # Build progress
 
+### Phase 3 generator checkpoint
+
+Added `mule generate --output DIRECTORY` for lite/demo/full, using SEED and
+REPORTING_THRESHOLD. Lite generates 3,000 accounts, 40,000 transfers over 60 days,
+and 12 rings (2% mule prevalence). Verified byte-identical Parquet and manifests
+across two fresh runs. Every mule makes ordinary card purchases. Negative payroll,
+merchant and family groups are disjoint from mule members; tests inspect their
+actual fan-out, fan-in and cycles. Ground truth is exported separately.
+
+```text
+UV_NO_EDITABLE=1 uv run pytest -q ml_pipeline/tests/test_generator.py -> 1 passed in 5.00s
+uv run mypy --strict -> Success: no issues found in 23 source files
+```
+
+Gate 3 remains open. Next implement the batched graph loader and features using
+only account, transfer and infrastructure inputs; test the reachable feature and
+inference paths against forbidden label columns and Label-node reads. Train the
+feature-only baseline and GNN on identical persisted ring-disjoint splits and
+report per-typology recall for both. Time lite training inside the four-thread
+bootstrap container (limit 300 seconds). If test PR-AUC exceeds 0.98, retain
+that result, increase difficulty, rerun, and record both. The Mac had about
+0.5 GiB free during generator verification; check disk before the training build.
+
 ### Phase 2 live prices
 
 LivePrices implements the backtest PriceProvider and requests US daily closes
