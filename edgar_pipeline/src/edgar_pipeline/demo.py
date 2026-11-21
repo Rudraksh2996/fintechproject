@@ -9,8 +9,8 @@ from xml.etree import ElementTree as ET
 from edgar_pipeline.db.repository import FilingInput
 
 START = date(2024, 1, 2)
-TICKERS = tuple(f"ZXQ{i:02d}" for i in range(40))
-PLANTED = frozenset(TICKERS[:10])
+TICKERS = tuple(f"ZXQ{i:02d}" for i in range(43))
+PLANTED = frozenset((*TICKERS[:10], "ZXQ40", "ZXQ42"))
 
 
 def fixtures(seed: int) -> list[FilingInput]:
@@ -87,6 +87,14 @@ def fixtures(seed: int) -> list[FilingInput]:
             first = filing(i, owner, day + owner, "P", price, i >= 30)
             if i in (0, 1) and owner == 0:
                 filing(i, owner, day, "P", price + 1, original=first)
+    # Append to preserve all previously published synthetic accession numbers.
+    for i, final_day in ((40, 413), (41, 414)):
+        for owner, (day, price) in enumerate(((400, 33), (401, 33), (final_day, 34))):
+            filing(i, owner, day, "P", price)
+    for owner in range(3):
+        original = filing(42, owner, 420 + owner, "P", 33)
+        if owner == 2:
+            filing(42, owner, 422, "P", 34, original=original)
     items.append(FilingInput("9999999999-24-999999", START, "synthetic://broken.xml", b"<broken"))
     return sorted(items, key=lambda item: (item.filed, item.accession))
 

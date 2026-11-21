@@ -48,7 +48,7 @@ def main() -> None:
         seed = subprocess.check_output(["edgar", "seed-demo"], text=True)
         print(seed.strip(), flush=True)
         stats = json.loads(seed)
-        assert stats["quarantined"] == 1 and stats["seen"] == 843
+        assert stats["quarantined"] == 1 and stats["seen"] == 853
         if replay:
             assert stats["inserted"] == 0
         detection = subprocess.check_output(["edgar", "detect"], text=True)
@@ -69,7 +69,7 @@ def main() -> None:
                 .join(Company)
                 .where(Company.ticker.in_(TICKERS), Form4Filing.supersedes_accession.is_not(None))
             )
-            assert amendments == 2
+            assert amendments == 3
             prices = db.scalar(
                 select(func.count())
                 .select_from(PriceBar)
@@ -77,7 +77,8 @@ def main() -> None:
             )
             assert prices and prices >= 380
             print(
-                f"Verified {len(persisted)} planted alerts, 30 trap issuers, "
+                f"Verified {len(persisted)} planted alerts, "
+                f"{len(TICKERS) - len(PLANTED)} trap issuers, "
                 f"{amendments} amendments and {prices} benchmark closes."
             )
     finally:

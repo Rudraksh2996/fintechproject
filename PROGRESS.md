@@ -1,5 +1,31 @@
 # Build progress
 
+### Phase 2 benchmark and threshold audit
+
+Counted entries inside the rolling loop and verified the 1,000 unique member IDs
+for each of 100 issuers. The focused run took 0.196 seconds. Appended immutable
+fixture accessions for a three-insider $100,000 day-14 trigger, a day-15 miss,
+and a $99,000 cluster that first triggers at $100,000 on the 4/A filing date.
+The PostgreSQL test checks both sides of the amendment before rolling back.
+Gate command: `bash infra/scripts/gate2.sh`.
+
+```text
+Uninstalled 1 package in 0.83ms
+Installed 1 package in 3ms
+...100000 window entries, 100 merged alerts, 0.228 seconds
+..........
+13 passed in 7.66s
+All checks passed!
+Success: no issues found in 20 source files
+{"run_id": 12, "seen": 853, "inserted": 10, "quarantined": 1}
+{"alerts": ["ZXQ00", "ZXQ01", "ZXQ02", "ZXQ03", "ZXQ04", "ZXQ05", "ZXQ06", "ZXQ07", "ZXQ08", "ZXQ09", "ZXQ40", "ZXQ42"]}
+{"run_id": 13, "seen": 853, "inserted": 0, "quarantined": 1}
+{"alerts": ["ZXQ00", "ZXQ01", "ZXQ02", "ZXQ03", "ZXQ04", "ZXQ05", "ZXQ06", "ZXQ07", "ZXQ08", "ZXQ09", "ZXQ40", "ZXQ42"]}
+Verified 12 planted alerts, 31 trap issuers, 3 amendments and 450 benchmark closes.
+Optional live EDGAR: skipped, offline (no configured SEC contact)
+Gate 2 PASSED
+```
+
 Client date: **2026-11-21 (Asia/Calcutta)**.
 
 ## Current status — Gate 2 passed; Phase 3 in progress
