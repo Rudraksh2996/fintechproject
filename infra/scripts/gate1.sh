@@ -7,7 +7,7 @@ if ! command -v docker >/dev/null 2>&1; then
 fi
 docker compose version
 docker compose up -d --wait --wait-timeout 180 postgres neo4j
-docker compose --profile tools build schema
+bash infra/scripts/build_images.sh schema
 docker compose --profile tools run --rm schema
 docker compose --profile tools run --rm schema /platform/.venv/bin/alembic downgrade base
 docker compose --profile tools run --rm schema

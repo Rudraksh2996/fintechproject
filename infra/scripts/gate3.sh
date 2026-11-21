@@ -7,7 +7,7 @@ docker compose up -d --wait neo4j
 uv run --frozen pytest -q ml_pipeline
 uv run --frozen ruff check .
 uv run --frozen mypy --strict
-docker compose --profile tools build bootstrap
+bash infra/scripts/build_images.sh bootstrap
 # Persist each stage on the project artifact volume for downstream inference.
 for stage in generate load features; do
   docker compose --profile tools run --rm bootstrap mule "$stage" --output /artifacts
