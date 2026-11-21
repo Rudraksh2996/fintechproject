@@ -34,6 +34,30 @@ Sample mean ± SD over the same five grouped folds at each of three seeds:
 | Shared infrastructure recall | .905 ± .133 | .837 ± .189 |
 | Structuring recall | 1.000 ± .000 | .981 ± .050 |
 
+Pre-Phase-4 sensitivity checks, same 15 held-out folds, mean ± sample SD:
+
+| Evaluation | PR-AUC | Recall at 1% FPR |
+|---|---:|---:|
+| Shipped GraphSAGE protocol | .9504 ± .0465 | .9389 ± .0822 |
+| No age; remapped IDs and shuffled creation order | .9571 ± .0365 | .9546 ± .0543 |
+| Inductive, held-out accounts added back | .9096 ± .1035 | .8712 ± .1925 |
+
+Ran `python -m ml_pipeline.evaluation.ablations /artifacts shortcut` and
+`python -m ml_pipeline.evaluation.ablations /artifacts inductive` in the
+existing bootstrap image with updated source mounted read-only. Shortcut PR-AUC
+increased by .0067; no generator remediation was indicated. The inductive run
+removed all test accounts and their incident edges before recomputing features
+and fitting. It restored their observed transfer history and scored through the
+same function used by the transfer API. Average PR-AUC decreased by .0408 and
+recall by .0677, with substantially larger fold variation. These measurements
+do not establish first-transfer-only accuracy. Model weights were SHA-256 checked
+before and after both diagnostics. Full fold results are in the artifact volume's
+`metrics.json` and the tracked `infra/verification/phase3/metrics-lite.json`.
+
+Phase 6 disk plan: use the slim E2E build with `playwright install --with-deps chromium`
+and headless SwiftShader. Check free space before/after builds, prune dangling
+images after each build, and stop below 5 GiB.
+
 This is synthetic transductive evaluation: observable graph topology and
 unsupervised graph features are available across partitions. Model parameters,
 scaling and early stopping use training/validation accounts. Final refit runs
