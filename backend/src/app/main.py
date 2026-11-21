@@ -30,6 +30,7 @@ from app.api.v1.configs import routes as config_routes
 from app.api.v1.configs import run_next_job
 from app.api.v1.insider import routes as insider_routes
 from app.api.v1.mule import routes as mule_routes
+from app.services.replay import replay
 from app.services.transfers import (
     AccountScore,
     RuntimeModel,
@@ -124,13 +125,20 @@ def create_app() -> FastAPI:
                 ).consume()
             listener = asyncio.create_task(alerts.listen())
             worker = asyncio.create_task(process_jobs())
+            replay_task: asyncio.Task[None] | None = None
             try:
                 await asyncio.wait_for(alerts.ready.wait(), config.database_timeout_seconds)
+                if config.demo_mode and config.replay_enabled:
+                    replay_task = asyncio.create_task(
+                        replay(worker_engine, sql.seed, config.replay_speed, stopping)
+                    )
                 yield
             finally:
                 await stop_task(listener)
                 stopping.set()
                 await worker
+                if replay_task is not None:
+                    await replay_task
         finally:
             worker_engine.dispose()
             model = None

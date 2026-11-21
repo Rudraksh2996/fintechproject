@@ -26,14 +26,26 @@ from edgar_pipeline.db.models import (
     PriceBar,
 )
 from edgar_pipeline.db.repository import FilingInput, ingest
-from edgar_pipeline.demo import fixtures, price_rows
+from edgar_pipeline.demo import START, fixtures, price_rows
 from edgar_pipeline.discovery import by_index, by_issuer
 from edgar_pipeline.http_client import SecClient
 
 
 def seed_demo(db: Session, seed: int) -> dict[str, int]:
     run_id = ingest(db, fixtures(seed), "synthetic")
-    for batch in batched(price_rows(seed), 500):
+    store_demo_prices(db, seed, START)
+    db.commit()
+    run = db.get_one(IngestionRun, run_id)
+    return {
+        "run_id": run_id,
+        "seen": run.filings_seen,
+        "inserted": run.transactions_inserted,
+        "quarantined": run.errors,
+    }
+
+
+def store_demo_prices(db: Session, seed: int, start: date) -> None:
+    for batch in batched(price_rows(seed, start), 500):
         stmt = insert(PriceBar).values(
             [{"ticker": t, "date": d, "close": p, "source": "synthetic"} for t, d, p in batch]
         )
@@ -44,14 +56,6 @@ def seed_demo(db: Session, seed: int) -> dict[str, int]:
                 where=PriceBar.source == "synthetic",
             )
         )
-    db.commit()
-    run = db.get_one(IngestionRun, run_id)
-    return {
-        "run_id": run_id,
-        "seen": run.filings_seen,
-        "inserted": run.transactions_inserted,
-        "quarantined": run.errors,
-    }
 
 
 def detect_database(db: Session, source: str) -> list[str]:

@@ -13,7 +13,7 @@ TICKERS = tuple(f"ZXQ{i:02d}" for i in range(43))
 PLANTED = frozenset((*TICKERS[:10], "ZXQ40", "ZXQ42"))
 
 
-def fixtures(seed: int) -> list[FilingInput]:
+def fixtures(seed: int, start: date = START) -> list[FilingInput]:
     rng = random.Random(seed)
     items: list[FilingInput] = []
 
@@ -26,7 +26,7 @@ def fixtures(seed: int) -> list[FilingInput]:
         ten: bool = False,
         original: FilingInput | None = None,
     ) -> FilingInput:
-        when = START + timedelta(days=day)
+        when = start + timedelta(days=day)
         root = ET.Element("ownershipDocument")
 
         def put(path: str, value: str) -> None:
@@ -95,17 +95,21 @@ def fixtures(seed: int) -> list[FilingInput]:
         original = filing(42, owner, 420 + owner, "P", 33)
         if owner == 2:
             filing(42, owner, 422, "P", 34, original=original)
-    items.append(FilingInput("9999999999-24-999999", START, "synthetic://broken.xml", b"<broken"))
+    items.append(
+        FilingInput(
+            f"9999999999-{start.year % 100:02d}-999999", start, "synthetic://broken.xml", b"<broken"
+        )
+    )
     return sorted(items, key=lambda item: (item.filed, item.accession))
 
 
-def price_rows(seed: int) -> list[tuple[str, date, Decimal]]:
+def price_rows(seed: int, start: date = START) -> list[tuple[str, date, Decimal]]:
     rng = random.Random(seed)
     rows: list[tuple[str, date, Decimal]] = []
     for ticker in (*TICKERS, "SYNBENCH"):
         close = 100.0
         for day in range(630):
-            when = START + timedelta(days=day)
+            when = start + timedelta(days=day)
             if when.weekday() < 5:
                 close *= math.exp(0.0001 + 0.012 * rng.gauss(0, 1))
                 rows.append((ticker, when, Decimal(f"{close:.6f}")))

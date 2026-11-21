@@ -1,6 +1,7 @@
 """End-to-end LISTEN/NOTIFY over a real TCP WebSocket and an independent DB session."""
 
 import json
+import os
 import socket
 import subprocess
 import sys
@@ -13,7 +14,7 @@ from websockets.sync.client import connect
 
 
 @pytest.fixture
-def gateway_url() -> Iterator[str]:
+def gateway_url(request: pytest.FixtureRequest) -> Iterator[str]:
     with socket.socket() as sock:
         sock.bind(("127.0.0.1", 0))
         port = sock.getsockname()[1]
@@ -29,6 +30,11 @@ def gateway_url() -> Iterator[str]:
                 "--log-level",
                 "warning",
             ],
+            env={
+                **os.environ,
+                "REPLAY_ENABLED": str(getattr(request, "param", False)),
+                "REPLAY_SPEED": "100",
+            },
             pass_fds=(sock.fileno(),),
         )
         base = f"http://127.0.0.1:{port}"
@@ -72,3 +78,13 @@ def test_committed_alert_reaches_tcp_client(gateway_url: str) -> None:
                 )
         finally:
             api.post(f"configs/{current['id']}/activate").raise_for_status()
+
+
+@pytest.mark.parametrize("gateway_url", [True], indirect=True)
+def test_fixture_batch_reaches_socket(gateway_url: str) -> None:
+    from app.services.replay import REPLAY_START
+
+    with connect(gateway_url.replace("http://", "ws://") + "/ws/alerts") as ws:
+        row = json.loads(ws.recv(timeout=10))
+        assert row["type"] == "cluster_alert"
+        assert row["payload"]["alert_filing_date"] >= REPLAY_START.isoformat()
