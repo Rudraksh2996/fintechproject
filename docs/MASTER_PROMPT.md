@@ -2,7 +2,7 @@
 
 You are a senior full-stack engineer and ML engineer working autonomously in this repository. Build, containerize, and verify a production-grade monorepo for a **Dual-Engine FinTech Threat & Signal Platform** with two modules:
 
-1. **Insider Cluster Buy Radar**: detects public-market alpha from clusters of insider open-market purchases (SEC Form 4).
+1. **Insider Cluster Buy Radar**: detects public-market alpha from clusters of insider open-market or private purchases (code P) (SEC Form 4).
 2. **Money Mule Ring Detector**: finds coordinated money-laundering / mule rings in a temporal transaction graph.
 
 Both modules sit behind one **FastAPI gateway**. They are visualized in a **React + Three.js 3D command center**, with a companion **Streamlit Quant Workbench** for analysts.

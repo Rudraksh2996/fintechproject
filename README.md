@@ -33,7 +33,7 @@ flowchart LR
   Weights --> API
 ```
 
-The detector groups qualifying purchases by issuer and distinct insider, stores conviction components, and uses filing dates for backtest availability. Replay sends a second chronological synthetic season through ingestion and detection. The mule engine builds observable graph features, finds Louvain communities, and applies GraphSAGE. The gateway publishes upward account and ring score crossings. Backend and bootstrap share a CPU-only torch/PyG image layer. Streamlit uses a separate research image.
+The detector filters for an open-market or private purchase (code P). It groups qualifying purchases by issuer and distinct insider, stores conviction components, and uses filing dates for backtest availability. Replay sends a second chronological synthetic season through ingestion and detection. The mule engine builds observable graph features, finds Louvain communities, and applies GraphSAGE. The gateway publishes upward account and ring score crossings. Backend and bootstrap share a CPU-only torch/PyG image layer. Streamlit uses a separate research image.
 
 ## Two-minute demo
 
@@ -102,7 +102,7 @@ The lite graph contains 180 mule accounts (3%) across five typologies. Both mode
 
 Cold-start PR-AUC was **0.329, 0.424, 0.431 and 0.688** after **1, 3, 5 and 10** transfers. This used one held-out fold and the same ten positive and thirty negative accounts at each step, weighted to the eligible fold's prevalence. These values measure ranking quality. They do not calibrate an individual account's probability. [Fold-level metrics](infra/verification/phase3/metrics-lite.json)
 
-Gate 2 detected **12 planted clusters**, with **31 trap issuers** clear. The fixture set contained 853 filings, three amendments and one malformed XML quarantine. A repeated seed inserted zero further transactions. The benchmark processed all 100,000 rolling-window entries and emitted 100 merged alerts in 0.233 s. Free live price providers can have gaps or change availability. [Verification history](PROGRESS.md)
+Gate 2 detected **12 planted clusters**, across **43 fictional issuers**, with **31 trap issuers** clear. The fixture set contained 853 filings, three amendments and one malformed XML quarantine. A repeated seed inserted zero further transactions. The benchmark processed all 100,000 rolling-window entries and emitted 100 merged alerts in 0.233 s. Free live price providers can have gaps or change availability. [Verification history](PROGRESS.md)
 
 ## Verification
 

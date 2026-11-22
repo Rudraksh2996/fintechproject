@@ -1,4 +1,4 @@
-"""Parse ownershipDocument XML, preserving joint owners and original line numbers."""
+"""Parse open-market or private purchases (code P), preserving joint owners and XML lines."""
 
 from dataclasses import dataclass
 from datetime import date

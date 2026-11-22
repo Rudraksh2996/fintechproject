@@ -41,6 +41,8 @@ Gate 6 PASSED
 
 ### Known limitations
 
+- Form 4 code P covers an open-market or private purchase. It does not distinguish private placements from exchange buys, so alerts may reflect discounted or pre-arranged deals. A future screening flag could compare the reported price with the market close and look for placement or offering language in footnotes. Both are clues that require review.
+
 - Mule performance has been evaluated only on synthetic accounts, transfers and planted rings.
 - New accounts have limited transfer history. PR-AUC after one observed transfer was 0.329.
   The cold-start curve uses one held-out fold with ten positive and thirty negative accounts.

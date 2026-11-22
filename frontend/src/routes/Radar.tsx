@@ -49,7 +49,7 @@ export default function Radar() {
       <header>
         <h1>Insider cluster radar</h1>
       </header>
-      <p>Research tool — not investment advice.</p>
+      <p>Filter: open-market or private purchase (code P). Research tool — not investment advice.</p>
       <Feedback
         loading={feed.isPending}
         error={feed.error}

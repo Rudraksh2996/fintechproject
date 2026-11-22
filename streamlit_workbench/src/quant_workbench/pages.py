@@ -190,7 +190,7 @@ def inspector() -> None:
     if filing.purchases:
         st.dataframe([asdict(purchase) for purchase in filing.purchases])
     else:
-        st.info("This filing contains no qualifying open-market purchases.")
+        st.info("This filing contains no qualifying open-market or private purchases (code P).")
     if not env.demo_mode:
         st.link_button("Open SEC filing", row.raw_xml_url)
     st.code(row.raw_xml, language="xml")
