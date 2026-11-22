@@ -193,7 +193,7 @@ export function App() {
             {info.data?.demo_mode
               ? "Synthetic demo data"
               : info.data
-                ? "Live data"
+                ? "Live EDGAR · synthetic mule graph"
                 : "Connecting"}
           </span>
           <div>

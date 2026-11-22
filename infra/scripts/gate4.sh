@@ -47,6 +47,9 @@ for _ in {1..60}; do
   if docker exec "$graph" cypher-shell -u neo4j -p "$password" 'RETURN 1' >/dev/null 2>&1; then break; fi
   sleep 1
 done
+if [[ "${1:-}" == --repo-tests ]]; then
+  python -m pytest -q infra/tests edgar_pipeline/tests ml_pipeline/tests
+fi
 ruff check .
 mypy --strict
 python -m pytest backend -q --disable-warnings --cov=app --cov-report=term-missing --cov-fail-under=80

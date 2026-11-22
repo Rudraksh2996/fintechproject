@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { api, read, useRadar } from "../api/client";
@@ -38,6 +39,11 @@ export default function Radar() {
     set({ id: String(n) });
   };
   const a = detail.data;
+  const drawer = useRef<HTMLElement>(null);
+  useEffect(() => {
+    if (a) drawer.current?.focus({ preventScroll: true });
+  }, [a?.id]);
+
   return (
     <>
       <header>
@@ -85,7 +91,9 @@ export default function Radar() {
         </div>
       </Feedback>
       {id > 0 && (
-        <section className="panel">
+        <section ref={drawer} className="panel detail-drawer" role="dialog"
+          aria-label="Insider filing detail" tabIndex={-1}
+          onKeyDown={event => { if (event.key === "Escape") set({}); }}>
           <Feedback loading={detail.isPending} error={detail.error}>
             {a && (
               <>

@@ -42,7 +42,7 @@ select = ["E", "F", "I", "UP", "B", "SIM"]
 [tool.mypy]
 python_version = "3.12"
 strict = true
-files = ["backend/src", "edgar_pipeline/src", "ml_pipeline/src", "edgar_pipeline/migrations"]
+files = ["backend/src", "edgar_pipeline/src", "ml_pipeline/src", "edgar_pipeline/migrations", "streamlit_workbench/src"]
 plugins = ["pydantic.mypy"]
 
 [tool.pytest.ini_options]

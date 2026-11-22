@@ -344,3 +344,14 @@ details {
     gap: 6px;
   }
 }
+
+.detail-drawer {
+  position: fixed;
+  z-index: 5;
+  right: 0;
+  top: 54px;
+  bottom: 0;
+  width: min(520px, 92vw);
+  border-radius: 8px 0 0 8px;
+  box-shadow: -16px 0 40px #0006;
+}

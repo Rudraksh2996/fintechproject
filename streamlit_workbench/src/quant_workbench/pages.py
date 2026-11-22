@@ -1,5 +1,6 @@
 """Analyst views. Database access uses the read-only role; mutations use the gateway."""
 
+from collections.abc import Hashable, Mapping
 from dataclasses import asdict
 from datetime import date
 from decimal import Decimal
@@ -7,23 +8,24 @@ from typing import Any
 
 import httpx
 import pandas as pd
-import plotly.express as px
+import plotly.express as px  # type: ignore[import-untyped]
 import streamlit as st
-from edgar_pipeline.backtest import summarize
+from edgar_pipeline.backtest import ForwardReturn, summarize
 from edgar_pipeline.conviction import Config
 from edgar_pipeline.form4_parser import parse_form4
+from sqlalchemy import Engine
 from sqlalchemy.exc import SQLAlchemyError
 
 from quant_workbench.research import Environment, clusters, frame, returns
 
 
 @st.cache_resource
-def resources():
+def resources() -> tuple[Environment, Engine]:
     env = Environment()
     return env, env.engine()
 
 
-def config_from(row: dict[str, Any]) -> Config:
+def config_from(row: Mapping[Hashable, Any] | Mapping[str, Any]) -> Config:
     return Config(**{k: row[k] for k in Config.__dataclass_fields__})
 
 
@@ -31,7 +33,8 @@ def post(path: str, payload: dict[str, Any] | None = None) -> dict[str, Any]:
     env, _ = resources()
     response = httpx.post(env.gateway_url + "/api/v1/insider/" + path, json=payload, timeout=15)
     response.raise_for_status()
-    return response.json()
+    result: dict[str, Any] = response.json()
+    return result
 
 
 def tuner() -> None:
@@ -95,7 +98,7 @@ def tuner() -> None:
         st.info(f"Submitted job {post('detect')['id']}")
 
 
-def backtest_controls():
+def backtest_controls() -> list[ForwardReturn]:
     env, engine = resources()
     rows = frame(engine, "SELECT * FROM detection_configs ORDER BY is_active DESC,id DESC").to_dict(
         "records"

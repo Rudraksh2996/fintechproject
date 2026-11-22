@@ -131,6 +131,18 @@ services:
       test: [CMD, wget, -q, -O, /dev/null, "http://127.0.0.1:8080/"]
       interval: 5s
       retries: 15
+  e2e:
+    profiles: [e2e]
+    mem_limit: 1024m
+    shm_size: 256m
+    build:
+      context: .
+      dockerfile: infra/docker/e2e.Dockerfile
+    network_mode: service:frontend
+    depends_on:
+      frontend: {condition: service_healthy}
+    volumes:
+      - ./docs/screenshots:/screenshots
   schema:
     mem_limit: 384m
     profiles: [tools]

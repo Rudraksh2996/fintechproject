@@ -38,7 +38,7 @@ class Environment(BaseSettings):
         )
 
 
-def frame(engine: Engine, sql: str, **params: object) -> pd.DataFrame:
+def frame(engine: Engine, sql: str, **params: str | int | bool) -> pd.DataFrame:
     with engine.connect() as conn:
         return pd.read_sql(text(sql), conn, params=params, coerce_float=False)
 
