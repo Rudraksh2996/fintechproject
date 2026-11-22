@@ -1,0 +1,1324 @@
+git clone --branch main --single-branch https://github.com/Rudraksh2996/fintechproject fintech-platform
+HEAD 523e1b1ad41769d7026b9c09b9610e0b08dacbd5
+cp .env.example .env
+docker compose down -v
+ Container fintech-platform-frontend-1 Stopping
+ Container fintech-platform-frontend-1 Stopped
+ Container fintech-platform-frontend-1 Removing
+ Container fintech-platform-frontend-1 Removed
+ Container fintech-platform-streamlit-1 Stopping
+ Container fintech-platform-streamlit-1 Stopped
+ Container fintech-platform-streamlit-1 Removing
+ Container fintech-platform-streamlit-1 Removed
+ Container fintech-platform-backend-1 Stopping
+ Container fintech-platform-backend-1 Stopped
+ Container fintech-platform-backend-1 Removing
+ Container fintech-platform-backend-1 Removed
+ Container fintech-platform-bootstrap-1 Stopping
+ Container fintech-platform-bootstrap-1 Stopped
+ Container fintech-platform-bootstrap-1 Removing
+ Container fintech-platform-bootstrap-1 Removed
+ Container fintech-platform-neo4j-1 Stopping
+ Container fintech-platform-postgres-1 Stopping
+ Container fintech-platform-ml-base-1 Stopping
+ Container fintech-platform-ml-base-1 Stopped
+ Container fintech-platform-ml-base-1 Removing
+ Container fintech-platform-ml-base-1 Removed
+ Container fintech-platform-postgres-1 Stopped
+ Container fintech-platform-postgres-1 Removing
+ Container fintech-platform-postgres-1 Removed
+ Container fintech-platform-neo4j-1 Stopped
+ Container fintech-platform-neo4j-1 Removing
+ Container fintech-platform-neo4j-1 Removed
+ Volume fintech-platform_artifacts Removing
+ Volume fintech-platform_neo4jdata Removing
+ Volume fintech-platform_edgar_cache Removing
+ Volume fintech-platform_pgdata Removing
+ Network fintech-platform_default Removing
+ Volume fintech-platform_neo4jdata Removed
+ Volume fintech-platform_edgar_cache Removed
+ Volume fintech-platform_artifacts Removed
+ Volume fintech-platform_pgdata Removed
+ Network fintech-platform_default Removed
+
+docker compose up --build -d --wait --wait-timeout 1500
+ Image fintech-platform-streamlit Building
+ Image fintech-platform-bootstrap:latest Building
+ Image fintech-platform-frontend Building
+ Image fintech-platform-backend:latest Building
+ Image fintech-platform-ml-base:latest Building
+#1 [internal] load local bake definitions
+#1 reading from stdin 3.14kB done
+#1 DONE 0.0s
+
+#2 [frontend internal] load build definition from frontend.Dockerfile
+#2 DONE 0.0s
+
+#3 [streamlit internal] load build definition from streamlit.Dockerfile
+#3 transferring dockerfile: 1.05kB 0.0s done
+#3 DONE 0.1s
+
+#2 [frontend internal] load build definition from frontend.Dockerfile
+#2 transferring dockerfile: 338B done
+#2 DONE 0.1s
+
+#4 [ml-base internal] load build definition from ml-base.Dockerfile
+#4 transferring dockerfile: 598B done
+#4 DONE 0.1s
+
+#5 [frontend internal] load metadata for docker.io/library/node:22-alpine
+#5 ...
+
+#6 [ml-base internal] load metadata for ghcr.io/astral-sh/uv:0.9.11
+#6 DONE 2.9s
+
+#7 [ml-base internal] load metadata for docker.io/library/python:3.12.12-slim-bookworm
+#7 ...
+
+#5 [frontend internal] load metadata for docker.io/library/node:22-alpine
+#5 DONE 7.6s
+
+#8 [frontend internal] load metadata for docker.io/library/nginx:1.28-alpine
+#8 DONE 11.4s
+
+#7 [ml-base internal] load metadata for docker.io/library/python:3.12.12-slim-bookworm
+#7 ...
+
+#9 [frontend internal] load .dockerignore
+#9 transferring context: 260B done
+#9 DONE 0.0s
+
+#10 [frontend stage-1 1/3] FROM docker.io/library/nginx:1.28-alpine@sha256:a8b39bd9cf0f83869a2162827a0caf6137ddf759d50a171451b335cecc87d236
+#10 resolve docker.io/library/nginx:1.28-alpine@sha256:a8b39bd9cf0f83869a2162827a0caf6137ddf759d50a171451b335cecc87d236 0.0s done
+#10 ...
+
+#11 [frontend internal] load build context
+#11 transferring context: 291.21kB 0.0s done
+#11 DONE 0.1s
+
+#12 [frontend build 1/4] FROM docker.io/library/node:22-alpine@sha256:1314fb30ec37592d5845e5a160d522c0e680972aa534549940b8d73bde88481a
+#12 resolve docker.io/library/node:22-alpine@sha256:1314fb30ec37592d5845e5a160d522c0e680972aa534549940b8d73bde88481a 0.0s done
+#12 DONE 0.2s
+
+#7 [ml-base internal] load metadata for docker.io/library/python:3.12.12-slim-bookworm
+#7 DONE 11.8s
+
+#9 [ml-base internal] load .dockerignore
+#9 transferring context: 260B done
+#9 DONE 0.0s
+
+#13 [streamlit internal] load build context
+#13 DONE 0.0s
+
+#14 [backend internal] load build definition from backend.Dockerfile
+#14 transferring dockerfile: 914B done
+#14 DONE 0.1s
+
+#15 [bootstrap internal] load build definition from bootstrap.Dockerfile
+#15 transferring dockerfile: 988B done
+#15 DONE 0.1s
+
+#9 [bootstrap internal] load .dockerignore
+#9 transferring context: 260B done
+#9 DONE 0.1s
+
+#13 [streamlit internal] load build context
+#13 transferring context: 1.61MB 0.0s done
+#13 DONE 0.1s
+
+#16 [ml-base stage-1 1/8] FROM docker.io/library/python:3.12.12-slim-bookworm@sha256:593bd06efe90efa80dc4eee3948be7c0fde4134606dd40d8dd8dbcade98e669c
+#16 resolve docker.io/library/python:3.12.12-slim-bookworm@sha256:593bd06efe90efa80dc4eee3948be7c0fde4134606dd40d8dd8dbcade98e669c 0.1s done
+#16 ...
+
+#10 [frontend stage-1 1/3] FROM docker.io/library/nginx:1.28-alpine@sha256:a8b39bd9cf0f83869a2162827a0caf6137ddf759d50a171451b335cecc87d236
+#10 extracting sha256:d8ad8cd72600f46cc068e16c39046ebc76526e41051f43a8c249884b200936c0 0.2s done
+#10 extracting sha256:0190f85b656602c295783e3e0b93423890316e896a1bba05d1ab48da0e23bb43 0.1s done
+#10 extracting sha256:0c9e85b345e6064c61d3655ec4390c0d13d45d8becbd25c5a7ac3db8b4097cfd done
+#10 extracting sha256:3d2c901b120a3a0488cc5bf5b6c9f739a3fbaabbb8b0238fddc99fe40b5c1790 0.0s done
+#10 extracting sha256:39ba19c6a1e3b8a62dce91cb78eb6b4344fc81833da73cecbf0e34fa8c5d0e71 0.0s done
+#10 extracting sha256:004928619bd7ca6c2d3092673b3e08e40d8603df0a1d604a13228ff8f4c3a969 0.0s done
+#10 extracting sha256:04e73639757d2fe4a5fa6e1c03b2eaf6de521cfb97433e57fbca027d787d57f3 0.0s done
+#10 DONE 0.6s
+
+#16 [streamlit stage-1 1/8] FROM docker.io/library/python:3.12.12-slim-bookworm@sha256:593bd06efe90efa80dc4eee3948be7c0fde4134606dd40d8dd8dbcade98e669c
+#16 extracting sha256:eb04ef52de3a23999fcda632f100324a4d1dbebd588b4df190c4a172bb88c603
+#16 ...
+
+#10 [frontend stage-1 1/3] FROM docker.io/library/nginx:1.28-alpine@sha256:a8b39bd9cf0f83869a2162827a0caf6137ddf759d50a171451b335cecc87d236
+#10 extracting sha256:40b38cc61f0ed9f05cc4513445f27d89576e409b87c570c10407be8f17811fcd 0.3s done
+#10 DONE 1.0s
+
+#17 [streamlit uv 1/1] FROM ghcr.io/astral-sh/uv:0.9.11@sha256:5aa820129de0a600924f166aec9cb51613b15b68f1dcd2a02f31a500d2ede568
+#17 resolve ghcr.io/astral-sh/uv:0.9.11@sha256:5aa820129de0a600924f166aec9cb51613b15b68f1dcd2a02f31a500d2ede568 0.1s done
+#17 sha256:4b3b384bfb207432304ebb1d8ce710eb0d2062451c74990396430679d6f04d0e 0B / 20.71MB 0.5s
+#17 sha256:47d85642a914bc1b90e2463f0be668ce17e07c71ec628310f5926d36e59ac393 0B / 96B 0.5s
+#17 ...
+
+#18 [frontend stage-1 2/3] COPY infra/nginx/nginx.conf /etc/nginx/conf.d/default.conf
+#18 DONE 0.8s
+
+#17 [streamlit uv 1/1] FROM ghcr.io/astral-sh/uv:0.9.11@sha256:5aa820129de0a600924f166aec9cb51613b15b68f1dcd2a02f31a500d2ede568
+#17 sha256:4b3b384bfb207432304ebb1d8ce710eb0d2062451c74990396430679d6f04d0e 1.05MB / 20.71MB 1.4s
+#17 sha256:47d85642a914bc1b90e2463f0be668ce17e07c71ec628310f5926d36e59ac393 96B / 96B 1.4s done
+#17 ...
+
+#16 [ml-base stage-1 1/8] FROM docker.io/library/python:3.12.12-slim-bookworm@sha256:593bd06efe90efa80dc4eee3948be7c0fde4134606dd40d8dd8dbcade98e669c
+#16 extracting sha256:eb04ef52de3a23999fcda632f100324a4d1dbebd588b4df190c4a172bb88c603 0.7s done
+#16 extracting sha256:2a131c235be7a6739f95b0703a577583b0a0d8e6bf4eea8b271f3cb0b09adb18 0.5s done
+#16 extracting sha256:7d7d63e37187049e51dd6c005cabc48e1f49168584d7ad8623bf2684df4dc095 0.2s done
+#16 extracting sha256:b00559a184b371583b8ee2b8b5705bb6f9f1d57171c482a160f674b1c5a631fc 0.0s done
+#16 DONE 1.6s
+
+#12 [frontend build 1/4] FROM docker.io/library/node:22-alpine@sha256:1314fb30ec37592d5845e5a160d522c0e680972aa534549940b8d73bde88481a
+#12 sha256:bec7aaabd7f9f12cfce96e50f7ed6cca9da43db1dcce21d8b302e2d16db7cd6e 1.26MB / 1.26MB 1.6s done
+#12 sha256:b90627b8f4292fd3cb63f0f27f0b11c37f04ba88ef3b78d4948ea0ace18c85e9 0B / 4.19MB 1.8s
+#12 sha256:d7c36ecc3656baea124618f97c50a789bc3876090882a45ef8fb1d053deb7c38 443B / 443B 1.6s done
+#12 sha256:1d0a7305242947ff5acc28f1d1658e557b48f99d0f8173d83cdb90950dd8a154 0B / 55.70MB 2.0s
+#12 sha256:b90627b8f4292fd3cb63f0f27f0b11c37f04ba88ef3b78d4948ea0ace18c85e9 0B / 4.19MB 6.9s
+#12 sha256:1d0a7305242947ff5acc28f1d1658e557b48f99d0f8173d83cdb90950dd8a154 2.10MB / 55.70MB 7.1s
+#12 sha256:b90627b8f4292fd3cb63f0f27f0b11c37f04ba88ef3b78d4948ea0ace18c85e9 1.05MB / 4.19MB 8.0s
+#12 sha256:b90627b8f4292fd3cb63f0f27f0b11c37f04ba88ef3b78d4948ea0ace18c85e9 2.10MB / 4.19MB 9.6s
+#12 ...
+
+#17 [streamlit uv 1/1] FROM ghcr.io/astral-sh/uv:0.9.11@sha256:5aa820129de0a600924f166aec9cb51613b15b68f1dcd2a02f31a500d2ede568
+#17 sha256:4b3b384bfb207432304ebb1d8ce710eb0d2062451c74990396430679d6f04d0e 5.24MB / 20.71MB 11.4s
+#17 sha256:4b3b384bfb207432304ebb1d8ce710eb0d2062451c74990396430679d6f04d0e 6.29MB / 20.71MB 11.6s
+#17 ...
+
+#12 [frontend build 1/4] FROM docker.io/library/node:22-alpine@sha256:1314fb30ec37592d5845e5a160d522c0e680972aa534549940b8d73bde88481a
+#12 sha256:1d0a7305242947ff5acc28f1d1658e557b48f99d0f8173d83cdb90950dd8a154 3.15MB / 55.70MB 12.2s
+#12 sha256:b90627b8f4292fd3cb63f0f27f0b11c37f04ba88ef3b78d4948ea0ace18c85e9 3.15MB / 4.19MB 12.9s
+#12 sha256:b90627b8f4292fd3cb63f0f27f0b11c37f04ba88ef3b78d4948ea0ace18c85e9 4.19MB / 4.19MB 14.4s done
+#12 extracting sha256:b90627b8f4292fd3cb63f0f27f0b11c37f04ba88ef3b78d4948ea0ace18c85e9 0.1s done
+#12 sha256:1d0a7305242947ff5acc28f1d1658e557b48f99d0f8173d83cdb90950dd8a154 6.29MB / 55.70MB 16.1s
+#12 sha256:1d0a7305242947ff5acc28f1d1658e557b48f99d0f8173d83cdb90950dd8a154 9.44MB / 55.70MB 20.0s
+#12 ...
+
+#17 [streamlit uv 1/1] FROM ghcr.io/astral-sh/uv:0.9.11@sha256:5aa820129de0a600924f166aec9cb51613b15b68f1dcd2a02f31a500d2ede568
+#17 sha256:4b3b384bfb207432304ebb1d8ce710eb0d2062451c74990396430679d6f04d0e 9.44MB / 20.71MB 20.0s
+#17 ...
+
+#12 [frontend build 1/4] FROM docker.io/library/node:22-alpine@sha256:1314fb30ec37592d5845e5a160d522c0e680972aa534549940b8d73bde88481a
+#12 sha256:1d0a7305242947ff5acc28f1d1658e557b48f99d0f8173d83cdb90950dd8a154 12.58MB / 55.70MB 22.8s
+#12 sha256:1d0a7305242947ff5acc28f1d1658e557b48f99d0f8173d83cdb90950dd8a154 15.73MB / 55.70MB 24.6s
+#12 sha256:1d0a7305242947ff5acc28f1d1658e557b48f99d0f8173d83cdb90950dd8a154 18.87MB / 55.70MB 27.3s
+#12 ...
+
+#17 [streamlit uv 1/1] FROM ghcr.io/astral-sh/uv:0.9.11@sha256:5aa820129de0a600924f166aec9cb51613b15b68f1dcd2a02f31a500d2ede568
+#17 sha256:4b3b384bfb207432304ebb1d8ce710eb0d2062451c74990396430679d6f04d0e 11.53MB / 20.71MB 27.8s
+#17 ...
+
+#12 [frontend build 1/4] FROM docker.io/library/node:22-alpine@sha256:1314fb30ec37592d5845e5a160d522c0e680972aa534549940b8d73bde88481a
+#12 sha256:1d0a7305242947ff5acc28f1d1658e557b48f99d0f8173d83cdb90950dd8a154 22.02MB / 55.70MB 29.1s
+#12 sha256:1d0a7305242947ff5acc28f1d1658e557b48f99d0f8173d83cdb90950dd8a154 25.17MB / 55.70MB 30.5s
+#12 sha256:1d0a7305242947ff5acc28f1d1658e557b48f99d0f8173d83cdb90950dd8a154 28.31MB / 55.70MB 32.4s
+#12 sha256:1d0a7305242947ff5acc28f1d1658e557b48f99d0f8173d83cdb90950dd8a154 31.46MB / 55.70MB 35.4s
+#12 ...
+
+#17 [streamlit uv 1/1] FROM ghcr.io/astral-sh/uv:0.9.11@sha256:5aa820129de0a600924f166aec9cb51613b15b68f1dcd2a02f31a500d2ede568
+#17 sha256:4b3b384bfb207432304ebb1d8ce710eb0d2062451c74990396430679d6f04d0e 13.63MB / 20.71MB 35.6s
+#17 ...
+
+#12 [frontend build 1/4] FROM docker.io/library/node:22-alpine@sha256:1314fb30ec37592d5845e5a160d522c0e680972aa534549940b8d73bde88481a
+#12 sha256:1d0a7305242947ff5acc28f1d1658e557b48f99d0f8173d83cdb90950dd8a154 34.60MB / 55.70MB 39.8s
+#12 sha256:1d0a7305242947ff5acc28f1d1658e557b48f99d0f8173d83cdb90950dd8a154 37.75MB / 55.70MB 42.2s
+#12 ...
+
+#17 [streamlit uv 1/1] FROM ghcr.io/astral-sh/uv:0.9.11@sha256:5aa820129de0a600924f166aec9cb51613b15b68f1dcd2a02f31a500d2ede568
+#17 sha256:4b3b384bfb207432304ebb1d8ce710eb0d2062451c74990396430679d6f04d0e 14.68MB / 20.71MB 43.4s
+#17 ...
+
+#12 [frontend build 1/4] FROM docker.io/library/node:22-alpine@sha256:1314fb30ec37592d5845e5a160d522c0e680972aa534549940b8d73bde88481a
+#12 sha256:1d0a7305242947ff5acc28f1d1658e557b48f99d0f8173d83cdb90950dd8a154 40.89MB / 55.70MB 46.2s
+#12 sha256:1d0a7305242947ff5acc28f1d1658e557b48f99d0f8173d83cdb90950dd8a154 44.04MB / 55.70MB 48.5s
+#12 sha256:1d0a7305242947ff5acc28f1d1658e557b48f99d0f8173d83cdb90950dd8a154 47.19MB / 55.70MB 51.0s
+#12 ...
+
+#17 [streamlit uv 1/1] FROM ghcr.io/astral-sh/uv:0.9.11@sha256:5aa820129de0a600924f166aec9cb51613b15b68f1dcd2a02f31a500d2ede568
+#17 sha256:4b3b384bfb207432304ebb1d8ce710eb0d2062451c74990396430679d6f04d0e 15.73MB / 20.71MB 51.2s
+#17 ...
+
+#12 [frontend build 1/4] FROM docker.io/library/node:22-alpine@sha256:1314fb30ec37592d5845e5a160d522c0e680972aa534549940b8d73bde88481a
+#12 sha256:1d0a7305242947ff5acc28f1d1658e557b48f99d0f8173d83cdb90950dd8a154 50.33MB / 55.70MB 53.3s
+#12 sha256:1d0a7305242947ff5acc28f1d1658e557b48f99d0f8173d83cdb90950dd8a154 53.48MB / 55.70MB 55.7s
+#12 sha256:1d0a7305242947ff5acc28f1d1658e557b48f99d0f8173d83cdb90950dd8a154 55.70MB / 55.70MB 57.0s done
+#12 DONE 57.2s
+
+#17 [streamlit uv 1/1] FROM ghcr.io/astral-sh/uv:0.9.11@sha256:5aa820129de0a600924f166aec9cb51613b15b68f1dcd2a02f31a500d2ede568
+#17 sha256:4b3b384bfb207432304ebb1d8ce710eb0d2062451c74990396430679d6f04d0e 16.78MB / 20.71MB 56.6s
+#17 ...
+
+#12 [frontend build 1/4] FROM docker.io/library/node:22-alpine@sha256:1314fb30ec37592d5845e5a160d522c0e680972aa534549940b8d73bde88481a
+#12 extracting sha256:1d0a7305242947ff5acc28f1d1658e557b48f99d0f8173d83cdb90950dd8a154 0.5s done
+#12 extracting sha256:bec7aaabd7f9f12cfce96e50f7ed6cca9da43db1dcce21d8b302e2d16db7cd6e 0.0s done
+#12 extracting sha256:d7c36ecc3656baea124618f97c50a789bc3876090882a45ef8fb1d053deb7c38 0.0s done
+#12 DONE 57.7s
+
+#17 [streamlit uv 1/1] FROM ghcr.io/astral-sh/uv:0.9.11@sha256:5aa820129de0a600924f166aec9cb51613b15b68f1dcd2a02f31a500d2ede568
+#17 ...
+
+#19 [frontend build 2/4] WORKDIR /app
+#19 DONE 0.2s
+
+#17 [streamlit uv 1/1] FROM ghcr.io/astral-sh/uv:0.9.11@sha256:5aa820129de0a600924f166aec9cb51613b15b68f1dcd2a02f31a500d2ede568
+#17 ...
+
+#20 [frontend build 3/4] COPY frontend ./
+#20 DONE 0.0s
+
+#17 [streamlit uv 1/1] FROM ghcr.io/astral-sh/uv:0.9.11@sha256:5aa820129de0a600924f166aec9cb51613b15b68f1dcd2a02f31a500d2ede568
+#17 sha256:4b3b384bfb207432304ebb1d8ce710eb0d2062451c74990396430679d6f04d0e 17.83MB / 20.71MB 57.9s
+#17 sha256:4b3b384bfb207432304ebb1d8ce710eb0d2062451c74990396430679d6f04d0e 18.87MB / 20.71MB 60.5s
+#17 sha256:4b3b384bfb207432304ebb1d8ce710eb0d2062451c74990396430679d6f04d0e 18.87MB / 20.71MB 65.6s
+#17 ...
+
+#21 [frontend build 4/4] RUN npm ci --no-audit --no-fund && npm run build && rm -rf node_modules && npm cache clean --force
+#21 3.154 npm warn deprecated three-mesh-bvh@0.7.8: Deprecated due to three.js version incompatibility. Please use v0.8.0, instead.
+#21 5.532 npm warn deprecated eslint@9.39.1: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+#21 ...
+
+#17 [streamlit uv 1/1] FROM ghcr.io/astral-sh/uv:0.9.11@sha256:5aa820129de0a600924f166aec9cb51613b15b68f1dcd2a02f31a500d2ede568
+#17 sha256:4b3b384bfb207432304ebb1d8ce710eb0d2062451c74990396430679d6f04d0e 19.92MB / 20.71MB 69.8s
+#17 sha256:4b3b384bfb207432304ebb1d8ce710eb0d2062451c74990396430679d6f04d0e 20.71MB / 20.71MB 73.8s done
+#17 sha256:4b3b384bfb207432304ebb1d8ce710eb0d2062451c74990396430679d6f04d0e 20.71MB / 20.71MB 73.8s done
+#17 extracting sha256:4b3b384bfb207432304ebb1d8ce710eb0d2062451c74990396430679d6f04d0e
+#17 extracting sha256:4b3b384bfb207432304ebb1d8ce710eb0d2062451c74990396430679d6f04d0e 0.2s done
+#17 extracting sha256:4b3b384bfb207432304ebb1d8ce710eb0d2062451c74990396430679d6f04d0e 0.2s done
+#17 extracting sha256:47d85642a914bc1b90e2463f0be668ce17e07c71ec628310f5926d36e59ac393 0.0s done
+#17 DONE 74.2s
+
+#22 [ml-base stage-1 2/5] COPY --from=uv /uv /usr/local/bin/uv
+#22 DONE 0.3s
+
+#23 [streamlit stage-1 2/8] RUN --mount=from=uv,source=/uv,target=/usr/local/bin/uv     --mount=type=bind,source=.,target=/src,ro cd /src &&     uv venv --python /usr/local/bin/python3.12 /opt/research &&     uv export --python /usr/local/bin/python3.12 --frozen --package quant-workbench --no-dev --no-emit-workspace --no-hashes -o /tmp/deps &&     uv pip install -r /tmp/deps && uv pip install --no-deps ./edgar_pipeline ./streamlit_workbench && rm /tmp/deps
+#23 ...
+
+#24 [ml-base stage-1 3/5] WORKDIR /platform
+#24 DONE 0.1s
+
+#25 [ml-base stage-1 4/5] RUN uv venv /opt/ml && uv pip install torch==2.8.0 --index-url https://download.pytorch.org/whl/cpu
+#25 0.233 Using CPython 3.12.12 interpreter at: /usr/local/bin/python
+#25 0.233 Creating virtual environment at: /opt/ml
+#25 0.322 Using Python 3.12.12 environment at: /opt/ml
+#25 ...
+
+#21 [frontend build 4/4] RUN npm ci --no-audit --no-fund && npm run build && rm -rf node_modules && npm cache clean --force
+#21 15.00
+#21 15.00 added 358 packages in 15s
+#21 15.01 npm notice
+#21 15.01 npm notice New major version of npm available! 10.9.9 -> 12.2.3
+#21 15.01 npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.3
+#21 15.01 npm notice To update run: npm install -g npm@12.2.3
+#21 15.01 npm notice
+#21 15.11
+#21 15.11 > fintech-command-center@0.1.0 build
+#21 15.11 > tsc --noEmit && vite build
+#21 15.11
+#21 16.71 vite v8.3.8 building client environment for production...
+#21 16.72 transforming...
+#21 16.95 ✓ 2880 modules transformed.
+#21 17.01 rendering chunks...
+#21 17.10 computing gzip size...
+#21 17.11 dist/index.html                                                     0.53 kB │ gzip:   0.34 kB
+#21 17.11 dist/assets/ibm-plex-mono-vietnamese-400-normal-DDuiU_S-.woff       5.62 kB
+#21 17.11 dist/assets/ibm-plex-mono-cyrillic-ext-400-normal-DMdlQ8Kv.woff     5.82 kB
+#21 17.11 dist/assets/ibm-plex-mono-vietnamese-400-normal-BulugwFq.woff2      5.86 kB
+#21 17.11 dist/assets/barlow-vietnamese-400-normal-BFeobeCK.woff              6.09 kB
+#21 17.11 dist/assets/barlow-vietnamese-600-normal-CA_GiK2e.woff              6.22 kB
+#21 17.11 dist/assets/ibm-plex-mono-cyrillic-ext-400-normal-xuaO2J-f.woff2    6.91 kB
+#21 17.11 dist/assets/ibm-plex-mono-cyrillic-400-normal-CEL4l2ZJ.woff         7.20 kB
+#21 17.11 dist/assets/barlow-vietnamese-400-normal-Dpl4UHAZ.woff2             7.58 kB
+#21 17.11 dist/assets/barlow-vietnamese-600-normal-DcjprdFV.woff2             7.89 kB
+#21 17.11 dist/assets/ibm-plex-mono-cyrillic-400-normal-BSMlKf0J.woff2        8.35 kB
+#21 17.11 dist/assets/ibm-plex-mono-latin-ext-400-normal-D3D2R8hC.woff       11.76 kB
+#21 17.11 dist/assets/barlow-latin-ext-400-normal-CvBsJvxq.woff              12.31 kB
+#21 17.11 dist/assets/barlow-latin-ext-600-normal-DMVRjfRT.woff              12.60 kB
+#21 17.11 dist/assets/ibm-plex-mono-latin-400-normal-CvHOgSBP.woff           13.14 kB
+#21 17.11 dist/assets/ibm-plex-mono-latin-ext-400-normal-BmRBH3aV.woff2      13.34 kB
+#21 17.11 dist/assets/barlow-latin-ext-400-normal-HxX4XjxC.woff2             14.26 kB
+#21 17.11 dist/assets/ibm-plex-mono-latin-400-normal-DMJ8VG8y.woff2          14.70 kB
+#21 17.11 dist/assets/barlow-latin-ext-600-normal-B8NK_A3D.woff2             14.96 kB
+#21 17.11 dist/assets/barlow-latin-400-normal-fsAxiSwU.woff                  19.58 kB
+#21 17.11 dist/assets/barlow-latin-600-normal-CNwfPWQD.woff                  19.88 kB
+#21 17.11 dist/assets/barlow-latin-400-normal-qiz4-Cze.woff2                 22.19 kB
+#21 17.11 dist/assets/barlow-latin-600-normal-DILqtrty.woff2                 22.77 kB
+#21 17.11 dist/assets/index-BoUM7AuM.css                                     13.97 kB │ gzip:   3.88 kB
+#21 17.11 dist/assets/rolldown-runtime-XKyaHtl9.js                            0.72 kB │ gzip:   0.42 kB
+#21 17.11 dist/assets/Radar-CzEHWUqx.js                                     157.39 kB │ gzip:  50.58 kB
+#21 17.11 dist/assets/index-B7ZtAjlg.js                                     219.59 kB │ gzip:  71.61 kB
+#21 17.11 dist/assets/extends-ChMHQ-4-.js                                   744.69 kB │ gzip: 188.46 kB
+#21 17.11 dist/assets/Mule-2LX0ggqk.js                                      922.16 kB │ gzip: 259.97 kB
+#21 17.11
+#21 17.11 [plugin builtin:vite-reporter]
+#21 17.11 (!) Some chunks are larger than 500 kB after minification. Consider:
+#21 17.11 - Using dynamic import() to code-split the application
+#21 17.11 - Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+#21 17.11 - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+#21 17.11 ✓ built in 403ms
+#21 17.41 npm warn using --force Recommended protections disabled.
+#21 DONE 17.8s
+
+#26 [frontend stage-1 3/3] COPY --from=build /app/dist /usr/share/nginx/html
+#26 DONE 0.1s
+
+#27 [frontend] exporting to image
+#27 exporting layers
+#27 exporting layers 0.2s done
+#27 exporting manifest sha256:71f9f463065b908ee76f2ed5b4421d40383a570801a793d1767dc725d5167ed8 done
+#27 exporting config sha256:bbe54cc3d4979e556cb0ff952d7d0917a51ad34d2f87bddaf91e81597449a787
+#27 exporting config sha256:bbe54cc3d4979e556cb0ff952d7d0917a51ad34d2f87bddaf91e81597449a787 done
+#27 exporting attestation manifest sha256:dcff03e4f7427ba7a316e33aca5cb3e9c3984c536cca9c6bb6333099a4790821 done
+#27 exporting manifest list sha256:f3e8841ea0d7dd22f9a1a73d4e5bcf6a95762b1f43ba468f782df1c7595ca896 done
+#27 naming to docker.io/library/fintech-platform-frontend:latest 0.0s done
+#27 unpacking to docker.io/library/fintech-platform-frontend:latest 0.0s done
+#27 DONE 0.3s
+
+#28 [frontend] resolving provenance for metadata file
+#28 DONE 0.1s
+
+#23 [streamlit stage-1 2/8] RUN --mount=from=uv,source=/uv,target=/usr/local/bin/uv     --mount=type=bind,source=.,target=/src,ro cd /src &&     uv venv --python /usr/local/bin/python3.12 /opt/research &&     uv export --python /usr/local/bin/python3.12 --frozen --package quant-workbench --no-dev --no-emit-workspace --no-hashes -o /tmp/deps &&     uv pip install -r /tmp/deps && uv pip install --no-deps ./edgar_pipeline ./streamlit_workbench && rm /tmp/deps
+#23 0.583 Using CPython 3.12.12 interpreter at: /usr/local/bin/python3.12
+#23 0.583 Creating virtual environment at: /opt/research
+#23 0.591 # This file was autogenerated by uv via the following command:
+#23 0.591 #    uv export --python /usr/local/bin/python3.12 --frozen --package quant-workbench --no-dev --no-emit-workspace --no-hashes -o /tmp/deps
+#23 0.591 alembic==1.17.2
+#23 0.591     # via edgar-pipeline
+#23 0.591 altair==6.3.0
+#23 0.591     # via streamlit
+#23 0.591 annotated-types==0.8.0
+#23 0.591     # via pydantic
+#23 0.591 anyio==4.16.0
+#23 0.591     # via
+#23 0.591     #   httpx
+#23 0.591     #   starlette
+#23 0.591     #   streamlit
+#23 0.591 asyncpg==0.31.0
+#23 0.591     # via edgar-pipeline
+#23 0.591 attrs==26.1.0
+#23 0.591     # via
+#23 0.591     #   jsonschema
+#23 0.591     #   referencing
+#23 0.591 beautifulsoup4==4.15.0
+#23 0.591     # via yfinance
+#23 0.591 certifi==2026.11.20
+#23 0.591     # via
+#23 0.591     #   curl-cffi
+#23 0.591     #   httpcore
+#23 0.591     #   httpx
+#23 0.591     #   requests
+#23 0.591 cffi==2.1.1
+#23 0.591     # via curl-cffi
+#23 0.591 charset-normalizer==3.5.2
+#23 0.591     # via requests
+#23 0.591 click==8.5.1
+#23 0.591     # via
+#23 0.591     #   streamlit
+#23 0.591     #   uvicorn
+#23 0.591 curl-cffi==0.17.0
+#23 0.591     # via yfinance
+#23 0.591 frozendict==2.5.1
+#23 0.591     # via yfinance
+#23 0.591 greenlet==3.5.6 ; platform_machine == 'AMD64' or platform_machine == 'WIN32' or platform_machine == 'aarch64' or platform_machine == 'amd64' or platform_machine == 'ppc64le' or platform_machine == 'win32' or platform_machine == 'x86_64'
+#23 0.591     # via sqlalchemy
+#23 0.591 h11==0.16.0
+#23 0.591     # via
+#23 0.591     #   httpcore
+#23 0.591     #   uvicorn
+#23 0.591 httpcore==1.0.9
+#23 0.591     # via httpx
+#23 0.591 httpx==0.28.1
+#23 0.591     # via edgar-pipeline
+#23 0.591 idna==3.20
+#23 0.591     # via
+#23 0.591     #   anyio
+#23 0.591     #   httpx
+#23 0.591     #   requests
+#23 0.591 itsdangerous==2.2.0
+#23 0.591     # via streamlit
+#23 0.591 jinja2==3.1.6
+#23 0.591     # via
+#23 0.591     #   altair
+#23 0.591     #   pydeck
+#23 0.591 jsonschema==4.26.0
+#23 0.591     # via altair
+#23 0.591 jsonschema-specifications==2025.9.1
+#23 0.591     # via jsonschema
+#23 0.591 lxml==6.0.2
+#23 0.591     # via edgar-pipeline
+#23 0.591 mako==1.4.3
+#23 0.591     # via alembic
+#23 0.591 markupsafe==3.0.4
+#23 0.591     # via
+#23 0.591     #   jinja2
+#23 0.591     #   mako
+#23 0.591 multitasking==0.0.13
+#23 0.591     # via yfinance
+#23 0.591 narwhals==2.29.0
+#23 0.591     # via
+#23 0.591     #   altair
+#23 0.591     #   plotly
+#23 0.591 numpy==2.4.6 ; sys_platform == 'linux'
+#23 0.591     # via
+#23 0.591     #   pandas
+#23 0.591     #   pydeck
+#23 0.591     #   streamlit
+#23 0.591     #   yfinance
+#23 0.591 numpy==2.5.5 ; sys_platform != 'linux'
+#23 0.591     # via
+#23 0.591     #   pandas
+#23 0.591     #   pydeck
+#23 0.591     #   streamlit
+#23 0.591     #   yfinance
+#23 0.591 packaging==26.3
+#23 0.591     # via
+#23 0.591     #   altair
+#23 0.591     #   plotly
+#23 0.591     #   streamlit
+#23 0.591 pandas==2.3.3
+#23 0.591     # via
+#23 0.591     #   edgar-pipeline
+#23 0.591     #   streamlit
+#23 0.591     #   yfinance
+#23 0.591 peewee==4.5.3
+#23 0.591     # via yfinance
+#23 0.591 pillow==13.0.0
+#23 0.591     # via streamlit
+#23 0.591 platformdirs==4.14.8
+#23 0.591     # via yfinance
+#23 0.591 plotly==7.1.0
+#23 0.591     # via quant-workbench
+#23 0.591 protobuf==7.36.2
+#23 0.591     # via
+#23 0.591     #   streamlit
+#23 0.591     #   yfinance
+#23 0.591 psycopg==3.2.12
+#23 0.591     # via edgar-pipeline
+#23 0.591 psycopg-binary==3.2.12 ; implementation_name != 'pypy'
+#23 0.591     # via psycopg
+#23 0.591 pyarrow==20.0.0
+#23 0.591     # via streamlit
+#23 0.591 pycparser==3.12 ; implementation_name != 'PyPy'
+#23 0.591     # via cffi
+#23 0.591 pydantic==2.12.4
+#23 0.591     # via
+#23 0.591     #   edgar-pipeline
+#23 0.591     #   pydantic-settings
+#23 0.591 pydantic-core==2.41.5
+#23 0.591     # via pydantic
+#23 0.591 pydantic-settings==2.12.0
+#23 0.591     # via edgar-pipeline
+#23 0.591 pydeck==0.9.3
+#23 0.591     # via streamlit
+#23 0.591 python-dateutil==4.0.0
+#23 0.591     # via pandas
+#23 0.591 python-dotenv==1.2.4
+#23 0.591     # via pydantic-settings
+#23 0.591 python-multipart==0.0.34
+#23 0.591     # via streamlit
+#23 0.591 pytz==2026.6
+#23 0.591     # via
+#23 0.591     #   pandas
+#23 0.591     #   yfinance
+#23 0.591 referencing==0.37.0
+#23 0.591     # via
+#23 0.591     #   jsonschema
+#23 0.591     #   jsonschema-specifications
+#23 0.591 requests==2.34.2
+#23 0.591     # via
+#23 0.591     #   streamlit
+#23 0.591     #   yfinance
+#23 0.591 rpds-py==2026.9.1
+#23 0.591     # via
+#23 0.591     #   jsonschema
+#23 0.591     #   referencing
+#23 0.591 soupsieve==4.1.3
+#23 0.591     # via beautifulsoup4
+#23 0.591 sqlalchemy==2.0.44
+#23 0.591     # via
+#23 0.591     #   alembic
+#23 0.591     #   edgar-pipeline
+#23 0.591 starlette==0.50.0
+#23 0.591     # via streamlit
+#23 0.591 streamlit==1.67.0
+#23 0.591     # via quant-workbench
+#23 0.591 tenacity==9.1.2
+#23 0.591     # via edgar-pipeline
+#23 0.591 typing-extensions==4.16.0
+#23 0.591     # via
+#23 0.591     #   alembic
+#23 0.591     #   altair
+#23 0.591     #   anyio
+#23 0.591     #   beautifulsoup4
+#23 0.591     #   psycopg
+#23 0.591     #   pydantic
+#23 0.591     #   pydantic-core
+#23 0.591     #   referencing
+#23 0.591     #   sqlalchemy
+#23 0.591     #   starlette
+#23 0.591     #   streamlit
+#23 0.591     #   typing-inspection
+#23 0.591 typing-inspection==0.4.5
+#23 0.591     # via
+#23 0.591     #   pydantic
+#23 0.591     #   pydantic-settings
+#23 0.591 tzdata==2026.6
+#23 0.591     # via
+#23 0.591     #   pandas
+#23 0.591     #   psycopg
+#23 0.591     #   python-dateutil
+#23 0.591 urllib3==2.8.0
+#23 0.591     # via requests
+#23 0.591 uvicorn==0.38.0
+#23 0.591     # via streamlit
+#23 0.591 watchdog==7.1.1 ; sys_platform != 'darwin'
+#23 0.591     # via streamlit
+#23 0.591 websockets==17.4
+#23 0.591     # via
+#23 0.591     #   streamlit
+#23 0.591     #   yfinance
+#23 0.591 yfinance==0.2.66
+#23 0.591     # via edgar-pipeline
+#23 0.685 Using Python 3.12.12 environment at: /opt/research
+#23 1.302 Resolved 63 packages in 616ms
+#23 1.393 Downloading curl-cffi (12.8MiB)
+#23 1.393 Downloading pydantic-core (1.8MiB)
+#23 1.393 Downloading streamlit (10.7MiB)
+#23 1.394 Downloading pyarrow (38.8MiB)
+#23 1.394 Downloading pandas (11.2MiB)
+#23 1.394 Downloading pillow (6.2MiB)
+#23 1.394 Downloading lxml (4.8MiB)
+#23 1.394 Downloading numpy (14.9MiB)
+#23 1.394 Downloading asyncpg (3.3MiB)
+#23 1.395 Downloading pydeck (10.9MiB)
+#23 1.395 Downloading sqlalchemy (3.2MiB)
+#23 1.395 Downloading plotly (9.2MiB)
+#23 1.395 Downloading psycopg-binary (4.4MiB)
+#23 ...
+
+#25 [ml-base stage-1 4/5] RUN uv venv /opt/ml && uv pip install torch==2.8.0 --index-url https://download.pytorch.org/whl/cpu
+#25 2.275 Resolved 10 packages in 1.95s
+#25 2.309 Downloading setuptools (1.2MiB)
+#25 2.309 Downloading networkx (2.0MiB)
+#25 2.309 Downloading sympy (6.0MiB)
+#25 2.457  Downloaded setuptools
+#25 2.612 Downloading torch (97.2MiB)
+#25 3.457  Downloaded networkx
+#25 5.129  Downloaded sympy
+#25 11.97  Downloaded torch
+#25 11.97 Prepared 10 packages in 9.69s
+#25 12.28 Installed 10 packages in 308ms
+#25 12.28  + filelock==4.2.4
+#25 12.28  + fsspec==2026.9.0
+#25 12.28  + jinja2==3.1.6
+#25 12.28  + markupsafe==3.0.3
+#25 12.28  + mpmath==1.3.0
+#25 12.28  + networkx==3.7
+#25 12.28  + setuptools==78.1.0
+#25 12.28  + sympy==1.14.0
+#25 12.28  + torch==2.8.0+cpu
+#25 12.28  + typing-extensions==4.16.0
+#25 DONE 13.5s
+
+#23 [streamlit stage-1 2/8] RUN --mount=from=uv,source=/uv,target=/usr/local/bin/uv     --mount=type=bind,source=.,target=/src,ro cd /src &&     uv venv --python /usr/local/bin/python3.12 /opt/research &&     uv export --python /usr/local/bin/python3.12 --frozen --package quant-workbench --no-dev --no-emit-workspace --no-hashes -o /tmp/deps &&     uv pip install -r /tmp/deps && uv pip install --no-deps ./edgar_pipeline ./streamlit_workbench && rm /tmp/deps
+#23 ...
+
+#29 [ml-base stage-1 5/5] RUN uv pip install torch-geometric==2.6.1 scipy==1.15.3 && uv pip install --no-deps --no-index --find-links https://data.pyg.org/whl/torch-2.8.0+cpu.html torch-scatter==2.1.2+pt28cpu torch-sparse==0.6.18+pt28cpu
+#29 0.252 Using Python 3.12.12 environment at: /opt/ml
+#29 3.162 Resolved 23 packages in 2.90s
+#29 3.372 Downloading aiohttp (1.8MiB)
+#29 3.373 Downloading torch-geometric (1.1MiB)
+#29 3.373 Downloading scipy (33.6MiB)
+#29 3.373 Downloading numpy (14.9MiB)
+#29 4.760  Downloaded torch-geometric
+#29 6.830  Downloaded aiohttp
+#29 ...
+
+#23 [streamlit stage-1 2/8] RUN --mount=from=uv,source=/uv,target=/usr/local/bin/uv     --mount=type=bind,source=.,target=/src,ro cd /src &&     uv venv --python /usr/local/bin/python3.12 /opt/research &&     uv export --python /usr/local/bin/python3.12 --frozen --package quant-workbench --no-dev --no-emit-workspace --no-hashes -o /tmp/deps &&     uv pip install -r /tmp/deps && uv pip install --no-deps ./edgar_pipeline ./streamlit_workbench && rm /tmp/deps
+#23 23.24  Downloaded pydantic-core
+#23 ...
+
+#29 [ml-base stage-1 5/5] RUN uv pip install torch-geometric==2.6.1 scipy==1.15.3 && uv pip install --no-deps --no-index --find-links https://data.pyg.org/whl/torch-2.8.0+cpu.html torch-scatter==2.1.2+pt28cpu torch-sparse==0.6.18+pt28cpu
+#29 25.40  Downloaded numpy
+#29 ...
+
+#23 [streamlit stage-1 2/8] RUN --mount=from=uv,source=/uv,target=/usr/local/bin/uv     --mount=type=bind,source=.,target=/src,ro cd /src &&     uv venv --python /usr/local/bin/python3.12 /opt/research &&     uv export --python /usr/local/bin/python3.12 --frozen --package quant-workbench --no-dev --no-emit-workspace --no-hashes -o /tmp/deps &&     uv pip install -r /tmp/deps && uv pip install --no-deps ./edgar_pipeline ./streamlit_workbench && rm /tmp/deps
+#23 40.16  Downloaded sqlalchemy
+#23 40.69  Downloaded asyncpg
+#23 51.12  Downloaded psycopg-binary
+#23 ...
+
+#29 [ml-base stage-1 5/5] RUN uv pip install torch-geometric==2.6.1 scipy==1.15.3 && uv pip install --no-deps --no-index --find-links https://data.pyg.org/whl/torch-2.8.0+cpu.html torch-scatter==2.1.2+pt28cpu torch-sparse==0.6.18+pt28cpu
+#29 38.30  Downloaded scipy
+#29 38.30 Prepared 19 packages in 35.14s
+#29 38.40 Installed 19 packages in 93ms
+#29 38.40  + aiohappyeyeballs==2.7.1
+#29 38.40  + aiohttp==3.14.5
+#29 38.40  + aiosignal==1.4.0
+#29 38.40  + attrs==26.1.0
+#29 38.40  + certifi==2026.11.20
+#29 38.40  + charset-normalizer==3.5.2
+#29 38.40  + frozenlist==1.8.0
+#29 38.40  + idna==3.20
+#29 38.40  + multidict==7.2.1
+#29 38.40  + numpy==2.4.6
+#29 38.40  + propcache==0.5.4
+#29 38.40  + psutil==7.2.2
+#29 38.40  + pyparsing==3.3.3
+#29 38.40  + requests==2.34.2
+#29 38.40  + scipy==1.15.3
+#29 38.40  + torch-geometric==2.6.1
+#29 38.40  + tqdm==4.70.1
+#29 38.40  + urllib3==2.8.0
+#29 38.40  + yarl==1.25.1
+#29 38.54 Using Python 3.12.12 environment at: /opt/ml
+#29 39.62 Resolved 2 packages in 0.74ms
+#29 40.17 Downloading torch-sparse (1.2MiB)
+#29 40.25  Downloaded torch-sparse
+#29 40.25 Prepared 2 packages in 633ms
+#29 40.26 Installed 2 packages in 5ms
+#29 40.26  + torch-scatter==2.1.2+pt28cpu
+#29 40.26  + torch-sparse==0.6.18+pt28cpu
+#29 DONE 40.6s
+
+#23 [streamlit stage-1 2/8] RUN --mount=from=uv,source=/uv,target=/usr/local/bin/uv     --mount=type=bind,source=.,target=/src,ro cd /src &&     uv venv --python /usr/local/bin/python3.12 /opt/research &&     uv export --python /usr/local/bin/python3.12 --frozen --package quant-workbench --no-dev --no-emit-workspace --no-hashes -o /tmp/deps &&     uv pip install -r /tmp/deps && uv pip install --no-deps ./edgar_pipeline ./streamlit_workbench && rm /tmp/deps
+#23 53.07  Downloaded lxml
+#23 ...
+
+#16 [backend stage-1 1/8] FROM docker.io/library/python:3.12.12-slim-bookworm@sha256:593bd06efe90efa80dc4eee3948be7c0fde4134606dd40d8dd8dbcade98e669c
+#16 resolve docker.io/library/python:3.12.12-slim-bookworm@sha256:593bd06efe90efa80dc4eee3948be7c0fde4134606dd40d8dd8dbcade98e669c 0.1s done
+#16 extracting sha256:eb04ef52de3a23999fcda632f100324a4d1dbebd588b4df190c4a172bb88c603 0.7s done
+#16 extracting sha256:2a131c235be7a6739f95b0703a577583b0a0d8e6bf4eea8b271f3cb0b09adb18 0.5s done
+#16 extracting sha256:7d7d63e37187049e51dd6c005cabc48e1f49168584d7ad8623bf2684df4dc095 0.2s done
+#16 extracting sha256:b00559a184b371583b8ee2b8b5705bb6f9f1d57171c482a160f674b1c5a631fc 0.0s done
+#16 DONE 3.2s
+
+#17 [backend uv 1/1] FROM ghcr.io/astral-sh/uv:0.9.11@sha256:5aa820129de0a600924f166aec9cb51613b15b68f1dcd2a02f31a500d2ede568
+#17 resolve ghcr.io/astral-sh/uv:0.9.11@sha256:5aa820129de0a600924f166aec9cb51613b15b68f1dcd2a02f31a500d2ede568 0.1s done
+#17 sha256:4b3b384bfb207432304ebb1d8ce710eb0d2062451c74990396430679d6f04d0e 20.71MB / 20.71MB 73.8s done
+#17 sha256:47d85642a914bc1b90e2463f0be668ce17e07c71ec628310f5926d36e59ac393 96B / 96B 1.4s done
+#17 extracting sha256:4b3b384bfb207432304ebb1d8ce710eb0d2062451c74990396430679d6f04d0e 0.2s done
+#17 extracting sha256:47d85642a914bc1b90e2463f0be668ce17e07c71ec628310f5926d36e59ac393 0.0s done
+#17 DONE 86.1s
+
+#22 [backend stage-1 2/5] COPY --from=uv /uv /usr/local/bin/uv
+#22 DONE 0.6s
+
+#24 [backend stage-1 3/5] WORKDIR /platform
+#24 DONE 0.2s
+
+#25 [backend stage-1 4/5] RUN uv venv /opt/ml && uv pip install torch==2.8.0 --index-url https://download.pytorch.org/whl/cpu
+#25 DONE 25.4s
+
+#29 [backend stage-1 5/5] RUN uv pip install torch-geometric==2.6.1 scipy==1.15.3 && uv pip install --no-deps --no-index --find-links https://data.pyg.org/whl/torch-2.8.0+cpu.html torch-scatter==2.1.2+pt28cpu torch-sparse==0.6.18+pt28cpu
+#29 DONE 52.5s
+
+#30 [backend internal] load build context
+#30 transferring context: 564.00kB 0.0s done
+#30 DONE 0.1s
+
+#31 [bootstrap internal] load build context
+#31 transferring context: 992.50kB 0.1s done
+#31 DONE 0.1s
+
+#32 [backend sources 1/5] COPY pyproject.toml uv.lock /
+#32 DONE 0.1s
+
+#33 [backend sources 2/5] COPY backend/pyproject.toml /backend/pyproject.toml
+#33 DONE 0.2s
+
+#34 [bootstrap sources 3/5] COPY streamlit_workbench/pyproject.toml /streamlit_workbench/pyproject.toml
+#34 DONE 0.0s
+
+#35 [backend sources 4/5] COPY edgar_pipeline /edgar_pipeline
+#35 DONE 0.0s
+
+#36 [bootstrap sources 5/5] COPY ml_pipeline /ml_pipeline
+#36 DONE 0.1s
+
+#37 [bootstrap sources 4/5] COPY edgar_pipeline /edgar_pipeline
+#37 CACHED
+
+#38 [bootstrap sources 1/5] COPY pyproject.toml uv.lock /
+#38 CACHED
+
+#39 [bootstrap sources 2/5] COPY backend/pyproject.toml /backend/pyproject.toml
+#39 CACHED
+
+#40 [bootstrap sources 3/5] COPY streamlit_workbench/pyproject.toml /streamlit_workbench/pyproject.toml
+#40 CACHED
+
+#41 [bootstrap sources 5/5] COPY ml_pipeline /ml_pipeline
+#41 CACHED
+
+#42 [bootstrap runtime 1/2] RUN --mount=type=bind,from=sources,target=/src,ro cd /src &&     uv export --python /opt/ml/bin/python --frozen --package fintech-gateway --no-dev --no-emit-workspace --no-hashes -o /tmp/deps &&     uv pip install -r /tmp/deps && uv pip install --no-deps ./edgar_pipeline ./ml_pipeline && rm /tmp/deps && uv pip check
+#42 CANCELED
+
+#43 [bootstrap runtime 1/2] RUN --mount=type=bind,from=sources,target=/src,ro cd /src &&     uv export --python /opt/ml/bin/python --frozen --package fintech-gateway --no-dev --no-emit-workspace --no-hashes -o /tmp/deps &&     uv pip install -r /tmp/deps && uv pip install --no-deps ./edgar_pipeline ./ml_pipeline && rm /tmp/deps && uv pip check
+#43 0.302 # This file was autogenerated by uv via the following command:
+#43 0.302 #    uv export --python /opt/ml/bin/python --frozen --package fintech-gateway --no-dev --no-emit-workspace --no-hashes -o /tmp/deps
+#43 0.302 alembic==1.17.2
+#43 0.302     # via edgar-pipeline
+#43 0.302 annotated-doc==0.0.7
+#43 0.302     # via fastapi
+#43 0.302 annotated-types==0.8.0
+#43 0.302     # via pydantic
+#43 0.302 anyio==4.16.0
+#43 0.302     # via
+#43 0.302     #   httpx
+#43 0.302     #   starlette
+#43 0.302 asyncpg==0.31.0
+#43 0.302     # via edgar-pipeline
+#43 0.302 beautifulsoup4==4.15.0
+#43 0.302     # via yfinance
+#43 0.302 certifi==2026.11.20
+#43 0.302     # via
+#43 0.302     #   curl-cffi
+#43 0.302     #   httpcore
+#43 0.302     #   httpx
+#43 0.302     #   requests
+#43 0.302 cffi==2.1.1
+#43 0.302     # via curl-cffi
+#43 0.302 charset-normalizer==3.5.2
+#43 0.302     # via requests
+#43 0.302 click==8.5.1
+#43 0.302     # via uvicorn
+#43 0.302 curl-cffi==0.17.0
+#43 0.302     # via yfinance
+#43 0.302 fastapi==0.121.3
+#43 0.302     # via fintech-gateway
+#43 0.302 frozendict==2.5.1
+#43 0.302     # via yfinance
+#43 0.302 greenlet==3.5.6
+#43 0.302     # via sqlalchemy
+#43 0.302 h11==0.16.0
+#43 0.302     # via
+#43 0.302     #   httpcore
+#43 0.302     #   uvicorn
+#43 0.302 httpcore==1.0.9
+#43 0.302     # via httpx
+#43 0.302 httpx==0.28.1
+#43 0.302     # via edgar-pipeline
+#43 0.302 idna==3.20
+#43 0.302     # via
+#43 0.302     #   anyio
+#43 0.302     #   httpx
+#43 0.302     #   requests
+#43 0.302 lxml==6.0.2
+#43 0.302     # via edgar-pipeline
+#43 0.302 mako==1.4.3
+#43 0.302     # via alembic
+#43 0.302 markupsafe==3.0.4
+#43 0.302     # via mako
+#43 0.302 multitasking==0.0.13
+#43 0.302     # via yfinance
+#43 0.302 neo4j==5.28.2
+#43 0.302     # via ml-pipeline
+#43 0.302 networkx==3.5
+#43 0.302     # via ml-pipeline
+#43 0.302 numpy==2.4.6 ; sys_platform == 'linux'
+#43 0.302     # via
+#43 0.302     #   pandas
+#43 0.302     #   yfinance
+#43 0.302 numpy==2.5.5 ; sys_platform != 'linux'
+#43 0.302     # via
+#43 0.302     #   pandas
+#43 0.302     #   yfinance
+#43 0.302 pandas==2.3.3
+#43 0.302     # via
+#43 0.302     #   edgar-pipeline
+#43 0.302     #   ml-pipeline
+#43 0.302     #   yfinance
+#43 0.302 peewee==4.5.3
+#43 0.302     # via yfinance
+#43 0.302 platformdirs==4.14.8
+#43 0.302     # via yfinance
+#43 0.302 protobuf==7.36.2
+#43 0.302     # via yfinance
+#43 0.302 psycopg==3.2.12
+#43 0.302     # via edgar-pipeline
+#43 0.302 psycopg-binary==3.2.12 ; implementation_name != 'pypy'
+#43 0.302     # via psycopg
+#43 0.302 pyarrow==20.0.0
+#43 0.302     # via ml-pipeline
+#43 0.302 pycparser==3.12 ; implementation_name != 'PyPy'
+#43 0.302     # via cffi
+#43 0.302 pydantic==2.12.4
+#43 0.302     # via
+#43 0.302     #   edgar-pipeline
+#43 0.302     #   fastapi
+#43 0.302     #   pydantic-settings
+#43 0.302 pydantic-core==2.41.5
+#43 0.302     # via pydantic
+#43 0.302 pydantic-settings==2.12.0
+#43 0.302     # via
+#43 0.302     #   edgar-pipeline
+#43 0.302     #   ml-pipeline
+#43 0.302 python-dateutil==4.0.0
+#43 0.302     # via pandas
+#43 0.302 python-dotenv==1.2.4
+#43 0.302     # via pydantic-settings
+#43 0.302 pytz==2026.6
+#43 0.302     # via
+#43 0.302     #   neo4j
+#43 0.302     #   pandas
+#43 0.302     #   yfinance
+#43 0.302 requests==2.34.2
+#43 0.302     # via yfinance
+#43 0.302 soupsieve==4.1.3
+#43 0.302     # via beautifulsoup4
+#43 0.302 sqlalchemy==2.0.44
+#43 0.302     # via
+#43 0.302     #   alembic
+#43 0.302     #   edgar-pipeline
+#43 0.302     #   fintech-gateway
+#43 0.302 starlette==0.50.0
+#43 0.302     # via fastapi
+#43 0.302 tenacity==9.1.2
+#43 0.302     # via edgar-pipeline
+#43 0.302 typing-extensions==4.16.0
+#43 0.302     # via
+#43 0.302     #   alembic
+#43 0.302     #   anyio
+#43 0.302     #   beautifulsoup4
+#43 0.302     #   fastapi
+#43 0.302     #   psycopg
+#43 0.302     #   pydantic
+#43 0.302     #   pydantic-core
+#43 0.302     #   sqlalchemy
+#43 0.302     #   starlette
+#43 0.302     #   typing-inspection
+#43 0.302 typing-inspection==0.4.5
+#43 0.302     # via
+#43 0.302     #   pydantic
+#43 0.302     #   pydantic-settings
+#43 0.302 tzdata==2026.6
+#43 0.302     # via
+#43 0.302     #   pandas
+#43 0.302     #   psycopg
+#43 0.302     #   python-dateutil
+#43 0.302 urllib3==2.8.0
+#43 0.302     # via requests
+#43 0.302 uvicorn==0.38.0
+#43 0.302     # via fintech-gateway
+#43 0.302 websockets==17.4
+#43 0.302     # via
+#43 0.302     #   fintech-gateway
+#43 0.302     #   yfinance
+#43 0.302 yfinance==0.2.66
+#43 0.302     # via edgar-pipeline
+#43 0.388 Using Python 3.12.12 environment at: /opt/ml
+#43 1.675 Resolved 51 packages in 1.28s
+#43 1.775 Downloading curl-cffi (12.8MiB)
+#43 1.775 Downloading networkx (1.9MiB)
+#43 1.775 Downloading pandas (11.2MiB)
+#43 1.775 Downloading pyarrow (38.8MiB)
+#43 1.776 Downloading lxml (4.8MiB)
+#43 1.776 Downloading psycopg-binary (4.4MiB)
+#43 1.776 Downloading pydantic-core (1.8MiB)
+#43 1.776 Downloading sqlalchemy (3.2MiB)
+#43 1.776 Downloading asyncpg (3.3MiB)
+#43 14.20  Downloaded pydantic-core
+#43 14.32  Downloaded networkx
+#43 ...
+
+#23 [streamlit stage-1 2/8] RUN --mount=from=uv,source=/uv,target=/usr/local/bin/uv     --mount=type=bind,source=.,target=/src,ro cd /src &&     uv venv --python /usr/local/bin/python3.12 /opt/research &&     uv export --python /usr/local/bin/python3.12 --frozen --package quant-workbench --no-dev --no-emit-workspace --no-hashes -o /tmp/deps &&     uv pip install -r /tmp/deps && uv pip install --no-deps ./edgar_pipeline ./streamlit_workbench && rm /tmp/deps
+#23 59.55  Downloaded pillow
+#23 70.61  Downloaded plotly
+#23 ...
+
+#43 [bootstrap runtime 1/2] RUN --mount=type=bind,from=sources,target=/src,ro cd /src &&     uv export --python /opt/ml/bin/python --frozen --package fintech-gateway --no-dev --no-emit-workspace --no-hashes -o /tmp/deps &&     uv pip install -r /tmp/deps && uv pip install --no-deps ./edgar_pipeline ./ml_pipeline && rm /tmp/deps && uv pip check
+#43 16.67  Downloaded sqlalchemy
+#43 16.89  Downloaded asyncpg
+#43 18.95  Downloaded psycopg-binary
+#43 19.34  Downloaded lxml
+#43 ...
+
+#23 [streamlit stage-1 2/8] RUN --mount=from=uv,source=/uv,target=/usr/local/bin/uv     --mount=type=bind,source=.,target=/src,ro cd /src &&     uv venv --python /usr/local/bin/python3.12 /opt/research &&     uv export --python /usr/local/bin/python3.12 --frozen --package quant-workbench --no-dev --no-emit-workspace --no-hashes -o /tmp/deps &&     uv pip install -r /tmp/deps && uv pip install --no-deps ./edgar_pipeline ./streamlit_workbench && rm /tmp/deps
+#23 72.94  Downloaded streamlit
+#23 73.61  Downloaded pydeck
+#23 73.66  Downloaded pandas
+#23 75.21  Downloaded curl-cffi
+#23 78.42  Downloaded numpy
+#23 ...
+
+#43 [bootstrap runtime 1/2] RUN --mount=type=bind,from=sources,target=/src,ro cd /src &&     uv export --python /opt/ml/bin/python --frozen --package fintech-gateway --no-dev --no-emit-workspace --no-hashes -o /tmp/deps &&     uv pip install -r /tmp/deps && uv pip install --no-deps ./edgar_pipeline ./ml_pipeline && rm /tmp/deps && uv pip check
+#43 26.86  Downloaded pandas
+#43 27.59  Downloaded curl-cffi
+#43 ...
+
+#23 [streamlit stage-1 2/8] RUN --mount=from=uv,source=/uv,target=/usr/local/bin/uv     --mount=type=bind,source=.,target=/src,ro cd /src &&     uv venv --python /usr/local/bin/python3.12 /opt/research &&     uv export --python /usr/local/bin/python3.12 --frozen --package quant-workbench --no-dev --no-emit-workspace --no-hashes -o /tmp/deps &&     uv pip install -r /tmp/deps && uv pip install --no-deps ./edgar_pipeline ./streamlit_workbench && rm /tmp/deps
+#23 84.62  Downloaded pyarrow
+#23 84.63 Prepared 63 packages in 1m 23s
+#23 84.79 Installed 63 packages in 142ms
+#23 84.79  + alembic==1.17.2
+#23 84.79  + altair==6.3.0
+#23 84.79  + annotated-types==0.8.0
+#23 84.79  + anyio==4.16.0
+#23 84.79  + asyncpg==0.31.0
+#23 84.79  + attrs==26.1.0
+#23 84.79  + beautifulsoup4==4.15.0
+#23 84.79  + certifi==2026.11.20
+#23 84.79  + cffi==2.1.1
+#23 84.79  + charset-normalizer==3.5.2
+#23 84.79  + click==8.5.1
+#23 84.79  + curl-cffi==0.17.0
+#23 84.79  + frozendict==2.5.1
+#23 84.79  + greenlet==3.5.6
+#23 84.79  + h11==0.16.0
+#23 84.79  + httpcore==1.0.9
+#23 84.79  + httpx==0.28.1
+#23 84.79  + idna==3.20
+#23 84.79  + itsdangerous==2.2.0
+#23 84.79  + jinja2==3.1.6
+#23 84.79  + jsonschema==4.26.0
+#23 84.79  + jsonschema-specifications==2025.9.1
+#23 84.79  + lxml==6.0.2
+#23 84.79  + mako==1.4.3
+#23 84.79  + markupsafe==3.0.4
+#23 84.79  + multitasking==0.0.13
+#23 84.79  + narwhals==2.29.0
+#23 84.79  + numpy==2.4.6
+#23 84.79  + packaging==26.3
+#23 84.79  + pandas==2.3.3
+#23 84.79  + peewee==4.5.3
+#23 84.79  + pillow==13.0.0
+#23 84.79  + platformdirs==4.14.8
+#23 84.79  + plotly==7.1.0
+#23 84.79  + protobuf==7.36.2
+#23 84.79  + psycopg==3.2.12
+#23 84.79  + psycopg-binary==3.2.12
+#23 84.79  + pyarrow==20.0.0
+#23 84.79  + pycparser==3.12
+#23 84.79  + pydantic==2.12.4
+#23 84.79  + pydantic-core==2.41.5
+#23 84.79  + pydantic-settings==2.12.0
+#23 84.79  + pydeck==0.9.3
+#23 84.79  + python-dateutil==4.0.0
+#23 84.79  + python-dotenv==1.2.4
+#23 84.79  + python-multipart==0.0.34
+#23 84.79  + pytz==2026.6
+#23 84.79  + referencing==0.37.0
+#23 84.79  + requests==2.34.2
+#23 84.79  + rpds-py==2026.9.1
+#23 84.79  + soupsieve==4.1.3
+#23 84.79  + sqlalchemy==2.0.44
+#23 84.79  + starlette==0.50.0
+#23 84.79  + streamlit==1.67.0
+#23 84.79  + tenacity==9.1.2
+#23 84.79  + typing-extensions==4.16.0
+#23 84.79  + typing-inspection==0.4.5
+#23 84.79  + tzdata==2026.6
+#23 84.79  + urllib3==2.8.0
+#23 84.79  + uvicorn==0.38.0
+#23 84.79  + watchdog==7.1.1
+#23 84.79  + websockets==17.4
+#23 84.79  + yfinance==0.2.66
+#23 84.97 Using Python 3.12.12 environment at: /opt/research
+#23 84.98 Resolved 2 packages in 1ms
+#23 84.98    Building quant-workbench @ file:///src/streamlit_workbench
+#23 84.98    Building edgar-pipeline @ file:///src/edgar_pipeline
+#23 85.57       Built quant-workbench @ file:///src/streamlit_workbench
+#23 85.57       Built edgar-pipeline @ file:///src/edgar_pipeline
+#23 85.57 Prepared 2 packages in 598ms
+#23 85.57 Installed 2 packages in 0.76ms
+#23 85.57  + edgar-pipeline==0.1.0 (from file:///src/edgar_pipeline)
+#23 85.57  + quant-workbench==0.1.0 (from file:///src/streamlit_workbench)
+#23 DONE 87.5s
+
+#43 [bootstrap runtime 1/2] RUN --mount=type=bind,from=sources,target=/src,ro cd /src &&     uv export --python /opt/ml/bin/python --frozen --package fintech-gateway --no-dev --no-emit-workspace --no-hashes -o /tmp/deps &&     uv pip install -r /tmp/deps && uv pip install --no-deps ./edgar_pipeline ./ml_pipeline && rm /tmp/deps && uv pip check
+#43 ...
+
+#44 [streamlit stage-1 3/8] WORKDIR /workbench
+#44 DONE 0.1s
+
+#45 [streamlit stage-1 4/8] COPY streamlit_workbench/app.py .
+#45 DONE 0.1s
+
+#46 [streamlit stage-1 5/8] COPY streamlit_workbench/pages ./pages
+#46 DONE 0.1s
+
+#47 [streamlit stage-1 6/8] COPY streamlit_workbench/.streamlit ./.streamlit
+#47 DONE 0.0s
+
+#43 [bootstrap runtime 1/2] RUN --mount=type=bind,from=sources,target=/src,ro cd /src &&     uv export --python /opt/ml/bin/python --frozen --package fintech-gateway --no-dev --no-emit-workspace --no-hashes -o /tmp/deps &&     uv pip install -r /tmp/deps && uv pip install --no-deps ./edgar_pipeline ./ml_pipeline && rm /tmp/deps && uv pip check
+#43 ...
+
+#48 [streamlit stage-1 7/8] COPY infra/scripts/check_workbench_image.py /tmp/check_workbench_image.py
+#48 DONE 0.1s
+
+#49 [streamlit stage-1 8/8] RUN python /tmp/check_workbench_image.py
+#49 ...
+
+#43 [backend runtime 1/2] RUN --mount=type=bind,from=sources,target=/src,ro cd /src &&     uv export --python /opt/ml/bin/python --frozen --package fintech-gateway --no-dev --no-emit-workspace --no-hashes -o /tmp/deps &&     uv pip install -r /tmp/deps && uv pip install --no-deps ./edgar_pipeline ./ml_pipeline && rm /tmp/deps && uv pip check
+#43 33.33  Downloaded pyarrow
+#43 33.33 Prepared 44 packages in 31.65s
+#43 33.35 Uninstalled 2 packages in 12ms
+#43 33.50 Installed 44 packages in 153ms
+#43 33.50  + alembic==1.17.2
+#43 33.50  + annotated-doc==0.0.7
+#43 33.50  + annotated-types==0.8.0
+#43 33.50  + anyio==4.16.0
+#43 33.50  + asyncpg==0.31.0
+#43 33.50  + beautifulsoup4==4.15.0
+#43 33.50  + cffi==2.1.1
+#43 33.50  + click==8.5.1
+#43 33.50  + curl-cffi==0.17.0
+#43 33.50  + fastapi==0.121.3
+#43 33.50  + frozendict==2.5.1
+#43 33.50  + greenlet==3.5.6
+#43 33.50  + h11==0.16.0
+#43 33.50  + httpcore==1.0.9
+#43 33.50  + httpx==0.28.1
+#43 33.50  + lxml==6.0.2
+#43 33.50  + mako==1.4.3
+#43 33.50  - markupsafe==3.0.3
+#43 33.50  + markupsafe==3.0.4
+#43 33.50  + multitasking==0.0.13
+#43 33.50  + neo4j==5.28.2
+#43 33.50  - networkx==3.7
+#43 33.50  + networkx==3.5
+#43 33.50  + pandas==2.3.3
+#43 33.50  + peewee==4.5.3
+#43 33.50  + platformdirs==4.14.8
+#43 33.50  + protobuf==7.36.2
+#43 33.50  + psycopg==3.2.12
+#43 33.50  + psycopg-binary==3.2.12
+#43 33.50  + pyarrow==20.0.0
+#43 33.50  + pycparser==3.12
+#43 33.50  + pydantic==2.12.4
+#43 33.50  + pydantic-core==2.41.5
+#43 33.50  + pydantic-settings==2.12.0
+#43 33.50  + python-dateutil==4.0.0
+#43 33.50  + python-dotenv==1.2.4
+#43 33.50  + pytz==2026.6
+#43 33.50  + soupsieve==4.1.3
+#43 33.50  + sqlalchemy==2.0.44
+#43 33.50  + starlette==0.50.0
+#43 33.50  + tenacity==9.1.2
+#43 33.50  + typing-inspection==0.4.5
+#43 33.50  + tzdata==2026.6
+#43 33.50  + uvicorn==0.38.0
+#43 33.50  + websockets==17.4
+#43 33.50  + yfinance==0.2.66
+#43 33.65 Using Python 3.12.12 environment at: /opt/ml
+#43 33.65 Resolved 2 packages in 1ms
+#43 33.65    Building edgar-pipeline @ file:///src/edgar_pipeline
+#43 33.65    Building ml-pipeline @ file:///src/ml_pipeline
+#43 34.33       Built edgar-pipeline @ file:///src/edgar_pipeline
+#43 34.33       Built ml-pipeline @ file:///src/ml_pipeline
+#43 34.33 Prepared 2 packages in 682ms
+#43 34.34 Installed 2 packages in 4ms
+#43 34.34  + edgar-pipeline==0.1.0 (from file:///src/edgar_pipeline)
+#43 34.34  + ml-pipeline==0.1.0 (from file:///src/ml_pipeline)
+#43 34.37 Using Python 3.12.12 environment at: /opt/ml
+#43 34.37 Checked 75 packages in 23ms
+#43 34.39 All installed packages are compatible
+#43 DONE 34.9s
+
+#50 [bootstrap stage-2 1/4] COPY alembic.ini ./
+#50 DONE 0.1s
+
+#51 [bootstrap stage-2 2/4] COPY edgar_pipeline/migrations ./edgar_pipeline/migrations
+#51 DONE 0.1s
+
+#52 [bootstrap stage-2 3/4] COPY infra/scripts/bootstrap.py infra/scripts/verify_model.py infra/neo4j/constraints.cypher infra/verification/phase3/metrics-lite.json ./
+#52 DONE 0.1s
+
+#53 [backend stage-2 1/1] RUN --mount=type=bind,source=backend,target=/src/backend,ro uv pip install --no-sources --no-deps /src/backend && mkdir -p /cache && chown 65532:65532 /cache
+#53 0.235 Using Python 3.12.12 environment at: /opt/ml
+#53 0.237 Resolved 1 package in 0.65ms
+#53 0.237    Building fintech-gateway @ file:///src/backend
+#53 ...
+
+#54 [bootstrap stage-2 4/4] RUN mkdir -p /artifacts && chown 65532:65532 /artifacts
+#54 DONE 0.2s
+
+#53 [backend stage-2 1/1] RUN --mount=type=bind,source=backend,target=/src/backend,ro uv pip install --no-sources --no-deps /src/backend && mkdir -p /cache && chown 65532:65532 /cache
+#53 0.617       Built fintech-gateway @ file:///src/backend
+#53 0.618 Prepared 1 package in 380ms
+#53 0.649 Installed 1 package in 31ms
+#53 0.649  + fintech-gateway==0.1.0 (from file:///src/backend)
+#53 DONE 0.8s
+
+#55 [bootstrap] exporting to image
+#55 exporting layers
+#55 ...
+
+#49 [streamlit stage-1 8/8] RUN python /tmp/check_workbench_image.py
+#49 3.695 Workbench imports passed; torch, torch_geometric and ml_pipeline absent.
+#49 DONE 4.4s
+
+#56 [streamlit] exporting to image
+#56 exporting layers
+#56 ...
+
+#57 [ml-base] exporting to image
+#57 ...
+
+#58 [backend] exporting to image
+#58 ...
+
+#57 [ml-base] exporting to image
+#57 exporting layers 13.4s done
+#57 exporting manifest sha256:d2b671f8a8e234cd45eba5c02a00a1316251549ccf9dce7fafcc2249c81f1f38 0.0s done
+#57 exporting config sha256:4909d144fa7a0c837b1e356d2dee09c76056def96e2fa5b062344a24869c1a4b 0.0s done
+#57 exporting attestation manifest sha256:9497e60b94cfbeb2485c951b6204bd0ac29400e0383e0466061af4ad8421f4e5
+#57 exporting attestation manifest sha256:9497e60b94cfbeb2485c951b6204bd0ac29400e0383e0466061af4ad8421f4e5 0.1s done
+#57 exporting manifest list sha256:a85c502def4b0e0190899568f9fbdb84c1d8c6eb05ce3d705539da022ae43180 0.0s done
+#57 naming to docker.io/library/fintech-platform-ml-base:latest 0.1s done
+#57 unpacking to docker.io/library/fintech-platform-ml-base:latest
+#57 ...
+
+#56 [streamlit] exporting to image
+#56 exporting layers 17.5s done
+#56 exporting manifest sha256:8cf627a861298b5a97fd1fb80727d51325345abd8b6cea3f1401ffe60ebb149b
+#56 exporting manifest sha256:8cf627a861298b5a97fd1fb80727d51325345abd8b6cea3f1401ffe60ebb149b 0.5s done
+#56 exporting config sha256:57f52a6d566d693f90a59e300470aa05bd2229e7f930186a57e70cf161268a7e
+#56 ...
+
+#55 [bootstrap] exporting to image
+#55 exporting layers 13.7s done
+#55 exporting manifest sha256:58fdcf4d050ec821b0ebd0d2080a28789375f89c134b1ba3026f483ff22e3e1f 0.0s done
+#55 exporting config sha256:720ba2f93901854ed98307881537191b98f5bca09c09510a5585fdb723464c5d 0.0s done
+#55 exporting attestation manifest sha256:dc79eeb334485926e96539664feab633a046620406246b6196410bcf21db0b6c 0.0s done
+#55 exporting manifest list sha256:2fe3abaa4c309ac58a502c450eea820b879bb033d59366e1259735311aaf2a1b 0.1s done
+#55 naming to docker.io/library/fintech-platform-bootstrap:latest done
+#55 unpacking to docker.io/library/fintech-platform-bootstrap:latest
+#55 ...
+
+#58 [backend] exporting to image
+#58 exporting layers 13.4s done
+#58 exporting manifest sha256:cffd50c8adb9356b5eb2a78a37802c5a8936c5a12a6fd3e6f6cffdb07f733e10 0.0s done
+#58 exporting config sha256:527642052543092dfd6b6c83bcbcd7826063e4591045b3a3399171074c92322a 0.0s done
+#58 exporting attestation manifest sha256:a10466c433877b75756b4376366e2c1e4de530dbaff2b2429027d81e6d39067a 0.1s done
+#58 exporting manifest list sha256:9261860c35e09365fcd21ac449e77b13329d533b5404ab10df6ea2608850c4b2 0.1s done
+#58 naming to docker.io/library/fintech-platform-backend:latest 0.0s done
+#58 unpacking to docker.io/library/fintech-platform-backend:latest
+#58 ...
+
+#56 [streamlit] exporting to image
+#56 exporting config sha256:57f52a6d566d693f90a59e300470aa05bd2229e7f930186a57e70cf161268a7e 17.0s done
+#56 exporting attestation manifest sha256:e0897c7d5a22e16cd50a5724d47c8cb261db2526e39ebd50c6768dc580cfef0f
+#56 exporting attestation manifest sha256:e0897c7d5a22e16cd50a5724d47c8cb261db2526e39ebd50c6768dc580cfef0f 0.1s done
+#56 exporting manifest list sha256:6582e3b09daa21c2e3d692f3296694da623c6967261c17b629ce3b8f76816b23 0.1s done
+#56 naming to docker.io/library/fintech-platform-streamlit:latest
+#56 naming to docker.io/library/fintech-platform-streamlit:latest done
+#56 unpacking to docker.io/library/fintech-platform-streamlit:latest
+#56 ...
+
+#57 [ml-base] exporting to image
+#57 unpacking to docker.io/library/fintech-platform-ml-base:latest 35.8s done
+#57 DONE 50.3s
+
+#56 [streamlit] exporting to image
+#56 ...
+
+#59 [ml-base] resolving provenance for metadata file
+#59 DONE 0.6s
+
+#58 [backend] exporting to image
+#58 unpacking to docker.io/library/fintech-platform-backend:latest 51.3s done
+#58 DONE 65.1s
+
+#56 [streamlit] exporting to image
+#56 ...
+
+#55 [bootstrap] exporting to image
+#55 unpacking to docker.io/library/fintech-platform-bootstrap:latest 51.6s done
+#55 DONE 65.6s
+
+#60 [backend] resolving provenance for metadata file
+#60 DONE 0.1s
+
+#61 [bootstrap] resolving provenance for metadata file
+#61 DONE 0.0s
+
+#56 [streamlit] exporting to image
+#56 unpacking to docker.io/library/fintech-platform-streamlit:latest 24.4s done
+#56 DONE 67.5s
+
+#62 [streamlit] resolving provenance for metadata file
+#62 DONE 0.0s
+ Image fintech-platform-ml-base:latest Built
+ Image fintech-platform-bootstrap:latest Built
+ Image fintech-platform-backend:latest Built
+ Image fintech-platform-streamlit Built
+ Image fintech-platform-frontend Built
+ Volume fintech-platform_artifacts Creating
+ Volume fintech-platform_neo4jdata Creating
+ Volume fintech-platform_edgar_cache Creating
+ Volume fintech-platform_neo4jdata Creating
+ Volume fintech-platform_artifacts Creating
+ Volume fintech-platform_edgar_cache Creating
+ Volume fintech-platform_pgdata Creating
+ Volume fintech-platform_pgdata Creating
+ Network fintech-platform_default Creating
+ Network fintech-platform_default Creating
+ Volume fintech-platform_neo4jdata Created
+ Volume fintech-platform_neo4jdata Created
+ Volume fintech-platform_pgdata Created
+ Volume fintech-platform_pgdata Created
+ Volume fintech-platform_artifacts Created
+ Volume fintech-platform_artifacts Created
+ Volume fintech-platform_edgar_cache Created
+ Volume fintech-platform_edgar_cache Created
+ Network fintech-platform_default Created
+ Network fintech-platform_default Created
+ Container fintech-platform-ml-base-1 Creating
+ Container fintech-platform-neo4j-1 Creating
+ Container fintech-platform-postgres-1 Creating
+ Container fintech-platform-neo4j-1 Created
+ Container fintech-platform-ml-base-1 Created
+ Container fintech-platform-postgres-1 Created
+ Container fintech-platform-bootstrap-1 Creating
+ Container fintech-platform-bootstrap-1 Created
+ Container fintech-platform-backend-1 Creating
+ Container fintech-platform-backend-1 Created
+ Container fintech-platform-streamlit-1 Creating
+ Container fintech-platform-streamlit-1 Created
+ Container fintech-platform-frontend-1 Creating
+ Container fintech-platform-frontend-1 Created
+ Container fintech-platform-neo4j-1 Starting
+ Container fintech-platform-ml-base-1 Starting
+ Container fintech-platform-postgres-1 Starting
+ Container fintech-platform-postgres-1 Started
+ Container fintech-platform-ml-base-1 Started
+ Container fintech-platform-neo4j-1 Started
+ Container fintech-platform-ml-base-1 Waiting
+ Container fintech-platform-postgres-1 Waiting
+ Container fintech-platform-neo4j-1 Waiting
+ Container fintech-platform-ml-base-1 Exited
+ Container fintech-platform-postgres-1 Healthy
+ Container fintech-platform-neo4j-1 Healthy
+ Container fintech-platform-bootstrap-1 Starting
+ Container fintech-platform-bootstrap-1 Started
+ Container fintech-platform-bootstrap-1 Waiting
+ Container fintech-platform-bootstrap-1 Exited
+ Container fintech-platform-backend-1 Starting
+ Container fintech-platform-backend-1 Started
+ Container fintech-platform-backend-1 Waiting
+ Container fintech-platform-backend-1 Healthy
+ Container fintech-platform-streamlit-1 Starting
+ Container fintech-platform-streamlit-1 Started
+ Container fintech-platform-backend-1 Waiting
+ Container fintech-platform-streamlit-1 Waiting
+ Container fintech-platform-backend-1 Healthy
+ Container fintech-platform-streamlit-1 Healthy
+ Container fintech-platform-frontend-1 Starting
+ Container fintech-platform-frontend-1 Started
+ Container fintech-platform-streamlit-1 Waiting
+ Container fintech-platform-postgres-1 Waiting
+ Container fintech-platform-bootstrap-1 Waiting
+ Container fintech-platform-frontend-1 Waiting
+ Container fintech-platform-backend-1 Waiting
+ Container fintech-platform-neo4j-1 Waiting
+ Container fintech-platform-ml-base-1 Waiting
+ Container fintech-platform-backend-1 Healthy
+ Container fintech-platform-ml-base-1 Exited
+ Container fintech-platform-streamlit-1 Healthy
+ Container fintech-platform-bootstrap-1 Exited
+ Container fintech-platform-postgres-1 Healthy
+ Container fintech-platform-neo4j-1 Healthy
+ Container fintech-platform-frontend-1 Healthy
+
+exit=0 elapsed_seconds=360.30

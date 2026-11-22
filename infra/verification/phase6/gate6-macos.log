@@ -1,0 +1,2166 @@
+Fresh checkout: /var/folders/r2/7gr6_m0d0xq4wbhh8z_ywn4h0000gn/T/tmp.9WujEwG90n/checkout; Compose project: fintech-platform
+Cloning into '/var/folders/r2/7gr6_m0d0xq4wbhh8z_ywn4h0000gn/T/tmp.9WujEwG90n/checkout'...
+179d5f875fa49073a390eca0e5c4f8e9d48d2504
+Docker 29.8.2 aarch64
+ Container fintech-platform-frontend-1 Stopping
+ Container fintech-platform-frontend-1 Stopped
+ Container fintech-platform-frontend-1 Removing
+ Container fintech-platform-frontend-1 Removed
+ Container fintech-platform-streamlit-1 Stopping
+ Container fintech-platform-streamlit-1 Stopped
+ Container fintech-platform-streamlit-1 Removing
+ Container fintech-platform-streamlit-1 Removed
+ Container fintech-platform-backend-1 Stopping
+ Container fintech-platform-backend-1 Stopped
+ Container fintech-platform-backend-1 Removing
+ Container fintech-platform-backend-1 Removed
+ Container fintech-platform-bootstrap-1 Stopping
+ Container fintech-platform-bootstrap-1 Stopped
+ Container fintech-platform-bootstrap-1 Removing
+ Container fintech-platform-bootstrap-1 Removed
+ Container fintech-platform-postgres-1 Stopping
+ Container fintech-platform-neo4j-1 Stopping
+ Container fintech-platform-ml-base-1 Stopping
+ Container fintech-platform-ml-base-1 Stopped
+ Container fintech-platform-ml-base-1 Removing
+ Container fintech-platform-ml-base-1 Removed
+ Container fintech-platform-postgres-1 Stopped
+ Container fintech-platform-postgres-1 Removing
+ Container fintech-platform-postgres-1 Removed
+ Container fintech-platform-neo4j-1 Stopped
+ Container fintech-platform-neo4j-1 Removing
+ Container fintech-platform-neo4j-1 Removed
+ Volume fintech-platform_neo4jdata Removing
+ Volume fintech-platform_edgar_cache Removing
+ Volume fintech-platform_pgdata Removing
+ Volume fintech-platform_artifacts Removing
+ Network fintech-platform_default Removing
+ Volume fintech-platform_neo4jdata Removed
+ Volume fintech-platform_edgar_cache Removed
+ Volume fintech-platform_pgdata Removed
+ Volume fintech-platform_artifacts Removed
+ Network fintech-platform_default Removed
+ Image fintech-platform-streamlit Building
+ Image fintech-platform-bootstrap:latest Building
+ Image fintech-platform-ml-base:latest Building
+ Image fintech-platform-frontend Building
+ Image fintech-platform-backend:latest Building
+#1 [internal] load local bake definitions
+#1 reading from stdin 3.06kB done
+#1 DONE 0.0s
+
+#2 [frontend internal] load build definition from frontend.Dockerfile
+#2 transferring dockerfile: 338B done
+#2 DONE 0.1s
+
+#3 [streamlit internal] load build definition from streamlit.Dockerfile
+#3 transferring dockerfile: 1.05kB done
+#3 DONE 0.1s
+
+#4 [ml-base internal] load build definition from ml-base.Dockerfile
+#4 transferring dockerfile: 598B done
+#4 DONE 0.1s
+
+#5 [ml-base internal] load metadata for ghcr.io/astral-sh/uv:0.9.11
+#5 DONE 2.6s
+
+#6 [ml-base internal] load metadata for docker.io/library/python:3.12.12-slim-bookworm
+#6 ...
+
+#7 [frontend internal] load metadata for docker.io/library/node:22-alpine
+#7 DONE 3.7s
+
+#8 [frontend internal] load metadata for docker.io/library/nginx:1.28-alpine
+#8 DONE 3.9s
+
+#6 [ml-base internal] load metadata for docker.io/library/python:3.12.12-slim-bookworm
+#6 ...
+
+#9 [frontend internal] load .dockerignore
+#9 transferring context: 260B done
+#9 DONE 0.0s
+
+#10 [frontend internal] load build context
+#10 transferring context: 298.96kB done
+#10 DONE 0.1s
+
+#11 [frontend stage-1 1/3] FROM docker.io/library/nginx:1.28-alpine@sha256:a8b39bd9cf0f83869a2162827a0caf6137ddf759d50a171451b335cecc87d236
+#11 resolve docker.io/library/nginx:1.28-alpine@sha256:a8b39bd9cf0f83869a2162827a0caf6137ddf759d50a171451b335cecc87d236 0.0s done
+#11 extracting sha256:d8ad8cd72600f46cc068e16c39046ebc76526e41051f43a8c249884b200936c0 0.1s done
+#11 DONE 0.2s
+
+#12 [frontend build 1/4] FROM docker.io/library/node:22-alpine@sha256:1314fb30ec37592d5845e5a160d522c0e680972aa534549940b8d73bde88481a
+#12 resolve docker.io/library/node:22-alpine@sha256:1314fb30ec37592d5845e5a160d522c0e680972aa534549940b8d73bde88481a 0.0s done
+#12 ...
+
+#11 [frontend stage-1 1/3] FROM docker.io/library/nginx:1.28-alpine@sha256:a8b39bd9cf0f83869a2162827a0caf6137ddf759d50a171451b335cecc87d236
+#11 extracting sha256:0190f85b656602c295783e3e0b93423890316e896a1bba05d1ab48da0e23bb43 0.1s done
+#11 extracting sha256:0c9e85b345e6064c61d3655ec4390c0d13d45d8becbd25c5a7ac3db8b4097cfd 0.0s done
+#11 extracting sha256:3d2c901b120a3a0488cc5bf5b6c9f739a3fbaabbb8b0238fddc99fe40b5c1790 done
+#11 extracting sha256:39ba19c6a1e3b8a62dce91cb78eb6b4344fc81833da73cecbf0e34fa8c5d0e71 done
+#11 extracting sha256:004928619bd7ca6c2d3092673b3e08e40d8603df0a1d604a13228ff8f4c3a969 0.0s done
+#11 extracting sha256:04e73639757d2fe4a5fa6e1c03b2eaf6de521cfb97433e57fbca027d787d57f3 done
+#11 DONE 0.3s
+
+#12 [frontend build 1/4] FROM docker.io/library/node:22-alpine@sha256:1314fb30ec37592d5845e5a160d522c0e680972aa534549940b8d73bde88481a
+#12 sha256:d7c36ecc3656baea124618f97c50a789bc3876090882a45ef8fb1d053deb7c38 0B / 443B 0.2s
+#12 sha256:1d0a7305242947ff5acc28f1d1658e557b48f99d0f8173d83cdb90950dd8a154 0B / 55.70MB 0.2s
+#12 sha256:b90627b8f4292fd3cb63f0f27f0b11c37f04ba88ef3b78d4948ea0ace18c85e9 0B / 4.19MB 0.2s
+#12 sha256:bec7aaabd7f9f12cfce96e50f7ed6cca9da43db1dcce21d8b302e2d16db7cd6e 0B / 1.26MB 0.2s
+#12 sha256:d7c36ecc3656baea124618f97c50a789bc3876090882a45ef8fb1d053deb7c38 443B / 443B 0.4s done
+#12 ...
+
+#11 [frontend stage-1 1/3] FROM docker.io/library/nginx:1.28-alpine@sha256:a8b39bd9cf0f83869a2162827a0caf6137ddf759d50a171451b335cecc87d236
+#11 extracting sha256:40b38cc61f0ed9f05cc4513445f27d89576e409b87c570c10407be8f17811fcd 0.3s done
+#11 DONE 0.6s
+
+#12 [frontend build 1/4] FROM docker.io/library/node:22-alpine@sha256:1314fb30ec37592d5845e5a160d522c0e680972aa534549940b8d73bde88481a
+#12 ...
+
+#13 [frontend stage-1 2/3] COPY infra/nginx/nginx.conf /etc/nginx/conf.d/default.conf
+#13 DONE 0.1s
+
+#14 [backend internal] load build definition from backend.Dockerfile
+#14 transferring dockerfile: 914B done
+#14 DONE 0.1s
+
+#15 [bootstrap internal] load build definition from bootstrap.Dockerfile
+#15 transferring dockerfile: 988B done
+#15 DONE 0.1s
+
+#9 [bootstrap internal] load .dockerignore
+#9 transferring context: 260B done
+#9 DONE 0.1s
+
+#6 [ml-base internal] load metadata for docker.io/library/python:3.12.12-slim-bookworm
+#6 DONE 4.7s
+
+#16 [streamlit stage-1 1/8] FROM docker.io/library/python:3.12.12-slim-bookworm@sha256:593bd06efe90efa80dc4eee3948be7c0fde4134606dd40d8dd8dbcade98e669c
+#16 resolve docker.io/library/python:3.12.12-slim-bookworm@sha256:593bd06efe90efa80dc4eee3948be7c0fde4134606dd40d8dd8dbcade98e669c 0.0s done
+#16 ...
+
+#17 [streamlit internal] load build context
+#17 transferring context: 1.63MB 0.0s done
+#17 DONE 0.1s
+
+#16 [ml-base stage-1 1/8] FROM docker.io/library/python:3.12.12-slim-bookworm@sha256:593bd06efe90efa80dc4eee3948be7c0fde4134606dd40d8dd8dbcade98e669c
+#16 resolve docker.io/library/python:3.12.12-slim-bookworm@sha256:593bd06efe90efa80dc4eee3948be7c0fde4134606dd40d8dd8dbcade98e669c 0.0s done
+#16 extracting sha256:eb04ef52de3a23999fcda632f100324a4d1dbebd588b4df190c4a172bb88c603
+#16 extracting sha256:eb04ef52de3a23999fcda632f100324a4d1dbebd588b4df190c4a172bb88c603 0.4s done
+#16 extracting sha256:eb04ef52de3a23999fcda632f100324a4d1dbebd588b4df190c4a172bb88c603 0.4s done
+#16 extracting sha256:2a131c235be7a6739f95b0703a577583b0a0d8e6bf4eea8b271f3cb0b09adb18 0.1s done
+#16 extracting sha256:7d7d63e37187049e51dd6c005cabc48e1f49168584d7ad8623bf2684df4dc095
+#16 extracting sha256:7d7d63e37187049e51dd6c005cabc48e1f49168584d7ad8623bf2684df4dc095 0.3s done
+#16 extracting sha256:7d7d63e37187049e51dd6c005cabc48e1f49168584d7ad8623bf2684df4dc095 0.3s done
+#16 extracting sha256:b00559a184b371583b8ee2b8b5705bb6f9f1d57171c482a160f674b1c5a631fc 0.0s done
+#16 DONE 0.9s
+
+#18 [streamlit uv 1/1] FROM ghcr.io/astral-sh/uv:0.9.11@sha256:5aa820129de0a600924f166aec9cb51613b15b68f1dcd2a02f31a500d2ede568
+#18 resolve ghcr.io/astral-sh/uv:0.9.11@sha256:5aa820129de0a600924f166aec9cb51613b15b68f1dcd2a02f31a500d2ede568 0.0s done
+#18 sha256:47d85642a914bc1b90e2463f0be668ce17e07c71ec628310f5926d36e59ac393 96B / 96B 0.7s done
+#18 sha256:4b3b384bfb207432304ebb1d8ce710eb0d2062451c74990396430679d6f04d0e 0B / 20.71MB 0.9s
+#18 sha256:4b3b384bfb207432304ebb1d8ce710eb0d2062451c74990396430679d6f04d0e 2.10MB / 20.71MB 1.4s
+#18 sha256:4b3b384bfb207432304ebb1d8ce710eb0d2062451c74990396430679d6f04d0e 7.34MB / 20.71MB 1.7s
+#18 sha256:4b3b384bfb207432304ebb1d8ce710eb0d2062451c74990396430679d6f04d0e 9.44MB / 20.71MB 1.8s
+#18 sha256:4b3b384bfb207432304ebb1d8ce710eb0d2062451c74990396430679d6f04d0e 10.49MB / 20.71MB 2.0s
+#18 sha256:4b3b384bfb207432304ebb1d8ce710eb0d2062451c74990396430679d6f04d0e 12.58MB / 20.71MB 2.6s
+#18 sha256:4b3b384bfb207432304ebb1d8ce710eb0d2062451c74990396430679d6f04d0e 14.68MB / 20.71MB 3.0s
+#18 sha256:4b3b384bfb207432304ebb1d8ce710eb0d2062451c74990396430679d6f04d0e 16.78MB / 20.71MB 3.2s
+#18 sha256:4b3b384bfb207432304ebb1d8ce710eb0d2062451c74990396430679d6f04d0e 20.71MB / 20.71MB 3.5s done
+#18 extracting sha256:4b3b384bfb207432304ebb1d8ce710eb0d2062451c74990396430679d6f04d0e
+#18 extracting sha256:4b3b384bfb207432304ebb1d8ce710eb0d2062451c74990396430679d6f04d0e 0.1s done
+#18 extracting sha256:47d85642a914bc1b90e2463f0be668ce17e07c71ec628310f5926d36e59ac393 0.0s done
+#18 extracting sha256:47d85642a914bc1b90e2463f0be668ce17e07c71ec628310f5926d36e59ac393 0.0s done
+#18 DONE 3.8s
+
+#19 [ml-base stage-1 2/5] COPY --from=uv /uv /usr/local/bin/uv
+#19 DONE 0.1s
+
+#12 [frontend build 1/4] FROM docker.io/library/node:22-alpine@sha256:1314fb30ec37592d5845e5a160d522c0e680972aa534549940b8d73bde88481a
+#12 sha256:1d0a7305242947ff5acc28f1d1658e557b48f99d0f8173d83cdb90950dd8a154 8.39MB / 55.70MB 4.5s
+#12 sha256:b90627b8f4292fd3cb63f0f27f0b11c37f04ba88ef3b78d4948ea0ace18c85e9 4.19MB / 4.19MB 3.1s done
+#12 sha256:bec7aaabd7f9f12cfce96e50f7ed6cca9da43db1dcce21d8b302e2d16db7cd6e 1.26MB / 1.26MB 1.9s done
+#12 extracting sha256:b90627b8f4292fd3cb63f0f27f0b11c37f04ba88ef3b78d4948ea0ace18c85e9 0.1s done
+#12 ...
+
+#20 [ml-base stage-1 3/5] WORKDIR /platform
+#20 DONE 0.0s
+
+#12 [frontend build 1/4] FROM docker.io/library/node:22-alpine@sha256:1314fb30ec37592d5845e5a160d522c0e680972aa534549940b8d73bde88481a
+#12 sha256:1d0a7305242947ff5acc28f1d1658e557b48f99d0f8173d83cdb90950dd8a154 11.53MB / 55.70MB 5.3s
+#12 sha256:1d0a7305242947ff5acc28f1d1658e557b48f99d0f8173d83cdb90950dd8a154 14.68MB / 55.70MB 5.9s
+#12 sha256:1d0a7305242947ff5acc28f1d1658e557b48f99d0f8173d83cdb90950dd8a154 18.87MB / 55.70MB 6.3s
+#12 sha256:1d0a7305242947ff5acc28f1d1658e557b48f99d0f8173d83cdb90950dd8a154 22.02MB / 55.70MB 6.6s
+#12 sha256:1d0a7305242947ff5acc28f1d1658e557b48f99d0f8173d83cdb90950dd8a154 26.21MB / 55.70MB 6.9s
+#12 sha256:1d0a7305242947ff5acc28f1d1658e557b48f99d0f8173d83cdb90950dd8a154 31.46MB / 55.70MB 7.4s
+#12 sha256:1d0a7305242947ff5acc28f1d1658e557b48f99d0f8173d83cdb90950dd8a154 35.65MB / 55.70MB 7.5s
+#12 sha256:1d0a7305242947ff5acc28f1d1658e557b48f99d0f8173d83cdb90950dd8a154 41.94MB / 55.70MB 7.8s
+#12 sha256:1d0a7305242947ff5acc28f1d1658e557b48f99d0f8173d83cdb90950dd8a154 45.09MB / 55.70MB 8.0s
+#12 sha256:1d0a7305242947ff5acc28f1d1658e557b48f99d0f8173d83cdb90950dd8a154 49.28MB / 55.70MB 8.1s
+#12 sha256:1d0a7305242947ff5acc28f1d1658e557b48f99d0f8173d83cdb90950dd8a154 54.53MB / 55.70MB 8.4s
+#12 sha256:1d0a7305242947ff5acc28f1d1658e557b48f99d0f8173d83cdb90950dd8a154 55.70MB / 55.70MB 8.5s done
+#12 extracting sha256:1d0a7305242947ff5acc28f1d1658e557b48f99d0f8173d83cdb90950dd8a154
+#12 extracting sha256:1d0a7305242947ff5acc28f1d1658e557b48f99d0f8173d83cdb90950dd8a154 0.8s done
+#12 extracting sha256:bec7aaabd7f9f12cfce96e50f7ed6cca9da43db1dcce21d8b302e2d16db7cd6e
+#12 extracting sha256:bec7aaabd7f9f12cfce96e50f7ed6cca9da43db1dcce21d8b302e2d16db7cd6e 0.8s done
+#12 DONE 10.2s
+
+#21 [streamlit stage-1 2/8] RUN --mount=from=uv,source=/uv,target=/usr/local/bin/uv     --mount=type=bind,source=.,target=/src,ro cd /src &&     uv venv --python /usr/local/bin/python3.12 /opt/research &&     uv export --python /usr/local/bin/python3.12 --frozen --package quant-workbench --no-dev --no-emit-workspace --no-hashes -o /tmp/deps &&     uv pip install -r /tmp/deps && uv pip install --no-deps ./edgar_pipeline ./streamlit_workbench && rm /tmp/deps
+#21 0.224 Using CPython 3.12.12 interpreter at: /usr/local/bin/python3.12
+#21 0.224 Creating virtual environment at: /opt/research
+#21 0.229 # This file was autogenerated by uv via the following command:
+#21 0.229 #    uv export --python /usr/local/bin/python3.12 --frozen --package quant-workbench --no-dev --no-emit-workspace --no-hashes -o /tmp/deps
+#21 0.229 alembic==1.17.2
+#21 0.229     # via edgar-pipeline
+#21 0.229 altair==6.3.0
+#21 0.229     # via streamlit
+#21 0.229 annotated-types==0.8.0
+#21 0.229     # via pydantic
+#21 0.229 anyio==4.16.0
+#21 0.229     # via
+#21 0.229     #   httpx
+#21 0.229     #   starlette
+#21 0.229     #   streamlit
+#21 0.229 asyncpg==0.31.0
+#21 0.229     # via edgar-pipeline
+#21 0.229 attrs==26.1.0
+#21 0.229     # via
+#21 0.229     #   jsonschema
+#21 0.229     #   referencing
+#21 0.229 beautifulsoup4==4.15.0
+#21 0.229     # via yfinance
+#21 0.229 certifi==2026.11.20
+#21 0.229     # via
+#21 0.229     #   curl-cffi
+#21 0.229     #   httpcore
+#21 0.229     #   httpx
+#21 0.229     #   requests
+#21 0.229 cffi==2.1.1
+#21 0.229     # via curl-cffi
+#21 0.229 charset-normalizer==3.5.2
+#21 0.229     # via requests
+#21 0.229 click==8.5.1
+#21 0.229     # via
+#21 0.229     #   streamlit
+#21 0.229     #   uvicorn
+#21 0.229 curl-cffi==0.17.0
+#21 0.229     # via yfinance
+#21 0.229 frozendict==2.5.1
+#21 0.229     # via yfinance
+#21 0.229 greenlet==3.5.6 ; platform_machine == 'AMD64' or platform_machine == 'WIN32' or platform_machine == 'aarch64' or platform_machine == 'amd64' or platform_machine == 'ppc64le' or platform_machine == 'win32' or platform_machine == 'x86_64'
+#21 0.229     # via sqlalchemy
+#21 0.229 h11==0.16.0
+#21 0.229     # via
+#21 0.229     #   httpcore
+#21 0.229     #   uvicorn
+#21 0.229 httpcore==1.0.9
+#21 0.229     # via httpx
+#21 0.229 httpx==0.28.1
+#21 0.229     # via edgar-pipeline
+#21 0.229 idna==3.20
+#21 0.229     # via
+#21 0.229     #   anyio
+#21 0.229     #   httpx
+#21 0.229     #   requests
+#21 0.229 itsdangerous==2.2.0
+#21 0.229     # via streamlit
+#21 0.229 jinja2==3.1.6
+#21 0.229     # via
+#21 0.229     #   altair
+#21 0.229     #   pydeck
+#21 0.229 jsonschema==4.26.0
+#21 0.229     # via altair
+#21 0.229 jsonschema-specifications==2025.9.1
+#21 0.229     # via jsonschema
+#21 0.229 lxml==6.0.2
+#21 0.229     # via edgar-pipeline
+#21 0.229 mako==1.4.3
+#21 0.229     # via alembic
+#21 0.229 markupsafe==3.0.4
+#21 0.229     # via
+#21 0.229     #   jinja2
+#21 0.229     #   mako
+#21 0.229 multitasking==0.0.13
+#21 0.229     # via yfinance
+#21 0.229 narwhals==2.29.0
+#21 0.229     # via
+#21 0.229     #   altair
+#21 0.229     #   plotly
+#21 0.229 numpy==2.4.6 ; sys_platform == 'linux'
+#21 0.229     # via
+#21 0.229     #   pandas
+#21 0.229     #   pydeck
+#21 0.229     #   streamlit
+#21 0.229     #   yfinance
+#21 0.229 numpy==2.5.5 ; sys_platform != 'linux'
+#21 0.229     # via
+#21 0.229     #   pandas
+#21 0.229     #   pydeck
+#21 0.229     #   streamlit
+#21 0.229     #   yfinance
+#21 0.229 packaging==26.3
+#21 0.229     # via
+#21 0.229     #   altair
+#21 0.229     #   plotly
+#21 0.229     #   streamlit
+#21 0.229 pandas==2.3.3
+#21 0.229     # via
+#21 0.229     #   edgar-pipeline
+#21 0.229     #   streamlit
+#21 0.229     #   yfinance
+#21 0.229 peewee==4.5.3
+#21 0.229     # via yfinance
+#21 0.229 pillow==13.0.0
+#21 0.229     # via streamlit
+#21 0.229 platformdirs==4.14.8
+#21 0.229     # via yfinance
+#21 0.229 plotly==7.1.0
+#21 0.229     # via quant-workbench
+#21 0.229 protobuf==7.36.2
+#21 0.229     # via
+#21 0.229     #   streamlit
+#21 0.229     #   yfinance
+#21 0.229 psycopg==3.2.12
+#21 0.229     # via edgar-pipeline
+#21 0.229 psycopg-binary==3.2.12 ; implementation_name != 'pypy'
+#21 0.229     # via psycopg
+#21 0.229 pyarrow==20.0.0
+#21 0.229     # via streamlit
+#21 0.229 pycparser==3.12 ; implementation_name != 'PyPy'
+#21 0.229     # via cffi
+#21 0.229 pydantic==2.12.4
+#21 0.229     # via
+#21 0.229     #   edgar-pipeline
+#21 0.229     #   pydantic-settings
+#21 0.229 pydantic-core==2.41.5
+#21 0.229     # via pydantic
+#21 0.229 pydantic-settings==2.12.0
+#21 0.229     # via edgar-pipeline
+#21 0.229 pydeck==0.9.3
+#21 0.229     # via streamlit
+#21 0.229 python-dateutil==4.0.0
+#21 0.229     # via pandas
+#21 0.229 python-dotenv==1.2.4
+#21 0.229     # via pydantic-settings
+#21 0.229 python-multipart==0.0.34
+#21 0.229     # via streamlit
+#21 0.229 pytz==2026.6
+#21 0.229     # via
+#21 0.229     #   pandas
+#21 0.229     #   yfinance
+#21 0.229 referencing==0.37.0
+#21 0.229     # via
+#21 0.229     #   jsonschema
+#21 0.229     #   jsonschema-specifications
+#21 0.229 requests==2.34.2
+#21 0.229     # via
+#21 0.229     #   streamlit
+#21 0.229     #   yfinance
+#21 0.229 rpds-py==2026.9.1
+#21 0.229     # via
+#21 0.229     #   jsonschema
+#21 0.229     #   referencing
+#21 0.229 soupsieve==4.1.3
+#21 0.229     # via beautifulsoup4
+#21 0.229 sqlalchemy==2.0.44
+#21 0.229     # via
+#21 0.229     #   alembic
+#21 0.229     #   edgar-pipeline
+#21 0.229 starlette==0.50.0
+#21 0.229     # via streamlit
+#21 0.229 streamlit==1.67.0
+#21 0.229     # via quant-workbench
+#21 0.229 tenacity==9.1.2
+#21 0.229     # via edgar-pipeline
+#21 0.229 typing-extensions==4.16.0
+#21 0.229     # via
+#21 0.229     #   alembic
+#21 0.229     #   altair
+#21 0.229     #   anyio
+#21 0.229     #   beautifulsoup4
+#21 0.229     #   psycopg
+#21 0.229     #   pydantic
+#21 0.229     #   pydantic-core
+#21 0.229     #   referencing
+#21 0.229     #   sqlalchemy
+#21 0.229     #   starlette
+#21 0.229     #   streamlit
+#21 0.229     #   typing-inspection
+#21 0.229 typing-inspection==0.4.5
+#21 0.229     # via
+#21 0.229     #   pydantic
+#21 0.229     #   pydantic-settings
+#21 0.229 tzdata==2026.6
+#21 0.229     # via
+#21 0.229     #   pandas
+#21 0.229     #   psycopg
+#21 0.229     #   python-dateutil
+#21 0.229 urllib3==2.8.0
+#21 0.229     # via requests
+#21 0.229 uvicorn==0.38.0
+#21 0.229     # via streamlit
+#21 0.229 watchdog==7.1.1 ; sys_platform != 'darwin'
+#21 0.229     # via streamlit
+#21 0.229 websockets==17.4
+#21 0.229     # via
+#21 0.229     #   streamlit
+#21 0.229     #   yfinance
+#21 0.229 yfinance==0.2.66
+#21 0.229     # via edgar-pipeline
+#21 0.311 Using Python 3.12.12 environment at: /opt/research
+#21 0.914 Resolved 63 packages in 602ms
+#21 0.971 Downloading lxml (4.8MiB)
+#21 1.180 Downloading psycopg-binary (4.4MiB)
+#21 1.182 Downloading pydantic-core (1.8MiB)
+#21 1.184 Downloading pyarrow (38.8MiB)
+#21 1.185 Downloading pydeck (10.9MiB)
+#21 1.185 Downloading pillow (6.2MiB)
+#21 1.186 Downloading sqlalchemy (3.2MiB)
+#21 1.186 Downloading numpy (14.9MiB)
+#21 1.187 Downloading streamlit (10.7MiB)
+#21 1.188 Downloading plotly (9.2MiB)
+#21 1.188 Downloading pandas (11.2MiB)
+#21 1.189 Downloading asyncpg (3.3MiB)
+#21 1.189 Downloading curl-cffi (12.8MiB)
+#21 ...
+
+#12 [frontend build 1/4] FROM docker.io/library/node:22-alpine@sha256:1314fb30ec37592d5845e5a160d522c0e680972aa534549940b8d73bde88481a
+#12 extracting sha256:d7c36ecc3656baea124618f97c50a789bc3876090882a45ef8fb1d053deb7c38 0.1s done
+#12 DONE 10.3s
+
+#22 [frontend build 2/4] WORKDIR /app
+#22 ...
+
+#23 [ml-base stage-1 4/5] RUN uv venv /opt/ml && uv pip install torch==2.8.0 --index-url https://download.pytorch.org/whl/cpu
+#23 0.189 Using CPython 3.12.12 interpreter at: /usr/local/bin/python
+#23 0.189 Creating virtual environment at: /opt/ml
+#23 0.271 Using Python 3.12.12 environment at: /opt/ml
+#23 1.736 Resolved 10 packages in 1.46s
+#23 1.749 Downloading networkx (2.0MiB)
+#23 1.752 Downloading setuptools (1.2MiB)
+#23 1.753 Downloading torch (97.2MiB)
+#23 1.776 Downloading sympy (6.0MiB)
+#23 1.839  Downloaded setuptools
+#23 2.887  Downloaded networkx
+#23 4.625  Downloaded sympy
+#23 6.343  Downloaded torch
+#23 6.344 Prepared 10 packages in 4.60s
+#23 6.980 Installed 10 packages in 635ms
+#23 6.980  + filelock==4.2.4
+#23 6.980  + fsspec==2026.9.0
+#23 6.980  + jinja2==3.1.6
+#23 6.980  + markupsafe==3.0.3
+#23 6.980  + mpmath==1.3.0
+#23 6.980  + networkx==3.7
+#23 6.980  + setuptools==78.1.0
+#23 6.980  + sympy==1.14.0
+#23 6.980  + torch==2.8.0+cpu
+#23 6.980  + typing-extensions==4.16.0
+#23 ...
+
+#22 [frontend build 2/4] WORKDIR /app
+#22 DONE 5.3s
+
+#23 [ml-base stage-1 4/5] RUN uv venv /opt/ml && uv pip install torch==2.8.0 --index-url https://download.pytorch.org/whl/cpu
+#23 DONE 10.9s
+
+#24 [frontend build 3/4] COPY frontend ./
+#24 DONE 0.1s
+
+#25 [ml-base stage-1 5/5] RUN uv pip install torch-geometric==2.6.1 scipy==1.15.3 && uv pip install --no-deps --no-index --find-links https://data.pyg.org/whl/torch-2.8.0+cpu.html torch-scatter==2.1.2+pt28cpu torch-sparse==0.6.18+pt28cpu
+#25 0.288 Using Python 3.12.12 environment at: /opt/ml
+#25 1.068 Resolved 23 packages in 779ms
+#25 1.109 Downloading scipy (33.6MiB)
+#25 1.109 Downloading torch-geometric (1.1MiB)
+#25 1.109 Downloading aiohttp (1.8MiB)
+#25 1.109 Downloading numpy (14.9MiB)
+#25 1.296  Downloaded torch-geometric
+#25 1.400  Downloaded aiohttp
+#25 3.044  Downloaded numpy
+#25 5.772  Downloaded scipy
+#25 5.772 Prepared 19 packages in 4.70s
+#25 5.832 Installed 19 packages in 59ms
+#25 5.832  + aiohappyeyeballs==2.7.1
+#25 5.832  + aiohttp==3.14.5
+#25 5.832  + aiosignal==1.4.0
+#25 5.832  + attrs==26.1.0
+#25 5.832  + certifi==2026.11.20
+#25 5.832  + charset-normalizer==3.5.2
+#25 5.832  + frozenlist==1.8.0
+#25 5.832  + idna==3.20
+#25 5.832  + multidict==7.2.1
+#25 5.832  + numpy==2.4.6
+#25 5.832  + propcache==0.5.4
+#25 5.832  + psutil==7.2.2
+#25 5.832  + pyparsing==3.3.3
+#25 5.832  + requests==2.34.2
+#25 5.832  + scipy==1.15.3
+#25 5.832  + torch-geometric==2.6.1
+#25 5.832  + tqdm==4.70.1
+#25 5.832  + urllib3==2.8.0
+#25 5.832  + yarl==1.25.1
+#25 5.950 Using Python 3.12.12 environment at: /opt/ml
+#25 6.575 Resolved 2 packages in 0.38ms
+#25 7.102 Downloading torch-sparse (1.2MiB)
+#25 7.160  Downloaded torch-sparse
+#25 7.160 Prepared 2 packages in 584ms
+#25 7.168 Installed 2 packages in 6ms
+#25 7.168  + torch-scatter==2.1.2+pt28cpu
+#25 7.168  + torch-sparse==0.6.18+pt28cpu
+#25 ...
+
+#21 [streamlit stage-1 2/8] RUN --mount=from=uv,source=/uv,target=/usr/local/bin/uv     --mount=type=bind,source=.,target=/src,ro cd /src &&     uv venv --python /usr/local/bin/python3.12 /opt/research &&     uv export --python /usr/local/bin/python3.12 --frozen --package quant-workbench --no-dev --no-emit-workspace --no-hashes -o /tmp/deps &&     uv pip install -r /tmp/deps && uv pip install --no-deps ./edgar_pipeline ./streamlit_workbench && rm /tmp/deps
+#21 19.57  Downloaded pydantic-core
+#21 ...
+
+#25 [ml-base stage-1 5/5] RUN uv pip install torch-geometric==2.6.1 scipy==1.15.3 && uv pip install --no-deps --no-index --find-links https://data.pyg.org/whl/torch-2.8.0+cpu.html torch-scatter==2.1.2+pt28cpu torch-sparse==0.6.18+pt28cpu
+#25 DONE 9.0s
+
+#16 [bootstrap stage-1 1/8] FROM docker.io/library/python:3.12.12-slim-bookworm@sha256:593bd06efe90efa80dc4eee3948be7c0fde4134606dd40d8dd8dbcade98e669c
+#16 resolve docker.io/library/python:3.12.12-slim-bookworm@sha256:593bd06efe90efa80dc4eee3948be7c0fde4134606dd40d8dd8dbcade98e669c 0.0s done
+#16 extracting sha256:eb04ef52de3a23999fcda632f100324a4d1dbebd588b4df190c4a172bb88c603 0.4s done
+#16 extracting sha256:2a131c235be7a6739f95b0703a577583b0a0d8e6bf4eea8b271f3cb0b09adb18 0.1s done
+#16 extracting sha256:7d7d63e37187049e51dd6c005cabc48e1f49168584d7ad8623bf2684df4dc095 0.3s done
+#16 extracting sha256:b00559a184b371583b8ee2b8b5705bb6f9f1d57171c482a160f674b1c5a631fc 0.0s done
+#16 DONE 1.8s
+
+#18 [bootstrap uv 1/1] FROM ghcr.io/astral-sh/uv:0.9.11@sha256:5aa820129de0a600924f166aec9cb51613b15b68f1dcd2a02f31a500d2ede568
+#18 resolve ghcr.io/astral-sh/uv:0.9.11@sha256:5aa820129de0a600924f166aec9cb51613b15b68f1dcd2a02f31a500d2ede568 0.0s done
+#18 sha256:47d85642a914bc1b90e2463f0be668ce17e07c71ec628310f5926d36e59ac393 96B / 96B 0.7s done
+#18 sha256:4b3b384bfb207432304ebb1d8ce710eb0d2062451c74990396430679d6f04d0e 20.71MB / 20.71MB 3.5s done
+#18 extracting sha256:4b3b384bfb207432304ebb1d8ce710eb0d2062451c74990396430679d6f04d0e 0.1s done
+#18 extracting sha256:47d85642a914bc1b90e2463f0be668ce17e07c71ec628310f5926d36e59ac393 0.0s done
+#18 DONE 7.6s
+
+#19 [bootstrap stage-1 2/5] COPY --from=uv /uv /usr/local/bin/uv
+#19 DONE 0.3s
+
+#20 [bootstrap stage-1 3/5] WORKDIR /platform
+#20 DONE 0.1s
+
+#23 [bootstrap stage-1 4/5] RUN uv venv /opt/ml && uv pip install torch==2.8.0 --index-url https://download.pytorch.org/whl/cpu
+#23 DONE 15.6s
+
+#26 [backend internal] load build context
+#26 transferring context: 564.03kB 0.0s done
+#26 DONE 0.1s
+
+#25 [bootstrap stage-1 5/5] RUN uv pip install torch-geometric==2.6.1 scipy==1.15.3 && uv pip install --no-deps --no-index --find-links https://data.pyg.org/whl/torch-2.8.0+cpu.html torch-scatter==2.1.2+pt28cpu torch-sparse==0.6.18+pt28cpu
+#25 DONE 13.7s
+
+#27 [bootstrap internal] load build context
+#27 transferring context: 992.53kB 0.0s done
+#27 DONE 0.1s
+
+#28 [bootstrap sources 1/5] COPY pyproject.toml uv.lock /
+#28 DONE 0.1s
+
+#29 [backend sources 2/5] COPY backend/pyproject.toml /backend/pyproject.toml
+#29 DONE 0.2s
+
+#30 [backend sources 3/5] COPY streamlit_workbench/pyproject.toml /streamlit_workbench/pyproject.toml
+#30 DONE 0.1s
+
+#31 [bootstrap sources 4/5] COPY edgar_pipeline /edgar_pipeline
+#31 DONE 0.1s
+
+#32 [backend sources 5/5] COPY ml_pipeline /ml_pipeline
+#32 DONE 0.1s
+
+#33 [backend sources 2/5] COPY backend/pyproject.toml /backend/pyproject.toml
+#33 CACHED
+
+#34 [backend sources 3/5] COPY streamlit_workbench/pyproject.toml /streamlit_workbench/pyproject.toml
+#34 CACHED
+
+#35 [backend sources 4/5] COPY edgar_pipeline /edgar_pipeline
+#35 CACHED
+
+#36 [backend sources 5/5] COPY ml_pipeline /ml_pipeline
+#36 CACHED
+
+#37 [backend sources 1/5] COPY pyproject.toml uv.lock /
+#37 CACHED
+
+#38 [backend runtime 1/2] RUN --mount=type=bind,from=sources,target=/src,ro cd /src &&     uv export --python /opt/ml/bin/python --frozen --package fintech-gateway --no-dev --no-emit-workspace --no-hashes -o /tmp/deps &&     uv pip install -r /tmp/deps && uv pip install --no-deps ./edgar_pipeline ./ml_pipeline && rm /tmp/deps && uv pip check
+#38 CANCELED
+
+#39 [backend runtime 1/2] RUN --mount=type=bind,from=sources,target=/src,ro cd /src &&     uv export --python /opt/ml/bin/python --frozen --package fintech-gateway --no-dev --no-emit-workspace --no-hashes -o /tmp/deps &&     uv pip install -r /tmp/deps && uv pip install --no-deps ./edgar_pipeline ./ml_pipeline && rm /tmp/deps && uv pip check
+#39 0.371 # This file was autogenerated by uv via the following command:
+#39 0.371 #    uv export --python /opt/ml/bin/python --frozen --package fintech-gateway --no-dev --no-emit-workspace --no-hashes -o /tmp/deps
+#39 0.371 alembic==1.17.2
+#39 0.371     # via edgar-pipeline
+#39 0.371 annotated-doc==0.0.7
+#39 0.371     # via fastapi
+#39 0.371 annotated-types==0.8.0
+#39 0.371     # via pydantic
+#39 0.371 anyio==4.16.0
+#39 0.371     # via
+#39 0.371     #   httpx
+#39 0.371     #   starlette
+#39 0.371 asyncpg==0.31.0
+#39 0.371     # via edgar-pipeline
+#39 0.371 beautifulsoup4==4.15.0
+#39 0.371     # via yfinance
+#39 0.371 certifi==2026.11.20
+#39 0.371     # via
+#39 0.371     #   curl-cffi
+#39 0.371     #   httpcore
+#39 0.371     #   httpx
+#39 0.371     #   requests
+#39 0.371 cffi==2.1.1
+#39 0.371     # via curl-cffi
+#39 0.371 charset-normalizer==3.5.2
+#39 0.371     # via requests
+#39 0.371 click==8.5.1
+#39 0.371     # via uvicorn
+#39 0.371 curl-cffi==0.17.0
+#39 0.371     # via yfinance
+#39 0.371 fastapi==0.121.3
+#39 0.371     # via fintech-gateway
+#39 0.371 frozendict==2.5.1
+#39 0.371     # via yfinance
+#39 0.371 greenlet==3.5.6
+#39 0.371     # via sqlalchemy
+#39 0.371 h11==0.16.0
+#39 0.371     # via
+#39 0.371     #   httpcore
+#39 0.371     #   uvicorn
+#39 0.371 httpcore==1.0.9
+#39 0.371     # via httpx
+#39 0.371 httpx==0.28.1
+#39 0.371     # via edgar-pipeline
+#39 0.371 idna==3.20
+#39 0.371     # via
+#39 0.371     #   anyio
+#39 0.371     #   httpx
+#39 0.371     #   requests
+#39 0.371 lxml==6.0.2
+#39 0.371     # via edgar-pipeline
+#39 0.371 mako==1.4.3
+#39 0.371     # via alembic
+#39 0.371 markupsafe==3.0.4
+#39 0.371     # via mako
+#39 0.371 multitasking==0.0.13
+#39 0.371     # via yfinance
+#39 0.371 neo4j==5.28.2
+#39 0.371     # via ml-pipeline
+#39 0.371 networkx==3.5
+#39 0.371     # via ml-pipeline
+#39 0.371 numpy==2.4.6 ; sys_platform == 'linux'
+#39 0.371     # via
+#39 0.371     #   pandas
+#39 0.371     #   yfinance
+#39 0.371 numpy==2.5.5 ; sys_platform != 'linux'
+#39 0.371     # via
+#39 0.371     #   pandas
+#39 0.371     #   yfinance
+#39 0.371 pandas==2.3.3
+#39 0.371     # via
+#39 0.371     #   edgar-pipeline
+#39 0.371     #   ml-pipeline
+#39 0.371     #   yfinance
+#39 0.371 peewee==4.5.3
+#39 0.371     # via yfinance
+#39 0.371 platformdirs==4.14.8
+#39 0.371     # via yfinance
+#39 0.371 protobuf==7.36.2
+#39 0.371     # via yfinance
+#39 0.371 psycopg==3.2.12
+#39 0.371     # via edgar-pipeline
+#39 0.371 psycopg-binary==3.2.12 ; implementation_name != 'pypy'
+#39 0.371     # via psycopg
+#39 0.371 pyarrow==20.0.0
+#39 0.371     # via ml-pipeline
+#39 0.371 pycparser==3.12 ; implementation_name != 'PyPy'
+#39 0.371     # via cffi
+#39 0.371 pydantic==2.12.4
+#39 0.371     # via
+#39 0.371     #   edgar-pipeline
+#39 0.371     #   fastapi
+#39 0.371     #   pydantic-settings
+#39 0.371 pydantic-core==2.41.5
+#39 0.371     # via pydantic
+#39 0.371 pydantic-settings==2.12.0
+#39 0.371     # via
+#39 0.371     #   edgar-pipeline
+#39 0.371     #   ml-pipeline
+#39 0.371 python-dateutil==4.0.0
+#39 0.371     # via pandas
+#39 0.371 python-dotenv==1.2.4
+#39 0.371     # via pydantic-settings
+#39 0.371 pytz==2026.6
+#39 0.371     # via
+#39 0.371     #   neo4j
+#39 0.371     #   pandas
+#39 0.371     #   yfinance
+#39 0.371 requests==2.34.2
+#39 0.371     # via yfinance
+#39 0.371 soupsieve==4.1.3
+#39 0.371     # via beautifulsoup4
+#39 0.371 sqlalchemy==2.0.44
+#39 0.371     # via
+#39 0.371     #   alembic
+#39 0.371     #   edgar-pipeline
+#39 0.371     #   fintech-gateway
+#39 0.371 starlette==0.50.0
+#39 0.371     # via fastapi
+#39 0.371 tenacity==9.1.2
+#39 0.371     # via edgar-pipeline
+#39 0.371 typing-extensions==4.16.0
+#39 0.371     # via
+#39 0.371     #   alembic
+#39 0.371     #   anyio
+#39 0.371     #   beautifulsoup4
+#39 0.371     #   fastapi
+#39 0.371     #   psycopg
+#39 0.371     #   pydantic
+#39 0.371     #   pydantic-core
+#39 0.371     #   sqlalchemy
+#39 0.371     #   starlette
+#39 0.371     #   typing-inspection
+#39 0.371 typing-inspection==0.4.5
+#39 0.371     # via
+#39 0.371     #   pydantic
+#39 0.371     #   pydantic-settings
+#39 0.371 tzdata==2026.6
+#39 0.371     # via
+#39 0.371     #   pandas
+#39 0.371     #   psycopg
+#39 0.371     #   python-dateutil
+#39 0.371 urllib3==2.8.0
+#39 0.371     # via requests
+#39 0.371 uvicorn==0.38.0
+#39 0.371     # via fintech-gateway
+#39 0.371 websockets==17.4
+#39 0.371     # via
+#39 0.371     #   fintech-gateway
+#39 0.371     #   yfinance
+#39 0.371 yfinance==0.2.66
+#39 0.371     # via edgar-pipeline
+#39 0.478 Using Python 3.12.12 environment at: /opt/ml
+#39 ...
+
+#40 [frontend build 4/4] RUN npm ci --no-audit --no-fund && npm run build && rm -rf node_modules && npm cache clean --force
+#40 2.006 npm warn deprecated three-mesh-bvh@0.7.8: Deprecated due to three.js version incompatibility. Please use v0.8.0, instead.
+#40 3.692 npm warn deprecated eslint@9.39.1: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+#40 ...
+
+#39 [backend runtime 1/2] RUN --mount=type=bind,from=sources,target=/src,ro cd /src &&     uv export --python /opt/ml/bin/python --frozen --package fintech-gateway --no-dev --no-emit-workspace --no-hashes -o /tmp/deps &&     uv pip install -r /tmp/deps && uv pip install --no-deps ./edgar_pipeline ./ml_pipeline && rm /tmp/deps && uv pip check
+#39 2.961 Resolved 51 packages in 2.48s
+#39 2.999 Downloading networkx (1.9MiB)
+#39 2.999 Downloading pydantic-core (1.8MiB)
+#39 3.000 Downloading sqlalchemy (3.2MiB)
+#39 3.000 Downloading curl-cffi (12.8MiB)
+#39 3.001 Downloading psycopg-binary (4.4MiB)
+#39 3.002 Downloading asyncpg (3.3MiB)
+#39 3.002 Downloading pyarrow (38.8MiB)
+#39 3.002 Downloading lxml (4.8MiB)
+#39 3.002 Downloading pandas (11.2MiB)
+#39 4.357  Downloaded pydantic-core
+#39 4.457  Downloaded networkx
+#39 5.922  Downloaded sqlalchemy
+#39 6.028  Downloaded asyncpg
+#39 7.382  Downloaded psycopg-binary
+#39 7.639  Downloaded lxml
+#39 ...
+
+#40 [frontend build 4/4] RUN npm ci --no-audit --no-fund && npm run build && rm -rf node_modules && npm cache clean --force
+#40 14.28
+#40 14.28 added 358 packages in 14s
+#40 14.28 npm notice
+#40 14.28 npm notice New major version of npm available! 10.9.9 -> 12.2.3
+#40 14.28 npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.3
+#40 14.28 npm notice To update run: npm install -g npm@12.2.3
+#40 14.28 npm notice
+#40 14.48
+#40 14.48 > fintech-command-center@0.1.0 build
+#40 14.48 > tsc --noEmit && vite build
+#40 14.48
+#40 16.11 vite v8.3.8 building client environment for production...
+#40 16.11 transforming...
+#40 16.33 ✓ 2880 modules transformed.
+#40 16.39 rendering chunks...
+#40 16.47 computing gzip size...
+#40 16.48 dist/index.html                                                     0.53 kB │ gzip:   0.34 kB
+#40 16.48 dist/assets/ibm-plex-mono-vietnamese-400-normal-DDuiU_S-.woff       5.62 kB
+#40 16.48 dist/assets/ibm-plex-mono-cyrillic-ext-400-normal-DMdlQ8Kv.woff     5.82 kB
+#40 16.48 dist/assets/ibm-plex-mono-vietnamese-400-normal-BulugwFq.woff2      5.86 kB
+#40 16.48 dist/assets/barlow-vietnamese-400-normal-BFeobeCK.woff              6.09 kB
+#40 16.48 dist/assets/barlow-vietnamese-600-normal-CA_GiK2e.woff              6.22 kB
+#40 16.48 dist/assets/ibm-plex-mono-cyrillic-ext-400-normal-xuaO2J-f.woff2    6.91 kB
+#40 16.48 dist/assets/ibm-plex-mono-cyrillic-400-normal-CEL4l2ZJ.woff         7.20 kB
+#40 16.48 dist/assets/barlow-vietnamese-400-normal-Dpl4UHAZ.woff2             7.58 kB
+#40 16.48 dist/assets/barlow-vietnamese-600-normal-DcjprdFV.woff2             7.89 kB
+#40 16.48 dist/assets/ibm-plex-mono-cyrillic-400-normal-BSMlKf0J.woff2        8.35 kB
+#40 16.48 dist/assets/ibm-plex-mono-latin-ext-400-normal-D3D2R8hC.woff       11.76 kB
+#40 16.48 dist/assets/barlow-latin-ext-400-normal-CvBsJvxq.woff              12.31 kB
+#40 16.48 dist/assets/barlow-latin-ext-600-normal-DMVRjfRT.woff              12.60 kB
+#40 16.48 dist/assets/ibm-plex-mono-latin-400-normal-CvHOgSBP.woff           13.14 kB
+#40 16.48 dist/assets/ibm-plex-mono-latin-ext-400-normal-BmRBH3aV.woff2      13.34 kB
+#40 16.48 dist/assets/barlow-latin-ext-400-normal-HxX4XjxC.woff2             14.26 kB
+#40 16.48 dist/assets/ibm-plex-mono-latin-400-normal-DMJ8VG8y.woff2          14.70 kB
+#40 16.48 dist/assets/barlow-latin-ext-600-normal-B8NK_A3D.woff2             14.96 kB
+#40 16.48 dist/assets/barlow-latin-400-normal-fsAxiSwU.woff                  19.58 kB
+#40 16.48 dist/assets/barlow-latin-600-normal-CNwfPWQD.woff                  19.88 kB
+#40 16.48 dist/assets/barlow-latin-400-normal-qiz4-Cze.woff2                 22.19 kB
+#40 16.48 dist/assets/barlow-latin-600-normal-DILqtrty.woff2                 22.77 kB
+#40 16.48 dist/assets/index-NdGUCtTG.css                                     14.14 kB │ gzip:   3.95 kB
+#40 16.48 dist/assets/rolldown-runtime-XKyaHtl9.js                            0.72 kB │ gzip:   0.42 kB
+#40 16.48 dist/assets/Radar-C861rdbX.js                                     157.60 kB │ gzip:  50.68 kB
+#40 16.48 dist/assets/index-DQjdeh4I.js                                     219.62 kB │ gzip:  71.63 kB
+#40 16.48 dist/assets/extends-ChMHQ-4-.js                                   744.69 kB │ gzip: 188.46 kB
+#40 16.48 dist/assets/Mule-Ch4lboMQ.js                                      922.16 kB │ gzip: 259.97 kB
+#40 16.48
+#40 16.48 [plugin builtin:vite-reporter]
+#40 16.48 (!) Some chunks are larger than 500 kB after minification. Consider:
+#40 16.48 - Using dynamic import() to code-split the application
+#40 16.48 - Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+#40 16.48 - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+#40 16.48 ✓ built in 375ms
+#40 16.74 npm warn using --force Recommended protections disabled.
+#40 DONE 17.5s
+
+#41 [frontend stage-1 3/3] COPY --from=build /app/dist /usr/share/nginx/html
+#41 DONE 0.0s
+
+#42 [frontend] exporting to image
+#42 exporting layers 0.1s done
+#42 exporting manifest sha256:f00d9eae2ef8656c754cb8fdb4138a8eb0121eaad1fd294287d6f37bf636a1d7
+#42 exporting manifest sha256:f00d9eae2ef8656c754cb8fdb4138a8eb0121eaad1fd294287d6f37bf636a1d7 done
+#42 exporting config sha256:63c68cffc116c321ed8835e2ca150945da8d6226986de61b4dda573fdbe903e4 done
+#42 exporting attestation manifest sha256:8f359f77812ec40f1b2ce1c3252d9afe5111040a9ef527384e48cca18d60ec33 0.0s done
+#42 exporting manifest list sha256:2fcecb6f2187a84caf10953a31505ca24d813fa9bd0c6b4e32ebc22731162b92 0.0s done
+#42 naming to docker.io/library/fintech-platform-frontend:latest done
+#42 unpacking to docker.io/library/fintech-platform-frontend:latest
+#42 unpacking to docker.io/library/fintech-platform-frontend:latest 0.5s done
+#42 DONE 0.7s
+
+#43 [frontend] resolving provenance for metadata file
+#43 DONE 0.0s
+
+#21 [streamlit stage-1 2/8] RUN --mount=from=uv,source=/uv,target=/usr/local/bin/uv     --mount=type=bind,source=.,target=/src,ro cd /src &&     uv venv --python /usr/local/bin/python3.12 /opt/research &&     uv export --python /usr/local/bin/python3.12 --frozen --package quant-workbench --no-dev --no-emit-workspace --no-hashes -o /tmp/deps &&     uv pip install -r /tmp/deps && uv pip install --no-deps ./edgar_pipeline ./streamlit_workbench && rm /tmp/deps
+#21 27.49  Downloaded sqlalchemy
+#21 27.95  Downloaded asyncpg
+#21 31.15  Downloaded psycopg-binary
+#21 31.75  Downloaded lxml
+#21 ...
+
+#39 [backend runtime 1/2] RUN --mount=type=bind,from=sources,target=/src,ro cd /src &&     uv export --python /opt/ml/bin/python --frozen --package fintech-gateway --no-dev --no-emit-workspace --no-hashes -o /tmp/deps &&     uv pip install -r /tmp/deps && uv pip install --no-deps ./edgar_pipeline ./ml_pipeline && rm /tmp/deps && uv pip check
+#39 12.16  Downloaded pandas
+#39 12.57  Downloaded curl-cffi
+#39 17.61  Downloaded pyarrow
+#39 17.61 Prepared 44 packages in 14.65s
+#39 17.63 Uninstalled 2 packages in 15ms
+#39 17.78 Installed 44 packages in 150ms
+#39 17.78  + alembic==1.17.2
+#39 17.78  + annotated-doc==0.0.7
+#39 17.78  + annotated-types==0.8.0
+#39 17.78  + anyio==4.16.0
+#39 17.78  + asyncpg==0.31.0
+#39 17.78  + beautifulsoup4==4.15.0
+#39 17.78  + cffi==2.1.1
+#39 17.78  + click==8.5.1
+#39 17.78  + curl-cffi==0.17.0
+#39 17.78  + fastapi==0.121.3
+#39 17.78  + frozendict==2.5.1
+#39 17.78  + greenlet==3.5.6
+#39 17.78  + h11==0.16.0
+#39 17.78  + httpcore==1.0.9
+#39 17.78  + httpx==0.28.1
+#39 17.78  + lxml==6.0.2
+#39 17.78  + mako==1.4.3
+#39 17.78  - markupsafe==3.0.3
+#39 17.78  + markupsafe==3.0.4
+#39 17.78  + multitasking==0.0.13
+#39 17.78  + neo4j==5.28.2
+#39 17.78  - networkx==3.7
+#39 17.78  + networkx==3.5
+#39 17.78  + pandas==2.3.3
+#39 17.78  + peewee==4.5.3
+#39 17.78  + platformdirs==4.14.8
+#39 17.78  + protobuf==7.36.2
+#39 17.78  + psycopg==3.2.12
+#39 17.78  + psycopg-binary==3.2.12
+#39 17.78  + pyarrow==20.0.0
+#39 17.78  + pycparser==3.12
+#39 17.78  + pydantic==2.12.4
+#39 17.78  + pydantic-core==2.41.5
+#39 17.78  + pydantic-settings==2.12.0
+#39 17.78  + python-dateutil==4.0.0
+#39 17.78  + python-dotenv==1.2.4
+#39 17.78  + pytz==2026.6
+#39 17.78  + soupsieve==4.1.3
+#39 17.78  + sqlalchemy==2.0.44
+#39 17.78  + starlette==0.50.0
+#39 17.78  + tenacity==9.1.2
+#39 17.78  + typing-inspection==0.4.5
+#39 17.78  + tzdata==2026.6
+#39 17.78  + uvicorn==0.38.0
+#39 17.78  + websockets==17.4
+#39 17.78  + yfinance==0.2.66
+#39 17.93 Using Python 3.12.12 environment at: /opt/ml
+#39 17.93 Resolved 2 packages in 1ms
+#39 17.93    Building edgar-pipeline @ file:///src/edgar_pipeline
+#39 17.93    Building ml-pipeline @ file:///src/ml_pipeline
+#39 18.62       Built ml-pipeline @ file:///src/ml_pipeline
+#39 18.62       Built edgar-pipeline @ file:///src/edgar_pipeline
+#39 18.63 Prepared 2 packages in 693ms
+#39 18.63 Installed 2 packages in 2ms
+#39 18.63  + edgar-pipeline==0.1.0 (from file:///src/edgar_pipeline)
+#39 18.63  + ml-pipeline==0.1.0 (from file:///src/ml_pipeline)
+#39 18.66 Using Python 3.12.12 environment at: /opt/ml
+#39 18.66 Checked 75 packages in 21ms
+#39 18.67 All installed packages are compatible
+#39 DONE 19.8s
+
+#44 [bootstrap stage-2 1/4] COPY alembic.ini ./
+#44 DONE 0.1s
+
+#45 [bootstrap stage-2 2/4] COPY edgar_pipeline/migrations ./edgar_pipeline/migrations
+#45 DONE 0.0s
+
+#46 [backend stage-2 1/1] RUN --mount=type=bind,source=backend,target=/src/backend,ro uv pip install --no-sources --no-deps /src/backend && mkdir -p /cache && chown 65532:65532 /cache
+#46 ...
+
+#47 [bootstrap stage-2 3/4] COPY infra/scripts/bootstrap.py infra/scripts/verify_model.py infra/neo4j/constraints.cypher infra/verification/phase3/metrics-lite.json ./
+#47 DONE 0.1s
+
+#48 [bootstrap stage-2 4/4] RUN mkdir -p /artifacts && chown 65532:65532 /artifacts
+#48 DONE 0.1s
+
+#46 [backend stage-2 1/1] RUN --mount=type=bind,source=backend,target=/src/backend,ro uv pip install --no-sources --no-deps /src/backend && mkdir -p /cache && chown 65532:65532 /cache
+#46 0.159 Using Python 3.12.12 environment at: /opt/ml
+#46 0.161 Resolved 1 package in 0.72ms
+#46 0.162    Building fintech-gateway @ file:///src/backend
+#46 0.625       Built fintech-gateway @ file:///src/backend
+#46 0.626 Prepared 1 package in 464ms
+#46 0.632 Installed 1 package in 5ms
+#46 0.632  + fintech-gateway==0.1.0 (from file:///src/backend)
+#46 DONE 0.8s
+
+#49 [bootstrap] exporting to image
+#49 exporting layers
+#49 ...
+
+#21 [streamlit stage-1 2/8] RUN --mount=from=uv,source=/uv,target=/usr/local/bin/uv     --mount=type=bind,source=.,target=/src,ro cd /src &&     uv venv --python /usr/local/bin/python3.12 /opt/research &&     uv export --python /usr/local/bin/python3.12 --frozen --package quant-workbench --no-dev --no-emit-workspace --no-hashes -o /tmp/deps &&     uv pip install -r /tmp/deps && uv pip install --no-deps ./edgar_pipeline ./streamlit_workbench && rm /tmp/deps
+#21 34.13  Downloaded pillow
+#21 38.54  Downloaded plotly
+#21 40.41  Downloaded pydeck
+#21 40.41  Downloaded streamlit
+#21 40.42  Downloaded pandas
+#21 40.73  Downloaded curl-cffi
+#21 41.28  Downloaded numpy
+#21 47.26  Downloaded pyarrow
+#21 47.26 Prepared 63 packages in 46.34s
+#21 47.66 Installed 63 packages in 395ms
+#21 47.66  + alembic==1.17.2
+#21 47.66  + altair==6.3.0
+#21 47.66  + annotated-types==0.8.0
+#21 47.66  + anyio==4.16.0
+#21 47.66  + asyncpg==0.31.0
+#21 47.66  + attrs==26.1.0
+#21 47.66  + beautifulsoup4==4.15.0
+#21 47.66  + certifi==2026.11.20
+#21 47.66  + cffi==2.1.1
+#21 47.66  + charset-normalizer==3.5.2
+#21 47.66  + click==8.5.1
+#21 47.66  + curl-cffi==0.17.0
+#21 47.66  + frozendict==2.5.1
+#21 47.66  + greenlet==3.5.6
+#21 47.66  + h11==0.16.0
+#21 47.66  + httpcore==1.0.9
+#21 47.66  + httpx==0.28.1
+#21 47.66  + idna==3.20
+#21 47.66  + itsdangerous==2.2.0
+#21 47.66  + jinja2==3.1.6
+#21 47.66  + jsonschema==4.26.0
+#21 47.66  + jsonschema-specifications==2025.9.1
+#21 47.66  + lxml==6.0.2
+#21 47.66  + mako==1.4.3
+#21 47.66  + markupsafe==3.0.4
+#21 47.66  + multitasking==0.0.13
+#21 47.66  + narwhals==2.29.0
+#21 47.66  + numpy==2.4.6
+#21 47.66  + packaging==26.3
+#21 47.66  + pandas==2.3.3
+#21 47.66  + peewee==4.5.3
+#21 47.66  + pillow==13.0.0
+#21 47.66  + platformdirs==4.14.8
+#21 47.66  + plotly==7.1.0
+#21 47.66  + protobuf==7.36.2
+#21 47.66  + psycopg==3.2.12
+#21 47.66  + psycopg-binary==3.2.12
+#21 47.66  + pyarrow==20.0.0
+#21 47.66  + pycparser==3.12
+#21 47.66  + pydantic==2.12.4
+#21 47.66  + pydantic-core==2.41.5
+#21 47.66  + pydantic-settings==2.12.0
+#21 47.66  + pydeck==0.9.3
+#21 47.66  + python-dateutil==4.0.0
+#21 47.66  + python-dotenv==1.2.4
+#21 47.66  + python-multipart==0.0.34
+#21 47.66  + pytz==2026.6
+#21 47.66  + referencing==0.37.0
+#21 47.66  + requests==2.34.2
+#21 47.66  + rpds-py==2026.9.1
+#21 47.66  + soupsieve==4.1.3
+#21 47.66  + sqlalchemy==2.0.44
+#21 47.66  + starlette==0.50.0
+#21 47.66  + streamlit==1.67.0
+#21 47.66  + tenacity==9.1.2
+#21 47.66  + typing-extensions==4.16.0
+#21 47.66  + typing-inspection==0.4.5
+#21 47.66  + tzdata==2026.6
+#21 47.66  + urllib3==2.8.0
+#21 47.66  + uvicorn==0.38.0
+#21 47.66  + watchdog==7.1.1
+#21 47.66  + websockets==17.4
+#21 47.66  + yfinance==0.2.66
+#21 47.80 Using Python 3.12.12 environment at: /opt/research
+#21 47.80 Resolved 2 packages in 1ms
+#21 47.81    Building quant-workbench @ file:///src/streamlit_workbench
+#21 47.81    Building edgar-pipeline @ file:///src/edgar_pipeline
+#21 48.37       Built quant-workbench @ file:///src/streamlit_workbench
+#21 48.38       Built edgar-pipeline @ file:///src/edgar_pipeline
+#21 48.38 Prepared 2 packages in 573ms
+#21 48.38 Installed 2 packages in 0.95ms
+#21 48.38  + edgar-pipeline==0.1.0 (from file:///src/edgar_pipeline)
+#21 48.38  + quant-workbench==0.1.0 (from file:///src/streamlit_workbench)
+#21 DONE 49.3s
+
+#50 [ml-base] exporting to image
+#50 exporting layers
+#50 ...
+
+#51 [streamlit stage-1 3/8] WORKDIR /workbench
+#51 DONE 0.1s
+
+#52 [streamlit stage-1 4/8] COPY streamlit_workbench/app.py .
+#52 DONE 0.2s
+
+#53 [backend] exporting to image
+#53 ...
+
+#54 [streamlit stage-1 5/8] COPY streamlit_workbench/pages ./pages
+#54 DONE 0.0s
+
+#55 [streamlit stage-1 6/8] COPY streamlit_workbench/.streamlit ./.streamlit
+#55 DONE 0.1s
+
+#56 [streamlit stage-1 7/8] COPY infra/scripts/check_workbench_image.py /tmp/check_workbench_image.py
+#56 DONE 0.0s
+
+#57 [streamlit stage-1 8/8] RUN python /tmp/check_workbench_image.py
+#57 3.465 Workbench imports passed; torch, torch_geometric and ml_pipeline absent.
+#57 DONE 4.1s
+
+#53 [backend] exporting to image
+#53 ...
+
+#58 [streamlit] exporting to image
+#58 exporting layers
+#58 ...
+
+#49 [bootstrap] exporting to image
+#49 exporting layers 13.5s done
+#49 exporting manifest sha256:5bbebafe7fe15f314b62c167b65181ff9865a484c7accf40b5bc7fe8a481bae8 0.0s done
+#49 exporting config sha256:f0b4c3e45d455b4110a8a56abd2934d5cc67e3417d2d11af15edd8f317e8cdfd 0.0s done
+#49 exporting attestation manifest sha256:bc214a695538b054f29aca9c36910ba048add9bac8e06a9e3fcc518d975f8499 0.1s done
+#49 exporting manifest list sha256:9d4264761478a420da5cc9a105626eeefb6244c4d818029412c7c4e2a94d5107 0.0s done
+#49 naming to docker.io/library/fintech-platform-bootstrap:latest 0.0s done
+#49 unpacking to docker.io/library/fintech-platform-bootstrap:latest
+#49 ...
+
+#50 [ml-base] exporting to image
+#50 exporting layers 13.0s done
+#50 exporting manifest sha256:b1432f833fd4843a65c843e4027a7f289a29a66b2822966d5d2ebeed7d80d905 0.0s done
+#50 exporting config sha256:86fff65ebebb086f271d3d508e452a81df80c87a651ff448e8c40e8e64606972 0.0s done
+#50 exporting attestation manifest sha256:c3d0bcec87fb9ecb2b4dcf336d780183f1b67059aa0c4893aef3f1bd583ea9b6 0.1s done
+#50 exporting manifest list sha256:bdac71cad9949f45ec80324a270b62075af7701d86e04f9de41be70c0cf6a46e 0.0s done
+#50 naming to docker.io/library/fintech-platform-ml-base:latest 0.0s done
+#50 unpacking to docker.io/library/fintech-platform-ml-base:latest
+#50 ...
+
+#53 [backend] exporting to image
+#53 exporting layers 13.0s done
+#53 exporting manifest sha256:7f9f0b9148970c2d7014e22764159c8437be0bdb44d92ceb56c71020bd15aa5f 0.0s done
+#53 exporting config sha256:265d14535506e98ee1781c9e50f59b076f7d93ee508498214ba5eaea20d7f9a6 0.0s done
+#53 exporting attestation manifest sha256:46d48b1a4357b0189498050c63f12857aba92e21de3b2bfa607903a72db9a602 0.1s done
+#53 exporting manifest list sha256:67cff3a39860cc98160e29200590bb13cab419672bacb32b94bbe0facc262164 0.0s done
+#53 naming to docker.io/library/fintech-platform-backend:latest 0.0s done
+#53 unpacking to docker.io/library/fintech-platform-backend:latest
+#53 ...
+
+#50 [ml-base] exporting to image
+#50 unpacking to docker.io/library/fintech-platform-ml-base:latest 22.9s done
+#50 DONE 36.1s
+
+#58 [streamlit] exporting to image
+#58 exporting layers 24.0s done
+#58 exporting manifest sha256:31e4f110efb397cfc417340fac449e85b3ba082f5816f0d037c5335591b82bd4 0.0s done
+#58 exporting config sha256:03efe1e1871e54cf3a590b947ea869c09550c395bfe4d1fcee20659797658cb3
+#58 exporting config sha256:03efe1e1871e54cf3a590b947ea869c09550c395bfe4d1fcee20659797658cb3 0.0s done
+#58 exporting attestation manifest sha256:503c9156c2462e81431e3bd9942aa02711fd531cfbeb739a795f0090cb386ac3 0.0s done
+#58 exporting manifest list sha256:7af503804b1f02d491a04f4e185908cb359bfe09d93d378c459580596ddfb598 0.0s done
+#58 naming to docker.io/library/fintech-platform-streamlit:latest 0.0s done
+#58 unpacking to docker.io/library/fintech-platform-streamlit:latest
+#58 ...
+
+#59 [ml-base] resolving provenance for metadata file
+#59 DONE 0.3s
+
+#49 [bootstrap] exporting to image
+#49 ...
+
+#58 [streamlit] exporting to image
+#58 unpacking to docker.io/library/fintech-platform-streamlit:latest 12.8s done
+#58 DONE 37.0s
+
+#49 [bootstrap] exporting to image
+#49 ...
+
+#53 [backend] exporting to image
+#53 unpacking to docker.io/library/fintech-platform-backend:latest 36.4s done
+#53 DONE 49.7s
+
+#49 [bootstrap] exporting to image
+#49 unpacking to docker.io/library/fintech-platform-bootstrap:latest 37.1s done
+#49 DONE 51.0s
+
+#60 [streamlit] resolving provenance for metadata file
+#60 DONE 1.7s
+
+#61 [backend] resolving provenance for metadata file
+#61 DONE 0.3s
+
+#62 [bootstrap] resolving provenance for metadata file
+#62 DONE 0.0s
+ Image fintech-platform-bootstrap:latest Built
+ Image fintech-platform-backend:latest Built
+ Image fintech-platform-streamlit Built
+ Image fintech-platform-frontend Built
+ Image fintech-platform-ml-base:latest Built
+ Volume fintech-platform_edgar_cache Creating
+ Volume fintech-platform_pgdata Creating
+ Network fintech-platform_default Creating
+ Volume fintech-platform_artifacts Creating
+ Volume fintech-platform_neo4jdata Creating
+ Volume fintech-platform_pgdata Creating
+ Volume fintech-platform_neo4jdata Creating
+ Network fintech-platform_default Creating
+ Volume fintech-platform_edgar_cache Creating
+ Volume fintech-platform_artifacts Creating
+ Volume fintech-platform_artifacts Created
+ Volume fintech-platform_artifacts Created
+ Volume fintech-platform_edgar_cache Created
+ Volume fintech-platform_edgar_cache Created
+ Volume fintech-platform_neo4jdata Created
+ Volume fintech-platform_neo4jdata Created
+ Network fintech-platform_default Created
+ Network fintech-platform_default Created
+ Container fintech-platform-neo4j-1 Creating
+ Container fintech-platform-ml-base-1 Creating
+ Volume fintech-platform_pgdata Created
+ Volume fintech-platform_pgdata Created
+ Container fintech-platform-postgres-1 Creating
+ Container fintech-platform-ml-base-1 Created
+ Container fintech-platform-postgres-1 Created
+ Container fintech-platform-neo4j-1 Created
+ Container fintech-platform-bootstrap-1 Creating
+ Container fintech-platform-bootstrap-1 Created
+ Container fintech-platform-backend-1 Creating
+ Container fintech-platform-backend-1 Created
+ Container fintech-platform-streamlit-1 Creating
+ Container fintech-platform-streamlit-1 Created
+ Container fintech-platform-frontend-1 Creating
+ Container fintech-platform-frontend-1 Created
+ Container fintech-platform-neo4j-1 Starting
+ Container fintech-platform-postgres-1 Starting
+ Container fintech-platform-ml-base-1 Starting
+ Container fintech-platform-ml-base-1 Started
+ Container fintech-platform-neo4j-1 Started
+ Container fintech-platform-postgres-1 Started
+ Container fintech-platform-neo4j-1 Waiting
+ Container fintech-platform-ml-base-1 Waiting
+ Container fintech-platform-postgres-1 Waiting
+ Container fintech-platform-ml-base-1 Exited
+ Container fintech-platform-postgres-1 Healthy
+ Container fintech-platform-neo4j-1 Healthy
+ Container fintech-platform-bootstrap-1 Starting
+ Container fintech-platform-bootstrap-1 Started
+ Container fintech-platform-bootstrap-1 Waiting
+ Container fintech-platform-bootstrap-1 Exited
+ Container fintech-platform-backend-1 Starting
+ Container fintech-platform-backend-1 Started
+ Container fintech-platform-backend-1 Waiting
+ Container fintech-platform-backend-1 Healthy
+ Container fintech-platform-streamlit-1 Starting
+ Container fintech-platform-streamlit-1 Started
+ Container fintech-platform-backend-1 Waiting
+ Container fintech-platform-streamlit-1 Waiting
+ Container fintech-platform-backend-1 Healthy
+ Container fintech-platform-streamlit-1 Healthy
+ Container fintech-platform-frontend-1 Starting
+ Container fintech-platform-frontend-1 Started
+ Container fintech-platform-ml-base-1 Waiting
+ Container fintech-platform-frontend-1 Waiting
+ Container fintech-platform-streamlit-1 Waiting
+ Container fintech-platform-bootstrap-1 Waiting
+ Container fintech-platform-postgres-1 Waiting
+ Container fintech-platform-neo4j-1 Waiting
+ Container fintech-platform-backend-1 Waiting
+ Container fintech-platform-postgres-1 Healthy
+ Container fintech-platform-streamlit-1 Healthy
+ Container fintech-platform-bootstrap-1 Exited
+ Container fintech-platform-backend-1 Healthy
+ Container fintech-platform-neo4j-1 Healthy
+ Container fintech-platform-ml-base-1 Exited
+ Container fintech-platform-frontend-1 Healthy
+Compose exit=0, elapsed_seconds=217.72
+Total reclaimed space: 0B
+Total:	0B
+NAME                           IMAGE                               COMMAND                  SERVICE     CREATED              STATUS                          PORTS
+fintech-platform-backend-1     fintech-platform-backend:latest     "uvicorn app.main:cr…"   backend     About a minute ago   Up 27 seconds (healthy)
+fintech-platform-bootstrap-1   fintech-platform-bootstrap:latest   "python /platform/bo…"   bootstrap   About a minute ago   Exited (0) 27 seconds ago
+fintech-platform-frontend-1    fintech-platform-frontend           "/docker-entrypoint.…"   frontend    About a minute ago   Up 6 seconds (healthy)          80/tcp, 127.0.0.1:8080->8080/tcp
+fintech-platform-ml-base-1     fintech-platform-ml-base:latest     "true"                   ml-base     About a minute ago   Exited (0) About a minute ago
+fintech-platform-neo4j-1       neo4j:5.26-community                "tini -g -- /startup…"   neo4j       About a minute ago   Up About a minute (healthy)     127.0.0.1:7474->7474/tcp, 7473/tcp, 127.0.0.1:7687->7687/tcp
+fintech-platform-postgres-1    postgres:16.11-bookworm             "docker-entrypoint.s…"   postgres    About a minute ago   Up About a minute (healthy)     127.0.0.1:5432->5432/tcp
+fintech-platform-streamlit-1   fintech-platform-streamlit          "streamlit run app.p…"   streamlit   About a minute ago   Up 16 seconds (healthy)
+bash infra/scripts/smoke_test.sh
+Postgres, Neo4j, model, Streamlit, insider and mule API checks passed.
+Both nginx WebSocket upgrades and versioned heartbeats passed.
+ Image fintech-platform-e2e Building
+#1 [internal] load local bake definitions
+#1 reading from stdin 3.50kB done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from e2e.Dockerfile
+#2 transferring dockerfile: 500B done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/node:22-bookworm-slim
+#3 DONE 4.1s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 260B done
+#4 DONE 0.0s
+
+#5 [packages 1/4] FROM docker.io/library/node:22-bookworm-slim@sha256:e9f565d32859f0cbfb52125eafe8be39390f24dac302dc3cdf566e8ba3ab21ee
+#5 resolve docker.io/library/node:22-bookworm-slim@sha256:e9f565d32859f0cbfb52125eafe8be39390f24dac302dc3cdf566e8ba3ab21ee 0.0s done
+#5 ...
+
+#6 [internal] load build context
+#6 transferring context: 7.26kB 0.0s done
+#6 DONE 0.1s
+
+#5 [packages 1/4] FROM docker.io/library/node:22-bookworm-slim@sha256:e9f565d32859f0cbfb52125eafe8be39390f24dac302dc3cdf566e8ba3ab21ee
+#5 DONE 0.3s
+
+#5 [packages 1/4] FROM docker.io/library/node:22-bookworm-slim@sha256:e9f565d32859f0cbfb52125eafe8be39390f24dac302dc3cdf566e8ba3ab21ee
+#5 sha256:85d8253b4d528a92358f74b39b0810d9b6a05f435ab1af1aa5319a5dc6877e77 0B / 1.71MB 0.2s
+#5 sha256:97752f0f4999370a77b7fbca190f4cf2d270a68e3af6042e319683153fbfa75a 0B / 449B 0.2s
+#5 sha256:4b9ff286f3188651cec5acfe909dd6d36ba3deba52815d38e5b74bf205f7fb4c 0B / 50.04MB 0.2s
+#5 sha256:f5d21ada3c7e75a9f414655c748cf3ac9a08a2864408d4d4160436974ddbeac2 0B / 3.31kB 0.2s
+#5 sha256:97752f0f4999370a77b7fbca190f4cf2d270a68e3af6042e319683153fbfa75a 449B / 449B 1.0s done
+#5 sha256:2d66c782e4847b8495b17a4b86be1159aa13d140fe4fd17cb1d536953d5114c6 0B / 28.14MB 0.2s
+#5 sha256:85d8253b4d528a92358f74b39b0810d9b6a05f435ab1af1aa5319a5dc6877e77 1.71MB / 1.71MB 1.8s done
+#5 sha256:f5d21ada3c7e75a9f414655c748cf3ac9a08a2864408d4d4160436974ddbeac2 3.31kB / 3.31kB 2.1s done
+#5 sha256:2d66c782e4847b8495b17a4b86be1159aa13d140fe4fd17cb1d536953d5114c6 2.10MB / 28.14MB 1.2s
+#5 sha256:2d66c782e4847b8495b17a4b86be1159aa13d140fe4fd17cb1d536953d5114c6 4.19MB / 28.14MB 1.4s
+#5 sha256:2d66c782e4847b8495b17a4b86be1159aa13d140fe4fd17cb1d536953d5114c6 6.29MB / 28.14MB 1.5s
+#5 sha256:4b9ff286f3188651cec5acfe909dd6d36ba3deba52815d38e5b74bf205f7fb4c 5.24MB / 50.04MB 2.6s
+#5 sha256:2d66c782e4847b8495b17a4b86be1159aa13d140fe4fd17cb1d536953d5114c6 8.39MB / 28.14MB 1.7s
+#5 sha256:4b9ff286f3188651cec5acfe909dd6d36ba3deba52815d38e5b74bf205f7fb4c 9.44MB / 50.04MB 2.9s
+#5 sha256:2d66c782e4847b8495b17a4b86be1159aa13d140fe4fd17cb1d536953d5114c6 11.53MB / 28.14MB 2.0s
+#5 sha256:2d66c782e4847b8495b17a4b86be1159aa13d140fe4fd17cb1d536953d5114c6 14.68MB / 28.14MB 2.1s
+#5 sha256:4b9ff286f3188651cec5acfe909dd6d36ba3deba52815d38e5b74bf205f7fb4c 15.73MB / 50.04MB 3.2s
+#5 sha256:2d66c782e4847b8495b17a4b86be1159aa13d140fe4fd17cb1d536953d5114c6 17.83MB / 28.14MB 2.3s
+#5 sha256:4b9ff286f3188651cec5acfe909dd6d36ba3deba52815d38e5b74bf205f7fb4c 18.87MB / 50.04MB 3.3s
+#5 sha256:2d66c782e4847b8495b17a4b86be1159aa13d140fe4fd17cb1d536953d5114c6 20.97MB / 28.14MB 2.4s
+#5 sha256:2d66c782e4847b8495b17a4b86be1159aa13d140fe4fd17cb1d536953d5114c6 23.07MB / 28.14MB 2.6s
+#5 sha256:4b9ff286f3188651cec5acfe909dd6d36ba3deba52815d38e5b74bf205f7fb4c 25.17MB / 50.04MB 3.6s
+#5 sha256:2d66c782e4847b8495b17a4b86be1159aa13d140fe4fd17cb1d536953d5114c6 26.21MB / 28.14MB 2.7s
+#5 sha256:4b9ff286f3188651cec5acfe909dd6d36ba3deba52815d38e5b74bf205f7fb4c 29.36MB / 50.04MB 3.8s
+#5 sha256:2d66c782e4847b8495b17a4b86be1159aa13d140fe4fd17cb1d536953d5114c6 28.14MB / 28.14MB 2.8s done
+#5 extracting sha256:2d66c782e4847b8495b17a4b86be1159aa13d140fe4fd17cb1d536953d5114c6
+#5 sha256:4b9ff286f3188651cec5acfe909dd6d36ba3deba52815d38e5b74bf205f7fb4c 34.60MB / 50.04MB 4.1s
+#5 extracting sha256:2d66c782e4847b8495b17a4b86be1159aa13d140fe4fd17cb1d536953d5114c6 0.4s done
+#5 sha256:4b9ff286f3188651cec5acfe909dd6d36ba3deba52815d38e5b74bf205f7fb4c 40.89MB / 50.04MB 4.2s
+#5 extracting sha256:f5d21ada3c7e75a9f414655c748cf3ac9a08a2864408d4d4160436974ddbeac2 0.0s done
+#5 sha256:4b9ff286f3188651cec5acfe909dd6d36ba3deba52815d38e5b74bf205f7fb4c 47.19MB / 50.04MB 4.4s
+#5 sha256:4b9ff286f3188651cec5acfe909dd6d36ba3deba52815d38e5b74bf205f7fb4c 50.04MB / 50.04MB 4.4s done
+#5 extracting sha256:4b9ff286f3188651cec5acfe909dd6d36ba3deba52815d38e5b74bf205f7fb4c
+#5 extracting sha256:4b9ff286f3188651cec5acfe909dd6d36ba3deba52815d38e5b74bf205f7fb4c 0.5s done
+#5 DONE 5.2s
+
+#5 [packages 1/4] FROM docker.io/library/node:22-bookworm-slim@sha256:e9f565d32859f0cbfb52125eafe8be39390f24dac302dc3cdf566e8ba3ab21ee
+#5 extracting sha256:85d8253b4d528a92358f74b39b0810d9b6a05f435ab1af1aa5319a5dc6877e77 0.0s done
+#5 extracting sha256:97752f0f4999370a77b7fbca190f4cf2d270a68e3af6042e319683153fbfa75a 0.0s done
+#5 DONE 5.2s
+
+#7 [packages 2/4] WORKDIR /tests
+#7 DONE 1.0s
+
+#8 [packages 3/4] COPY frontend/tests/e2e/package*.json ./
+#8 DONE 0.0s
+
+#9 [packages 4/4] RUN npm ci --omit=dev --no-audit --no-fund && npm cache clean --force
+#9 0.726
+#9 0.726 added 1 package in 536ms
+#9 0.727 npm notice
+#9 0.727 npm notice New major version of npm available! 10.9.9 -> 12.2.3
+#9 0.727 npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.3
+#9 0.727 npm notice To update run: npm install -g npm@12.2.3
+#9 0.727 npm notice
+#9 0.772 npm warn using --force Recommended protections disabled.
+#9 DONE 0.9s
+
+#10 [stage-1 3/5] COPY --from=packages /tests /tests
+#10 DONE 0.0s
+
+#11 [stage-1 4/5] RUN ./node_modules/.bin/playwright-core install --with-deps --only-shell chromium && rm -rf /var/lib/apt/lists/*
+#11 0.264 Installing dependencies...
+#11 0.430 Get:1 http://deb.debian.org/debian bookworm InRelease [151 kB]
+#11 0.526 Get:2 http://deb.debian.org/debian bookworm-updates InRelease [55.4 kB]
+#11 0.637 Get:3 http://deb.debian.org/debian-security bookworm-security InRelease [34.8 kB]
+#11 0.651 Get:4 http://deb.debian.org/debian bookworm/main arm64 Packages [8689 kB]
+#11 7.199 Get:5 http://deb.debian.org/debian bookworm-updates/main arm64 Packages [6936 B]
+#11 7.279 Get:6 http://deb.debian.org/debian-security bookworm-security/main arm64 Packages [377 kB]
+#11 7.764 Fetched 9315 kB in 7s (1244 kB/s)
+#11 7.764 Reading package lists...
+#11 7.987 Reading package lists...
+#11 8.196 Building dependency tree...
+#11 8.253 Reading state information...
+#11 8.318 The following additional packages will be installed:
+#11 8.319   at-spi2-common fontconfig fontconfig-config libasound2-data libavahi-client3
+#11 8.319   libavahi-common-data libavahi-common3 libbrotli1 libbsd0 libdatrie1
+#11 8.319   libdrm-amdgpu1 libdrm-common libdrm-nouveau2 libdrm-radeon1 libedit2 libelf1
+#11 8.319   libexpat1 libfontenc1 libfribidi0 libgl1 libgl1-mesa-dri libglapi-mesa
+#11 8.319   libglvnd0 libglx-mesa0 libglx0 libgraphite2-3 libgssapi-krb5-2 libharfbuzz0b
+#11 8.319   libice6 libicu72 libk5crypto3 libkeyutils1 libkrb5-3 libkrb5support0
+#11 8.319   libllvm15 libpixman-1-0 libpng16-16 libsensors-config libsensors5 libsm6
+#11 8.319   libsqlite3-0 libssl3 libthai-data libthai0 libunwind8 libwayland-server0
+#11 8.319   libx11-data libx11-xcb1 libxau6 libxaw7 libxcb-dri2-0 libxcb-dri3-0
+#11 8.319   libxcb-glx0 libxcb-present0 libxcb-randr0 libxcb-render0 libxcb-shm0
+#11 8.319   libxcb-sync1 libxcb-xfixes0 libxdmcp6 libxfont2 libxi6 libxkbfile1 libxml2
+#11 8.319   libxmu6 libxpm4 libxrender1 libxshmfence1 libxt6 libxxf86vm1 libz3-4
+#11 8.319   x11-common x11-xkb-utils xfonts-encodings xfonts-utils xkb-data
+#11 8.319   xserver-common
+#11 8.319 Suggested packages:
+#11 8.319   libasound2-plugins alsa-utils cups-common low-memory-monitor krb5-doc
+#11 8.319   krb5-user lm-sensors
+#11 8.319 Recommended packages:
+#11 8.319   fonts-ipafont-mincho fonts-tlwg-loma alsa-ucm-conf alsa-topology-conf
+#11 8.319   at-spi2-core dbus libglib2.0-data shared-mime-info xdg-user-dirs
+#11 8.319   krb5-locales xfonts-base xauth
+#11 8.555 The following NEW packages will be installed:
+#11 8.555   at-spi2-common fontconfig fontconfig-config fonts-freefont-ttf
+#11 8.555   fonts-ipafont-gothic fonts-liberation fonts-noto-color-emoji
+#11 8.555   fonts-tlwg-loma-otf fonts-unifont fonts-wqy-zenhei libasound2
+#11 8.555   libasound2-data libatk-bridge2.0-0 libatk1.0-0 libatspi2.0-0
+#11 8.555   libavahi-client3 libavahi-common-data libavahi-common3 libbrotli1 libbsd0
+#11 8.555   libcairo2 libcups2 libdatrie1 libdbus-1-3 libdrm-amdgpu1 libdrm-common
+#11 8.555   libdrm-nouveau2 libdrm-radeon1 libdrm2 libedit2 libelf1 libexpat1
+#11 8.555   libfontconfig1 libfontenc1 libfreetype6 libfribidi0 libgbm1 libgl1
+#11 8.555   libgl1-mesa-dri libglapi-mesa libglib2.0-0 libglvnd0 libglx-mesa0 libglx0
+#11 8.555   libgraphite2-3 libgssapi-krb5-2 libharfbuzz0b libice6 libicu72 libk5crypto3
+#11 8.555   libkeyutils1 libkrb5-3 libkrb5support0 libllvm15 libnspr4 libnss3
+#11 8.555   libpango-1.0-0 libpixman-1-0 libpng16-16 libsensors-config libsensors5
+#11 8.555   libsm6 libsqlite3-0 libssl3 libthai-data libthai0 libunwind8
+#11 8.555   libwayland-server0 libx11-6 libx11-data libx11-xcb1 libxau6 libxaw7
+#11 8.555   libxcb-dri2-0 libxcb-dri3-0 libxcb-glx0 libxcb-present0 libxcb-randr0
+#11 8.555   libxcb-render0 libxcb-shm0 libxcb-sync1 libxcb-xfixes0 libxcb1
+#11 8.555   libxcomposite1 libxdamage1 libxdmcp6 libxext6 libxfixes3 libxfont2 libxi6
+#11 8.555   libxkbcommon0 libxkbfile1 libxml2 libxmu6 libxpm4 libxrandr2 libxrender1
+#11 8.555   libxshmfence1 libxt6 libxxf86vm1 libz3-4 x11-common x11-xkb-utils
+#11 8.555   xfonts-encodings xfonts-scalable xfonts-utils xkb-data xserver-common xvfb
+#11 8.753 0 upgraded, 109 newly installed, 0 to remove and 0 not upgraded.
+#11 8.753 Need to get 94.4 MB of archives.
+#11 8.753 After this operation, 330 MB of additional disk space will be used.
+#11 8.753 Get:1 http://deb.debian.org/debian bookworm/main arm64 fonts-ipafont-gothic all 00303-23 [3515 kB]
+#11 9.596 Get:2 http://deb.debian.org/debian bookworm/main arm64 at-spi2-common all 2.46.0-5 [162 kB]
+#11 9.599 Get:3 http://deb.debian.org/debian-security bookworm-security/main arm64 libexpat1 arm64 2.5.0-1+deb12u5 [91.7 kB]
+#11 9.602 Get:4 http://deb.debian.org/debian-security bookworm-security/main arm64 libbrotli1 arm64 1.0.9-2+deb12u1 [267 kB]
+#11 9.667 Get:5 http://deb.debian.org/debian-security bookworm-security/main arm64 libpng16-16 arm64 1.6.39-2+deb12u6 [271 kB]
+#11 9.673 Get:6 http://deb.debian.org/debian bookworm/main arm64 libfreetype6 arm64 2.12.1+dfsg-5+deb12u4 [368 kB]
+#11 9.692 Get:7 http://deb.debian.org/debian bookworm/main arm64 fonts-liberation all 1:1.07.4-11 [828 kB]
+#11 9.776 Get:8 http://deb.debian.org/debian bookworm/main arm64 fonts-freefont-ttf all 20120503-10 [2552 kB]
+#11 10.40 Get:9 http://deb.debian.org/debian bookworm/main arm64 fontconfig-config arm64 2.14.1-4 [315 kB]
+#11 10.41 Get:10 http://deb.debian.org/debian bookworm/main arm64 libfontconfig1 arm64 2.14.1-4 [381 kB]
+#11 10.42 Get:11 http://deb.debian.org/debian bookworm/main arm64 fontconfig arm64 2.14.1-4 [449 kB]
+#11 10.45 Get:12 http://deb.debian.org/debian bookworm/main arm64 fonts-noto-color-emoji all 2.042-0+deb12u1 [9894 kB]
+#11 10.81 Get:13 http://deb.debian.org/debian bookworm/main arm64 fonts-tlwg-loma-otf all 1:0.7.3-1 [147 kB]
+#11 10.87 Get:14 http://deb.debian.org/debian bookworm/main arm64 fonts-unifont all 1:15.0.01-2 [2019 kB]
+#11 10.92 Get:15 http://deb.debian.org/debian bookworm/main arm64 fonts-wqy-zenhei all 0.9.45-8 [7479 kB]
+#11 11.24 Get:16 http://deb.debian.org/debian bookworm/main arm64 libasound2-data all 1.2.8-1 [20.5 kB]
+#11 11.24 Get:17 http://deb.debian.org/debian bookworm/main arm64 libasound2 arm64 1.2.8-1+b1 [327 kB]
+#11 11.24 Get:18 http://deb.debian.org/debian bookworm/main arm64 libglib2.0-0 arm64 2.74.6-2+deb12u9 [1316 kB]
+#11 11.27 Get:19 http://deb.debian.org/debian bookworm/main arm64 libatk1.0-0 arm64 2.46.0-5 [47.4 kB]
+#11 11.28 Get:20 http://deb.debian.org/debian bookworm/main arm64 libdbus-1-3 arm64 1.14.10-1~deb12u1 [193 kB]
+#11 11.28 Get:21 http://deb.debian.org/debian bookworm/main arm64 libxau6 arm64 1:1.0.9-1 [19.7 kB]
+#11 11.29 Get:22 http://deb.debian.org/debian bookworm/main arm64 libbsd0 arm64 0.11.7-2 [115 kB]
+#11 11.29 Get:23 http://deb.debian.org/debian bookworm/main arm64 libxdmcp6 arm64 1:1.1.2-3 [25.4 kB]
+#11 11.29 Get:24 http://deb.debian.org/debian bookworm/main arm64 libxcb1 arm64 1.15-1 [143 kB]
+#11 11.29 Get:25 http://deb.debian.org/debian bookworm/main arm64 libx11-data all 2:1.8.4-2+deb12u2 [292 kB]
+#11 11.32 Get:26 http://deb.debian.org/debian bookworm/main arm64 libx11-6 arm64 2:1.8.4-2+deb12u2 [735 kB]
+#11 11.33 Get:27 http://deb.debian.org/debian bookworm/main arm64 libxext6 arm64 2:1.3.4-1+b1 [51.7 kB]
+#11 11.33 Get:28 http://deb.debian.org/debian bookworm/main arm64 libxi6 arm64 2:1.8-1+b1 [82.3 kB]
+#11 11.34 Get:29 http://deb.debian.org/debian bookworm/main arm64 libatspi2.0-0 arm64 2.46.0-5 [71.0 kB]
+#11 11.34 Get:30 http://deb.debian.org/debian bookworm/main arm64 libatk-bridge2.0-0 arm64 2.46.0-5 [61.4 kB]
+#11 11.35 Get:31 http://deb.debian.org/debian bookworm/main arm64 libavahi-common-data arm64 0.8-10+deb12u1 [107 kB]
+#11 11.35 Get:32 http://deb.debian.org/debian bookworm/main arm64 libavahi-common3 arm64 0.8-10+deb12u1 [41.2 kB]
+#11 11.35 Get:33 http://deb.debian.org/debian bookworm/main arm64 libavahi-client3 arm64 0.8-10+deb12u1 [44.3 kB]
+#11 11.35 Get:34 http://deb.debian.org/debian bookworm/main arm64 libpixman-1-0 arm64 0.42.2-1 [470 kB]
+#11 11.36 Get:35 http://deb.debian.org/debian bookworm/main arm64 libxcb-render0 arm64 1.15-1 [115 kB]
+#11 11.36 Get:36 http://deb.debian.org/debian bookworm/main arm64 libxcb-shm0 arm64 1.15-1 [106 kB]
+#11 11.37 Get:37 http://deb.debian.org/debian bookworm/main arm64 libxrender1 arm64 1:0.9.10-1.1 [32.0 kB]
+#11 11.37 Get:38 http://deb.debian.org/debian bookworm/main arm64 libcairo2 arm64 1.16.0-7 [527 kB]
+#11 11.38 Get:39 http://deb.debian.org/debian bookworm/main arm64 libkrb5support0 arm64 1.20.1-2+deb12u5 [32.6 kB]
+#11 11.38 Get:40 http://deb.debian.org/debian bookworm/main arm64 libk5crypto3 arm64 1.20.1-2+deb12u5 [79.9 kB]
+#11 11.38 Get:41 http://deb.debian.org/debian bookworm/main arm64 libkeyutils1 arm64 1.6.3-2 [8844 B]
+#11 11.38 Get:42 http://deb.debian.org/debian-security bookworm-security/main arm64 libssl3 arm64 3.0.22-1~deb12u2 [1829 kB]
+#11 11.43 Get:43 http://deb.debian.org/debian bookworm/main arm64 libkrb5-3 arm64 1.20.1-2+deb12u5 [316 kB]
+#11 11.44 Get:44 http://deb.debian.org/debian bookworm/main arm64 libgssapi-krb5-2 arm64 1.20.1-2+deb12u5 [124 kB]
+#11 11.44 Get:45 http://deb.debian.org/debian bookworm/main arm64 libcups2 arm64 2.4.2-3+deb12u9 [230 kB]
+#11 11.44 Get:46 http://deb.debian.org/debian bookworm/main arm64 libdatrie1 arm64 0.2.13-2+b1 [42.6 kB]
+#11 11.44 Get:47 http://deb.debian.org/debian bookworm/main arm64 libdrm-common all 2.4.114-1 [7112 B]
+#11 11.45 Get:48 http://deb.debian.org/debian bookworm/main arm64 libdrm2 arm64 2.4.114-1+b1 [36.7 kB]
+#11 11.45 Get:49 http://deb.debian.org/debian bookworm/main arm64 libdrm-amdgpu1 arm64 2.4.114-1+b1 [20.4 kB]
+#11 11.45 Get:50 http://deb.debian.org/debian bookworm/main arm64 libdrm-nouveau2 arm64 2.4.114-1+b1 [18.4 kB]
+#11 11.45 Get:51 http://deb.debian.org/debian bookworm/main arm64 libdrm-radeon1 arm64 2.4.114-1+b1 [20.9 kB]
+#11 11.45 Get:52 http://deb.debian.org/debian bookworm/main arm64 libedit2 arm64 3.1-20221030-2 [88.1 kB]
+#11 11.45 Get:53 http://deb.debian.org/debian bookworm/main arm64 libelf1 arm64 0.188-2.1 [173 kB]
+#11 11.46 Get:54 http://deb.debian.org/debian bookworm/main arm64 libfontenc1 arm64 1:1.1.4-1 [23.6 kB]
+#11 11.46 Get:55 http://deb.debian.org/debian bookworm/main arm64 libfribidi0 arm64 1.0.8-2.1 [64.9 kB]
+#11 11.46 Get:56 http://deb.debian.org/debian bookworm/main arm64 libwayland-server0 arm64 1.21.0-1 [34.9 kB]
+#11 11.46 Get:57 http://deb.debian.org/debian bookworm/main arm64 libgbm1 arm64 22.3.6-1+deb12u2 [37.1 kB]
+#11 11.46 Get:58 http://deb.debian.org/debian bookworm/main arm64 libglvnd0 arm64 1.6.0-1 [41.4 kB]
+#11 11.46 Get:59 http://deb.debian.org/debian bookworm/main arm64 libglapi-mesa arm64 22.3.6-1+deb12u2 [45.1 kB]
+#11 11.47 Get:60 http://deb.debian.org/debian bookworm/main arm64 libx11-xcb1 arm64 2:1.8.4-2+deb12u2 [192 kB]
+#11 11.48 Get:61 http://deb.debian.org/debian bookworm/main arm64 libxcb-dri2-0 arm64 1.15-1 [107 kB]
+#11 11.48 Get:62 http://deb.debian.org/debian bookworm/main arm64 libxcb-dri3-0 arm64 1.15-1 [107 kB]
+#11 11.48 Get:63 http://deb.debian.org/debian bookworm/main arm64 libxcb-glx0 arm64 1.15-1 [123 kB]
+#11 11.49 Get:64 http://deb.debian.org/debian bookworm/main arm64 libxcb-present0 arm64 1.15-1 [106 kB]
+#11 11.49 Get:65 http://deb.debian.org/debian bookworm/main arm64 libxcb-randr0 arm64 1.15-1 [117 kB]
+#11 11.49 Get:66 http://deb.debian.org/debian bookworm/main arm64 libxcb-sync1 arm64 1.15-1 [109 kB]
+#11 11.49 Get:67 http://deb.debian.org/debian bookworm/main arm64 libxcb-xfixes0 arm64 1.15-1 [110 kB]
+#11 11.50 Get:68 http://deb.debian.org/debian bookworm/main arm64 libxfixes3 arm64 1:6.0.0-2 [22.9 kB]
+#11 11.50 Get:69 http://deb.debian.org/debian bookworm/main arm64 libxshmfence1 arm64 1.3-1 [8712 B]
+#11 11.50 Get:70 http://deb.debian.org/debian bookworm/main arm64 libxxf86vm1 arm64 1:1.1.4-1+b2 [20.1 kB]
+#11 11.52 Get:71 http://deb.debian.org/debian bookworm/main arm64 libicu72 arm64 72.1-3+deb12u1 [9202 kB]
+#11 13.75 Get:72 http://deb.debian.org/debian bookworm/main arm64 libxml2 arm64 2.9.14+dfsg-1.3~deb12u6 [620 kB]
+#11 13.97 Get:73 http://deb.debian.org/debian bookworm/main arm64 libz3-4 arm64 4.8.12-3.1 [6282 kB]
+#11 19.11 Get:74 http://deb.debian.org/debian bookworm/main arm64 libllvm15 arm64 1:15.0.6-4+b1 [20.7 MB]
+#11 29.31 Get:75 http://deb.debian.org/debian bookworm/main arm64 libsensors-config all 1:3.6.0-7.1 [14.3 kB]
+#11 29.31 Get:76 http://deb.debian.org/debian bookworm/main arm64 libsensors5 arm64 1:3.6.0-7.1 [33.3 kB]
+#11 29.31 Get:77 http://deb.debian.org/debian bookworm/main arm64 libgl1-mesa-dri arm64 22.3.6-1+deb12u2 [6281 kB]
+#11 32.26 Get:78 http://deb.debian.org/debian bookworm/main arm64 libglx-mesa0 arm64 22.3.6-1+deb12u2 [146 kB]
+#11 32.27 Get:79 http://deb.debian.org/debian bookworm/main arm64 libglx0 arm64 1.6.0-1 [30.8 kB]
+#11 32.32 Get:80 http://deb.debian.org/debian bookworm/main arm64 libgl1 arm64 1.6.0-1 [90.2 kB]
+#11 32.32 Get:81 http://deb.debian.org/debian bookworm/main arm64 libgraphite2-3 arm64 1.3.14-1+deb12u1 [68.7 kB]
+#11 32.34 Get:82 http://deb.debian.org/debian bookworm/main arm64 libharfbuzz0b arm64 6.0.0+dfsg-3 [1914 kB]
+#11 33.31 Get:83 http://deb.debian.org/debian bookworm/main arm64 x11-common all 1:7.7+23 [252 kB]
+#11 33.40 Get:84 http://deb.debian.org/debian bookworm/main arm64 libice6 arm64 2:1.0.10-1 [55.6 kB]
+#11 33.46 Get:85 http://deb.debian.org/debian bookworm/main arm64 libnspr4 arm64 2:4.35-1 [105 kB]
+#11 33.47 Get:86 http://deb.debian.org/debian bookworm/main arm64 libsqlite3-0 arm64 3.40.1-2+deb12u2 [786 kB]
+#11 34.53 Get:87 http://deb.debian.org/debian-security bookworm-security/main arm64 libnss3 arm64 2:3.87.1-1+deb12u4 [1216 kB]
+#11 35.38 Get:88 http://deb.debian.org/debian bookworm/main arm64 libthai-data all 0.1.29-1 [176 kB]
+#11 35.49 Get:89 http://deb.debian.org/debian bookworm/main arm64 libthai0 arm64 0.1.29-1 [56.2 kB]
+#11 35.49 Get:90 http://deb.debian.org/debian bookworm/main arm64 libpango-1.0-0 arm64 1.50.12+ds-1 [200 kB]
+#11 35.58 Get:91 http://deb.debian.org/debian bookworm/main arm64 libsm6 arm64 2:1.2.3-1 [34.0 kB]
+#11 35.59 Get:92 http://deb.debian.org/debian bookworm/main arm64 libunwind8 arm64 1.6.2-3 [47.4 kB]
+#11 35.65 Get:93 http://deb.debian.org/debian bookworm/main arm64 libxt6 arm64 1:1.2.1-1.1 [172 kB]
+#11 35.76 Get:94 http://deb.debian.org/debian bookworm/main arm64 libxmu6 arm64 2:1.1.3-3 [57.2 kB]
+#11 35.80 Get:95 http://deb.debian.org/debian bookworm/main arm64 libxpm4 arm64 1:3.5.12-1.1+deb12u1 [45.4 kB]
+#11 35.82 Get:96 http://deb.debian.org/debian bookworm/main arm64 libxaw7 arm64 2:1.0.14-1 [184 kB]
+#11 35.95 Get:97 http://deb.debian.org/debian bookworm/main arm64 libxcomposite1 arm64 1:0.4.5-1 [16.6 kB]
+#11 35.95 Get:98 http://deb.debian.org/debian bookworm/main arm64 libxdamage1 arm64 1:1.1.6-1 [15.2 kB]
+#11 35.98 Get:99 http://deb.debian.org/debian-security bookworm-security/main arm64 libxfont2 arm64 1:2.0.6-1+deb12u1 [124 kB]
+#11 36.02 Get:100 http://deb.debian.org/debian bookworm/main arm64 xkb-data all 2.35.1-1 [764 kB]
+#11 36.65 Get:101 http://deb.debian.org/debian bookworm/main arm64 libxkbcommon0 arm64 1.5.0-1 [100 kB]
+#11 36.82 Get:102 http://deb.debian.org/debian bookworm/main arm64 libxkbfile1 arm64 1:1.1.0-1 [71.5 kB]
+#11 37.13 Get:103 http://deb.debian.org/debian bookworm/main arm64 libxrandr2 arm64 2:1.5.2-2+b1 [38.4 kB]
+#11 37.14 Get:104 http://deb.debian.org/debian bookworm/main arm64 x11-xkb-utils arm64 7.7+7 [154 kB]
+#11 37.33 Get:105 http://deb.debian.org/debian bookworm/main arm64 xfonts-encodings all 1:1.0.4-2.2 [577 kB]
+#11 37.95 Get:106 http://deb.debian.org/debian bookworm/main arm64 xfonts-utils arm64 1:7.7+6 [85.6 kB]
+#11 37.95 Get:107 http://deb.debian.org/debian bookworm/main arm64 xfonts-scalable all 1:1.0.3-1.3 [306 kB]
+#11 38.12 Get:108 http://deb.debian.org/debian-security bookworm-security/main arm64 xserver-common all 2:21.1.7-3+deb12u13 [2384 kB]
+#11 39.97 Get:109 http://deb.debian.org/debian-security bookworm-security/main arm64 xvfb arm64 2:21.1.7-3+deb12u13 [3085 kB]
+#11 43.04 debconf: delaying package configuration, since apt-utils is not installed
+#11 43.05 Fetched 94.4 MB in 34s (2744 kB/s)
+#11 43.07 Selecting previously unselected package fonts-ipafont-gothic.
+#11 43.07 (Reading database ...
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 6090 files and directories currently installed.)
+#11 43.07 Preparing to unpack .../000-fonts-ipafont-gothic_00303-23_all.deb ...
+#11 43.07 Unpacking fonts-ipafont-gothic (00303-23) ...
+#11 43.22 Selecting previously unselected package at-spi2-common.
+#11 43.22 Preparing to unpack .../001-at-spi2-common_2.46.0-5_all.deb ...
+#11 43.22 Unpacking at-spi2-common (2.46.0-5) ...
+#11 43.24 Selecting previously unselected package libexpat1:arm64.
+#11 43.24 Preparing to unpack .../002-libexpat1_2.5.0-1+deb12u5_arm64.deb ...
+#11 43.25 Unpacking libexpat1:arm64 (2.5.0-1+deb12u5) ...
+#11 43.27 Selecting previously unselected package libbrotli1:arm64.
+#11 43.27 Preparing to unpack .../003-libbrotli1_1.0.9-2+deb12u1_arm64.deb ...
+#11 43.27 Unpacking libbrotli1:arm64 (1.0.9-2+deb12u1) ...
+#11 43.29 Selecting previously unselected package libpng16-16:arm64.
+#11 43.29 Preparing to unpack .../004-libpng16-16_1.6.39-2+deb12u6_arm64.deb ...
+#11 43.29 Unpacking libpng16-16:arm64 (1.6.39-2+deb12u6) ...
+#11 43.31 Selecting previously unselected package libfreetype6:arm64.
+#11 43.31 Preparing to unpack .../005-libfreetype6_2.12.1+dfsg-5+deb12u4_arm64.deb ...
+#11 43.31 Unpacking libfreetype6:arm64 (2.12.1+dfsg-5+deb12u4) ...
+#11 43.34 Selecting previously unselected package fonts-liberation.
+#11 43.34 Preparing to unpack .../006-fonts-liberation_1%3a1.07.4-11_all.deb ...
+#11 43.34 Unpacking fonts-liberation (1:1.07.4-11) ...
+#11 43.38 Selecting previously unselected package fonts-freefont-ttf.
+#11 43.38 Preparing to unpack .../007-fonts-freefont-ttf_20120503-10_all.deb ...
+#11 43.38 Unpacking fonts-freefont-ttf (20120503-10) ...
+#11 43.50 Selecting previously unselected package fontconfig-config.
+#11 43.50 Preparing to unpack .../008-fontconfig-config_2.14.1-4_arm64.deb ...
+#11 43.53 Unpacking fontconfig-config (2.14.1-4) ...
+#11 43.54 Selecting previously unselected package libfontconfig1:arm64.
+#11 43.54 Preparing to unpack .../009-libfontconfig1_2.14.1-4_arm64.deb ...
+#11 43.55 Unpacking libfontconfig1:arm64 (2.14.1-4) ...
+#11 43.56 Selecting previously unselected package fontconfig.
+#11 43.56 Preparing to unpack .../010-fontconfig_2.14.1-4_arm64.deb ...
+#11 43.56 Unpacking fontconfig (2.14.1-4) ...
+#11 43.58 Selecting previously unselected package fonts-noto-color-emoji.
+#11 43.58 Preparing to unpack .../011-fonts-noto-color-emoji_2.042-0+deb12u1_all.deb ...
+#11 43.58 Unpacking fonts-noto-color-emoji (2.042-0+deb12u1) ...
+#11 43.97 Selecting previously unselected package fonts-tlwg-loma-otf.
+#11 43.97 Preparing to unpack .../012-fonts-tlwg-loma-otf_1%3a0.7.3-1_all.deb ...
+#11 43.97 Unpacking fonts-tlwg-loma-otf (1:0.7.3-1) ...
+#11 43.98 Selecting previously unselected package fonts-unifont.
+#11 43.98 Preparing to unpack .../013-fonts-unifont_1%3a15.0.01-2_all.deb ...
+#11 43.98 Unpacking fonts-unifont (1:15.0.01-2) ...
+#11 44.08 Selecting previously unselected package fonts-wqy-zenhei.
+#11 44.08 Preparing to unpack .../014-fonts-wqy-zenhei_0.9.45-8_all.deb ...
+#11 44.09 Unpacking fonts-wqy-zenhei (0.9.45-8) ...
+#11 44.37 Selecting previously unselected package libasound2-data.
+#11 44.37 Preparing to unpack .../015-libasound2-data_1.2.8-1_all.deb ...
+#11 44.37 Unpacking libasound2-data (1.2.8-1) ...
+#11 44.39 Selecting previously unselected package libasound2:arm64.
+#11 44.39 Preparing to unpack .../016-libasound2_1.2.8-1+b1_arm64.deb ...
+#11 44.39 Unpacking libasound2:arm64 (1.2.8-1+b1) ...
+#11 44.42 Selecting previously unselected package libglib2.0-0:arm64.
+#11 44.42 Preparing to unpack .../017-libglib2.0-0_2.74.6-2+deb12u9_arm64.deb ...
+#11 44.42 Unpacking libglib2.0-0:arm64 (2.74.6-2+deb12u9) ...
+#11 44.48 Selecting previously unselected package libatk1.0-0:arm64.
+#11 44.48 Preparing to unpack .../018-libatk1.0-0_2.46.0-5_arm64.deb ...
+#11 44.48 Unpacking libatk1.0-0:arm64 (2.46.0-5) ...
+#11 44.49 Selecting previously unselected package libdbus-1-3:arm64.
+#11 44.49 Preparing to unpack .../019-libdbus-1-3_1.14.10-1~deb12u1_arm64.deb ...
+#11 44.49 Unpacking libdbus-1-3:arm64 (1.14.10-1~deb12u1) ...
+#11 44.51 Selecting previously unselected package libxau6:arm64.
+#11 44.51 Preparing to unpack .../020-libxau6_1%3a1.0.9-1_arm64.deb ...
+#11 44.51 Unpacking libxau6:arm64 (1:1.0.9-1) ...
+#11 44.53 Selecting previously unselected package libbsd0:arm64.
+#11 44.53 Preparing to unpack .../021-libbsd0_0.11.7-2_arm64.deb ...
+#11 44.53 Unpacking libbsd0:arm64 (0.11.7-2) ...
+#11 44.54 Selecting previously unselected package libxdmcp6:arm64.
+#11 44.54 Preparing to unpack .../022-libxdmcp6_1%3a1.1.2-3_arm64.deb ...
+#11 44.55 Unpacking libxdmcp6:arm64 (1:1.1.2-3) ...
+#11 44.56 Selecting previously unselected package libxcb1:arm64.
+#11 44.56 Preparing to unpack .../023-libxcb1_1.15-1_arm64.deb ...
+#11 44.56 Unpacking libxcb1:arm64 (1.15-1) ...
+#11 44.57 Selecting previously unselected package libx11-data.
+#11 44.57 Preparing to unpack .../024-libx11-data_2%3a1.8.4-2+deb12u2_all.deb ...
+#11 44.57 Unpacking libx11-data (2:1.8.4-2+deb12u2) ...
+#11 44.60 Selecting previously unselected package libx11-6:arm64.
+#11 44.60 Preparing to unpack .../025-libx11-6_2%3a1.8.4-2+deb12u2_arm64.deb ...
+#11 44.60 Unpacking libx11-6:arm64 (2:1.8.4-2+deb12u2) ...
+#11 44.64 Selecting previously unselected package libxext6:arm64.
+#11 44.64 Preparing to unpack .../026-libxext6_2%3a1.3.4-1+b1_arm64.deb ...
+#11 44.64 Unpacking libxext6:arm64 (2:1.3.4-1+b1) ...
+#11 44.65 Selecting previously unselected package libxi6:arm64.
+#11 44.65 Preparing to unpack .../027-libxi6_2%3a1.8-1+b1_arm64.deb ...
+#11 44.65 Unpacking libxi6:arm64 (2:1.8-1+b1) ...
+#11 44.67 Selecting previously unselected package libatspi2.0-0:arm64.
+#11 44.67 Preparing to unpack .../028-libatspi2.0-0_2.46.0-5_arm64.deb ...
+#11 44.67 Unpacking libatspi2.0-0:arm64 (2.46.0-5) ...
+#11 44.68 Selecting previously unselected package libatk-bridge2.0-0:arm64.
+#11 44.68 Preparing to unpack .../029-libatk-bridge2.0-0_2.46.0-5_arm64.deb ...
+#11 44.68 Unpacking libatk-bridge2.0-0:arm64 (2.46.0-5) ...
+#11 44.71 Selecting previously unselected package libavahi-common-data:arm64.
+#11 44.71 Preparing to unpack .../030-libavahi-common-data_0.8-10+deb12u1_arm64.deb ...
+#11 44.71 Unpacking libavahi-common-data:arm64 (0.8-10+deb12u1) ...
+#11 44.73 Selecting previously unselected package libavahi-common3:arm64.
+#11 44.73 Preparing to unpack .../031-libavahi-common3_0.8-10+deb12u1_arm64.deb ...
+#11 44.73 Unpacking libavahi-common3:arm64 (0.8-10+deb12u1) ...
+#11 44.74 Selecting previously unselected package libavahi-client3:arm64.
+#11 44.74 Preparing to unpack .../032-libavahi-client3_0.8-10+deb12u1_arm64.deb ...
+#11 44.74 Unpacking libavahi-client3:arm64 (0.8-10+deb12u1) ...
+#11 44.76 Selecting previously unselected package libpixman-1-0:arm64.
+#11 44.76 Preparing to unpack .../033-libpixman-1-0_0.42.2-1_arm64.deb ...
+#11 44.76 Unpacking libpixman-1-0:arm64 (0.42.2-1) ...
+#11 44.78 Selecting previously unselected package libxcb-render0:arm64.
+#11 44.78 Preparing to unpack .../034-libxcb-render0_1.15-1_arm64.deb ...
+#11 44.78 Unpacking libxcb-render0:arm64 (1.15-1) ...
+#11 44.80 Selecting previously unselected package libxcb-shm0:arm64.
+#11 44.80 Preparing to unpack .../035-libxcb-shm0_1.15-1_arm64.deb ...
+#11 44.80 Unpacking libxcb-shm0:arm64 (1.15-1) ...
+#11 44.81 Selecting previously unselected package libxrender1:arm64.
+#11 44.82 Preparing to unpack .../036-libxrender1_1%3a0.9.10-1.1_arm64.deb ...
+#11 44.82 Unpacking libxrender1:arm64 (1:0.9.10-1.1) ...
+#11 44.83 Selecting previously unselected package libcairo2:arm64.
+#11 44.83 Preparing to unpack .../037-libcairo2_1.16.0-7_arm64.deb ...
+#11 44.83 Unpacking libcairo2:arm64 (1.16.0-7) ...
+#11 44.86 Selecting previously unselected package libkrb5support0:arm64.
+#11 44.86 Preparing to unpack .../038-libkrb5support0_1.20.1-2+deb12u5_arm64.deb ...
+#11 44.86 Unpacking libkrb5support0:arm64 (1.20.1-2+deb12u5) ...
+#11 44.88 Selecting previously unselected package libk5crypto3:arm64.
+#11 44.88 Preparing to unpack .../039-libk5crypto3_1.20.1-2+deb12u5_arm64.deb ...
+#11 44.88 Unpacking libk5crypto3:arm64 (1.20.1-2+deb12u5) ...
+#11 44.89 Selecting previously unselected package libkeyutils1:arm64.
+#11 44.89 Preparing to unpack .../040-libkeyutils1_1.6.3-2_arm64.deb ...
+#11 44.89 Unpacking libkeyutils1:arm64 (1.6.3-2) ...
+#11 44.91 Selecting previously unselected package libssl3:arm64.
+#11 44.91 Preparing to unpack .../041-libssl3_3.0.22-1~deb12u2_arm64.deb ...
+#11 44.91 Unpacking libssl3:arm64 (3.0.22-1~deb12u2) ...
+#11 44.99 Selecting previously unselected package libkrb5-3:arm64.
+#11 44.99 Preparing to unpack .../042-libkrb5-3_1.20.1-2+deb12u5_arm64.deb ...
+#11 44.99 Unpacking libkrb5-3:arm64 (1.20.1-2+deb12u5) ...
+#11 45.02 Selecting previously unselected package libgssapi-krb5-2:arm64.
+#11 45.02 Preparing to unpack .../043-libgssapi-krb5-2_1.20.1-2+deb12u5_arm64.deb ...
+#11 45.02 Unpacking libgssapi-krb5-2:arm64 (1.20.1-2+deb12u5) ...
+#11 45.04 Selecting previously unselected package libcups2:arm64.
+#11 45.04 Preparing to unpack .../044-libcups2_2.4.2-3+deb12u9_arm64.deb ...
+#11 45.04 Unpacking libcups2:arm64 (2.4.2-3+deb12u9) ...
+#11 45.06 Selecting previously unselected package libdatrie1:arm64.
+#11 45.06 Preparing to unpack .../045-libdatrie1_0.2.13-2+b1_arm64.deb ...
+#11 45.07 Unpacking libdatrie1:arm64 (0.2.13-2+b1) ...
+#11 45.08 Selecting previously unselected package libdrm-common.
+#11 45.08 Preparing to unpack .../046-libdrm-common_2.4.114-1_all.deb ...
+#11 45.08 Unpacking libdrm-common (2.4.114-1) ...
+#11 45.10 Selecting previously unselected package libdrm2:arm64.
+#11 45.10 Preparing to unpack .../047-libdrm2_2.4.114-1+b1_arm64.deb ...
+#11 45.10 Unpacking libdrm2:arm64 (2.4.114-1+b1) ...
+#11 45.11 Selecting previously unselected package libdrm-amdgpu1:arm64.
+#11 45.11 Preparing to unpack .../048-libdrm-amdgpu1_2.4.114-1+b1_arm64.deb ...
+#11 45.11 Unpacking libdrm-amdgpu1:arm64 (2.4.114-1+b1) ...
+#11 45.12 Selecting previously unselected package libdrm-nouveau2:arm64.
+#11 45.12 Preparing to unpack .../049-libdrm-nouveau2_2.4.114-1+b1_arm64.deb ...
+#11 45.13 Unpacking libdrm-nouveau2:arm64 (2.4.114-1+b1) ...
+#11 45.14 Selecting previously unselected package libdrm-radeon1:arm64.
+#11 45.14 Preparing to unpack .../050-libdrm-radeon1_2.4.114-1+b1_arm64.deb ...
+#11 45.14 Unpacking libdrm-radeon1:arm64 (2.4.114-1+b1) ...
+#11 45.15 Selecting previously unselected package libedit2:arm64.
+#11 45.15 Preparing to unpack .../051-libedit2_3.1-20221030-2_arm64.deb ...
+#11 45.16 Unpacking libedit2:arm64 (3.1-20221030-2) ...
+#11 45.17 Selecting previously unselected package libelf1:arm64.
+#11 45.17 Preparing to unpack .../052-libelf1_0.188-2.1_arm64.deb ...
+#11 45.18 Unpacking libelf1:arm64 (0.188-2.1) ...
+#11 45.20 Selecting previously unselected package libfontenc1:arm64.
+#11 45.20 Preparing to unpack .../053-libfontenc1_1%3a1.1.4-1_arm64.deb ...
+#11 45.20 Unpacking libfontenc1:arm64 (1:1.1.4-1) ...
+#11 45.21 Selecting previously unselected package libfribidi0:arm64.
+#11 45.21 Preparing to unpack .../054-libfribidi0_1.0.8-2.1_arm64.deb ...
+#11 45.21 Unpacking libfribidi0:arm64 (1.0.8-2.1) ...
+#11 45.23 Selecting previously unselected package libwayland-server0:arm64.
+#11 45.23 Preparing to unpack .../055-libwayland-server0_1.21.0-1_arm64.deb ...
+#11 45.23 Unpacking libwayland-server0:arm64 (1.21.0-1) ...
+#11 45.24 Selecting previously unselected package libgbm1:arm64.
+#11 45.24 Preparing to unpack .../056-libgbm1_22.3.6-1+deb12u2_arm64.deb ...
+#11 45.25 Unpacking libgbm1:arm64 (22.3.6-1+deb12u2) ...
+#11 45.26 Selecting previously unselected package libglvnd0:arm64.
+#11 45.26 Preparing to unpack .../057-libglvnd0_1.6.0-1_arm64.deb ...
+#11 45.26 Unpacking libglvnd0:arm64 (1.6.0-1) ...
+#11 45.28 Selecting previously unselected package libglapi-mesa:arm64.
+#11 45.28 Preparing to unpack .../058-libglapi-mesa_22.3.6-1+deb12u2_arm64.deb ...
+#11 45.28 Unpacking libglapi-mesa:arm64 (22.3.6-1+deb12u2) ...
+#11 45.29 Selecting previously unselected package libx11-xcb1:arm64.
+#11 45.29 Preparing to unpack .../059-libx11-xcb1_2%3a1.8.4-2+deb12u2_arm64.deb ...
+#11 45.29 Unpacking libx11-xcb1:arm64 (2:1.8.4-2+deb12u2) ...
+#11 45.31 Selecting previously unselected package libxcb-dri2-0:arm64.
+#11 45.31 Preparing to unpack .../060-libxcb-dri2-0_1.15-1_arm64.deb ...
+#11 45.31 Unpacking libxcb-dri2-0:arm64 (1.15-1) ...
+#11 45.32 Selecting previously unselected package libxcb-dri3-0:arm64.
+#11 45.32 Preparing to unpack .../061-libxcb-dri3-0_1.15-1_arm64.deb ...
+#11 45.32 Unpacking libxcb-dri3-0:arm64 (1.15-1) ...
+#11 45.34 Selecting previously unselected package libxcb-glx0:arm64.
+#11 45.34 Preparing to unpack .../062-libxcb-glx0_1.15-1_arm64.deb ...
+#11 45.34 Unpacking libxcb-glx0:arm64 (1.15-1) ...
+#11 45.36 Selecting previously unselected package libxcb-present0:arm64.
+#11 45.36 Preparing to unpack .../063-libxcb-present0_1.15-1_arm64.deb ...
+#11 45.36 Unpacking libxcb-present0:arm64 (1.15-1) ...
+#11 45.38 Selecting previously unselected package libxcb-randr0:arm64.
+#11 45.38 Preparing to unpack .../064-libxcb-randr0_1.15-1_arm64.deb ...
+#11 45.38 Unpacking libxcb-randr0:arm64 (1.15-1) ...
+#11 45.39 Selecting previously unselected package libxcb-sync1:arm64.
+#11 45.39 Preparing to unpack .../065-libxcb-sync1_1.15-1_arm64.deb ...
+#11 45.40 Unpacking libxcb-sync1:arm64 (1.15-1) ...
+#11 45.41 Selecting previously unselected package libxcb-xfixes0:arm64.
+#11 45.41 Preparing to unpack .../066-libxcb-xfixes0_1.15-1_arm64.deb ...
+#11 45.41 Unpacking libxcb-xfixes0:arm64 (1.15-1) ...
+#11 45.43 Selecting previously unselected package libxfixes3:arm64.
+#11 45.43 Preparing to unpack .../067-libxfixes3_1%3a6.0.0-2_arm64.deb ...
+#11 45.43 Unpacking libxfixes3:arm64 (1:6.0.0-2) ...
+#11 45.44 Selecting previously unselected package libxshmfence1:arm64.
+#11 45.44 Preparing to unpack .../068-libxshmfence1_1.3-1_arm64.deb ...
+#11 45.45 Unpacking libxshmfence1:arm64 (1.3-1) ...
+#11 45.46 Selecting previously unselected package libxxf86vm1:arm64.
+#11 45.46 Preparing to unpack .../069-libxxf86vm1_1%3a1.1.4-1+b2_arm64.deb ...
+#11 45.46 Unpacking libxxf86vm1:arm64 (1:1.1.4-1+b2) ...
+#11 45.47 Selecting previously unselected package libicu72:arm64.
+#11 45.47 Preparing to unpack .../070-libicu72_72.1-3+deb12u1_arm64.deb ...
+#11 45.47 Unpacking libicu72:arm64 (72.1-3+deb12u1) ...
+#11 45.78 Selecting previously unselected package libxml2:arm64.
+#11 45.78 Preparing to unpack .../071-libxml2_2.9.14+dfsg-1.3~deb12u6_arm64.deb ...
+#11 45.78 Unpacking libxml2:arm64 (2.9.14+dfsg-1.3~deb12u6) ...
+#11 45.81 Selecting previously unselected package libz3-4:arm64.
+#11 45.81 Preparing to unpack .../072-libz3-4_4.8.12-3.1_arm64.deb ...
+#11 45.82 Unpacking libz3-4:arm64 (4.8.12-3.1) ...
+#11 46.07 Selecting previously unselected package libllvm15:arm64.
+#11 46.07 Preparing to unpack .../073-libllvm15_1%3a15.0.6-4+b1_arm64.deb ...
+#11 46.07 Unpacking libllvm15:arm64 (1:15.0.6-4+b1) ...
+#11 46.49 Selecting previously unselected package libsensors-config.
+#11 46.49 Preparing to unpack .../074-libsensors-config_1%3a3.6.0-7.1_all.deb ...
+#11 46.49 Unpacking libsensors-config (1:3.6.0-7.1) ...
+#11 46.50 Selecting previously unselected package libsensors5:arm64.
+#11 46.50 Preparing to unpack .../075-libsensors5_1%3a3.6.0-7.1_arm64.deb ...
+#11 46.51 Unpacking libsensors5:arm64 (1:3.6.0-7.1) ...
+#11 46.52 Selecting previously unselected package libgl1-mesa-dri:arm64.
+#11 46.52 Preparing to unpack .../076-libgl1-mesa-dri_22.3.6-1+deb12u2_arm64.deb ...
+#11 46.52 Unpacking libgl1-mesa-dri:arm64 (22.3.6-1+deb12u2) ...
+#11 46.78 Selecting previously unselected package libglx-mesa0:arm64.
+#11 46.78 Preparing to unpack .../077-libglx-mesa0_22.3.6-1+deb12u2_arm64.deb ...
+#11 46.78 Unpacking libglx-mesa0:arm64 (22.3.6-1+deb12u2) ...
+#11 46.80 Selecting previously unselected package libglx0:arm64.
+#11 46.80 Preparing to unpack .../078-libglx0_1.6.0-1_arm64.deb ...
+#11 46.80 Unpacking libglx0:arm64 (1.6.0-1) ...
+#11 46.81 Selecting previously unselected package libgl1:arm64.
+#11 46.81 Preparing to unpack .../079-libgl1_1.6.0-1_arm64.deb ...
+#11 46.82 Unpacking libgl1:arm64 (1.6.0-1) ...
+#11 46.83 Selecting previously unselected package libgraphite2-3:arm64.
+#11 46.83 Preparing to unpack .../080-libgraphite2-3_1.3.14-1+deb12u1_arm64.deb ...
+#11 46.83 Unpacking libgraphite2-3:arm64 (1.3.14-1+deb12u1) ...
+#11 46.85 Selecting previously unselected package libharfbuzz0b:arm64.
+#11 46.85 Preparing to unpack .../081-libharfbuzz0b_6.0.0+dfsg-3_arm64.deb ...
+#11 46.85 Unpacking libharfbuzz0b:arm64 (6.0.0+dfsg-3) ...
+#11 46.88 Selecting previously unselected package x11-common.
+#11 46.88 Preparing to unpack .../082-x11-common_1%3a7.7+23_all.deb ...
+#11 46.88 Unpacking x11-common (1:7.7+23) ...
+#11 46.90 Selecting previously unselected package libice6:arm64.
+#11 46.90 Preparing to unpack .../083-libice6_2%3a1.0.10-1_arm64.deb ...
+#11 46.91 Unpacking libice6:arm64 (2:1.0.10-1) ...
+#11 46.92 Selecting previously unselected package libnspr4:arm64.
+#11 46.92 Preparing to unpack .../084-libnspr4_2%3a4.35-1_arm64.deb ...
+#11 46.92 Unpacking libnspr4:arm64 (2:4.35-1) ...
+#11 46.94 Selecting previously unselected package libsqlite3-0:arm64.
+#11 46.94 Preparing to unpack .../085-libsqlite3-0_3.40.1-2+deb12u2_arm64.deb ...
+#11 46.94 Unpacking libsqlite3-0:arm64 (3.40.1-2+deb12u2) ...
+#11 46.98 Selecting previously unselected package libnss3:arm64.
+#11 46.98 Preparing to unpack .../086-libnss3_2%3a3.87.1-1+deb12u4_arm64.deb ...
+#11 46.98 Unpacking libnss3:arm64 (2:3.87.1-1+deb12u4) ...
+#11 47.04 Selecting previously unselected package libthai-data.
+#11 47.04 Preparing to unpack .../087-libthai-data_0.1.29-1_all.deb ...
+#11 47.04 Unpacking libthai-data (0.1.29-1) ...
+#11 47.06 Selecting previously unselected package libthai0:arm64.
+#11 47.06 Preparing to unpack .../088-libthai0_0.1.29-1_arm64.deb ...
+#11 47.06 Unpacking libthai0:arm64 (0.1.29-1) ...
+#11 47.07 Selecting previously unselected package libpango-1.0-0:arm64.
+#11 47.07 Preparing to unpack .../089-libpango-1.0-0_1.50.12+ds-1_arm64.deb ...
+#11 47.08 Unpacking libpango-1.0-0:arm64 (1.50.12+ds-1) ...
+#11 47.10 Selecting previously unselected package libsm6:arm64.
+#11 47.10 Preparing to unpack .../090-libsm6_2%3a1.2.3-1_arm64.deb ...
+#11 47.10 Unpacking libsm6:arm64 (2:1.2.3-1) ...
+#11 47.11 Selecting previously unselected package libunwind8:arm64.
+#11 47.11 Preparing to unpack .../091-libunwind8_1.6.2-3_arm64.deb ...
+#11 47.12 Unpacking libunwind8:arm64 (1.6.2-3) ...
+#11 47.13 Selecting previously unselected package libxt6:arm64.
+#11 47.13 Preparing to unpack .../092-libxt6_1%3a1.2.1-1.1_arm64.deb ...
+#11 47.13 Unpacking libxt6:arm64 (1:1.2.1-1.1) ...
+#11 47.15 Selecting previously unselected package libxmu6:arm64.
+#11 47.15 Preparing to unpack .../093-libxmu6_2%3a1.1.3-3_arm64.deb ...
+#11 47.15 Unpacking libxmu6:arm64 (2:1.1.3-3) ...
+#11 47.16 Selecting previously unselected package libxpm4:arm64.
+#11 47.16 Preparing to unpack .../094-libxpm4_1%3a3.5.12-1.1+deb12u1_arm64.deb ...
+#11 47.17 Unpacking libxpm4:arm64 (1:3.5.12-1.1+deb12u1) ...
+#11 47.18 Selecting previously unselected package libxaw7:arm64.
+#11 47.18 Preparing to unpack .../095-libxaw7_2%3a1.0.14-1_arm64.deb ...
+#11 47.18 Unpacking libxaw7:arm64 (2:1.0.14-1) ...
+#11 47.20 Selecting previously unselected package libxcomposite1:arm64.
+#11 47.20 Preparing to unpack .../096-libxcomposite1_1%3a0.4.5-1_arm64.deb ...
+#11 47.20 Unpacking libxcomposite1:arm64 (1:0.4.5-1) ...
+#11 47.21 Selecting previously unselected package libxdamage1:arm64.
+#11 47.21 Preparing to unpack .../097-libxdamage1_1%3a1.1.6-1_arm64.deb ...
+#11 47.21 Unpacking libxdamage1:arm64 (1:1.1.6-1) ...
+#11 47.22 Selecting previously unselected package libxfont2:arm64.
+#11 47.23 Preparing to unpack .../098-libxfont2_1%3a2.0.6-1+deb12u1_arm64.deb ...
+#11 47.23 Unpacking libxfont2:arm64 (1:2.0.6-1+deb12u1) ...
+#11 47.24 Selecting previously unselected package xkb-data.
+#11 47.24 Preparing to unpack .../099-xkb-data_2.35.1-1_all.deb ...
+#11 47.24 Unpacking xkb-data (2.35.1-1) ...
+#11 47.29 Selecting previously unselected package libxkbcommon0:arm64.
+#11 47.29 Preparing to unpack .../100-libxkbcommon0_1.5.0-1_arm64.deb ...
+#11 47.29 Unpacking libxkbcommon0:arm64 (1.5.0-1) ...
+#11 47.31 Selecting previously unselected package libxkbfile1:arm64.
+#11 47.31 Preparing to unpack .../101-libxkbfile1_1%3a1.1.0-1_arm64.deb ...
+#11 47.31 Unpacking libxkbfile1:arm64 (1:1.1.0-1) ...
+#11 47.32 Selecting previously unselected package libxrandr2:arm64.
+#11 47.32 Preparing to unpack .../102-libxrandr2_2%3a1.5.2-2+b1_arm64.deb ...
+#11 47.33 Unpacking libxrandr2:arm64 (2:1.5.2-2+b1) ...
+#11 47.34 Selecting previously unselected package x11-xkb-utils.
+#11 47.34 Preparing to unpack .../103-x11-xkb-utils_7.7+7_arm64.deb ...
+#11 47.34 Unpacking x11-xkb-utils (7.7+7) ...
+#11 47.35 Selecting previously unselected package xfonts-encodings.
+#11 47.35 Preparing to unpack .../104-xfonts-encodings_1%3a1.0.4-2.2_all.deb ...
+#11 47.36 Unpacking xfonts-encodings (1:1.0.4-2.2) ...
+#11 47.39 Selecting previously unselected package xfonts-utils.
+#11 47.39 Preparing to unpack .../105-xfonts-utils_1%3a7.7+6_arm64.deb ...
+#11 47.39 Unpacking xfonts-utils (1:7.7+6) ...
+#11 47.40 Selecting previously unselected package xfonts-scalable.
+#11 47.41 Preparing to unpack .../106-xfonts-scalable_1%3a1.0.3-1.3_all.deb ...
+#11 47.41 Unpacking xfonts-scalable (1:1.0.3-1.3) ...
+#11 47.43 Selecting previously unselected package xserver-common.
+#11 47.43 Preparing to unpack .../107-xserver-common_2%3a21.1.7-3+deb12u13_all.deb ...
+#11 47.43 Unpacking xserver-common (2:21.1.7-3+deb12u13) ...
+#11 47.45 Selecting previously unselected package xvfb.
+#11 47.45 Preparing to unpack .../108-xvfb_2%3a21.1.7-3+deb12u13_arm64.deb ...
+#11 47.45 Unpacking xvfb (2:21.1.7-3+deb12u13) ...
+#11 47.50 Setting up libexpat1:arm64 (2.5.0-1+deb12u5) ...
+#11 47.51 Setting up libgraphite2-3:arm64 (1.3.14-1+deb12u1) ...
+#11 47.51 Setting up libpixman-1-0:arm64 (0.42.2-1) ...
+#11 47.52 Setting up libwayland-server0:arm64 (1.21.0-1) ...
+#11 47.52 Setting up libxau6:arm64 (1:1.0.9-1) ...
+#11 47.52 Setting up libkeyutils1:arm64 (1.6.3-2) ...
+#11 47.53 Setting up libicu72:arm64 (72.1-3+deb12u1) ...
+#11 47.53 Setting up libdatrie1:arm64 (0.2.13-2+b1) ...
+#11 47.53 Setting up fonts-noto-color-emoji (2.042-0+deb12u1) ...
+#11 47.54 Setting up libglib2.0-0:arm64 (2.74.6-2+deb12u9) ...
+#11 47.55 No schema files found: doing nothing.
+#11 47.55 Setting up libglvnd0:arm64 (1.6.0-1) ...
+#11 47.55 Setting up libbrotli1:arm64 (1.0.9-2+deb12u1) ...
+#11 47.55 Setting up libsqlite3-0:arm64 (3.40.1-2+deb12u2) ...
+#11 47.55 Setting up libssl3:arm64 (3.0.22-1~deb12u2) ...
+#11 47.56 Setting up x11-common (1:7.7+23) ...
+#11 47.60 debconf: unable to initialize frontend: Dialog
+#11 47.60 debconf: (TERM is not set, so the dialog frontend is not usable.)
+#11 47.60 debconf: falling back to frontend: Readline
+#11 47.60 debconf: unable to initialize frontend: Readline
+#11 47.60 debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC contains: /etc/perl /usr/local/lib/aarch64-linux-gnu/perl/5.36.0 /usr/local/share/perl/5.36.0 /usr/lib/aarch64-linux-gnu/perl5/5.36 /usr/share/perl5 /usr/lib/aarch64-linux-gnu/perl-base /usr/lib/aarch64-linux-gnu/perl/5.36 /usr/share/perl/5.36 /usr/local/lib/site_perl) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 7.)
+#11 47.60 debconf: falling back to frontend: Teletype
+#11 47.60 invoke-rc.d: could not determine current runlevel
+#11 47.60 invoke-rc.d: policy-rc.d denied execution of restart.
+#11 47.61 Setting up libsensors-config (1:3.6.0-7.1) ...
+#11 47.61 Setting up fonts-freefont-ttf (20120503-10) ...
+#11 47.61 Setting up xkb-data (2.35.1-1) ...
+#11 47.62 Setting up libunwind8:arm64 (1.6.2-3) ...
+#11 47.62 Setting up libkrb5support0:arm64 (1.20.1-2+deb12u5) ...
+#11 47.62 Setting up libasound2-data (1.2.8-1) ...
+#11 47.62 Setting up libfontenc1:arm64 (1:1.1.4-1) ...
+#11 47.63 Setting up libz3-4:arm64 (4.8.12-3.1) ...
+#11 47.63 Setting up fonts-tlwg-loma-otf (1:0.7.3-1) ...
+#11 47.63 Setting up libx11-data (2:1.8.4-2+deb12u2) ...
+#11 47.64 Setting up libnspr4:arm64 (2:4.35-1) ...
+#11 47.64 Setting up libavahi-common-data:arm64 (0.8-10+deb12u1) ...
+#11 47.64 Setting up libdbus-1-3:arm64 (1.14.10-1~deb12u1) ...
+#11 47.65 Setting up xfonts-encodings (1:1.0.4-2.2) ...
+#11 47.65 Setting up libfribidi0:arm64 (1.0.8-2.1) ...
+#11 47.65 Setting up libpng16-16:arm64 (1.6.39-2+deb12u6) ...
+#11 47.65 Setting up libsensors5:arm64 (1:3.6.0-7.1) ...
+#11 47.66 Setting up libk5crypto3:arm64 (1.20.1-2+deb12u5) ...
+#11 47.66 Setting up libglapi-mesa:arm64 (22.3.6-1+deb12u2) ...
+#11 47.66 Setting up fonts-ipafont-gothic (00303-23) ...
+#11 47.67 update-alternatives: using /usr/share/fonts/opentype/ipafont-gothic/ipag.ttf to provide /usr/share/fonts/truetype/fonts-japanese-gothic.ttf (fonts-japanese-gothic.ttf) in auto mode
+#11 47.67 Setting up libxshmfence1:arm64 (1.3-1) ...
+#11 47.67 Setting up at-spi2-common (2.46.0-5) ...
+#11 47.67 Setting up libasound2:arm64 (1.2.8-1+b1) ...
+#11 47.68 Setting up fonts-liberation (1:1.07.4-11) ...
+#11 47.68 Setting up libthai-data (0.1.29-1) ...
+#11 47.68 Setting up libatk1.0-0:arm64 (2.46.0-5) ...
+#11 47.68 Setting up libkrb5-3:arm64 (1.20.1-2+deb12u5) ...
+#11 47.69 Setting up libbsd0:arm64 (0.11.7-2) ...
+#11 47.69 Setting up libdrm-common (2.4.114-1) ...
+#11 47.69 Setting up libelf1:arm64 (0.188-2.1) ...
+#11 47.70 Setting up libxml2:arm64 (2.9.14+dfsg-1.3~deb12u6) ...
+#11 47.70 Setting up fonts-unifont (1:15.0.01-2) ...
+#11 47.70 Setting up libxkbcommon0:arm64 (1.5.0-1) ...
+#11 47.71 Setting up libice6:arm64 (2:1.0.10-1) ...
+#11 47.71 Setting up libxdmcp6:arm64 (1:1.1.2-3) ...
+#11 47.71 Setting up libxcb1:arm64 (1.15-1) ...
+#11 47.71 Setting up libxcb-xfixes0:arm64 (1.15-1) ...
+#11 47.72 Setting up libxcb-render0:arm64 (1.15-1) ...
+#11 47.72 Setting up fontconfig-config (2.14.1-4) ...
+#11 47.75 debconf: unable to initialize frontend: Dialog
+#11 47.75 debconf: (TERM is not set, so the dialog frontend is not usable.)
+#11 47.75 debconf: falling back to frontend: Readline
+#11 47.75 debconf: unable to initialize frontend: Readline
+#11 47.75 debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC contains: /etc/perl /usr/local/lib/aarch64-linux-gnu/perl/5.36.0 /usr/local/share/perl/5.36.0 /usr/lib/aarch64-linux-gnu/perl5/5.36 /usr/share/perl5 /usr/lib/aarch64-linux-gnu/perl-base /usr/lib/aarch64-linux-gnu/perl/5.36 /usr/share/perl/5.36 /usr/local/lib/site_perl) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 7.)
+#11 47.75 debconf: falling back to frontend: Teletype
+#11 47.79 Setting up libxcb-glx0:arm64 (1.15-1) ...
+#11 47.80 Setting up libedit2:arm64 (3.1-20221030-2) ...
+#11 47.80 Setting up libavahi-common3:arm64 (0.8-10+deb12u1) ...
+#11 47.81 Setting up libnss3:arm64 (2:3.87.1-1+deb12u4) ...
+#11 47.81 Setting up libxcb-shm0:arm64 (1.15-1) ...
+#11 47.82 Setting up libxcb-present0:arm64 (1.15-1) ...
+#11 47.82 Setting up libthai0:arm64 (0.1.29-1) ...
+#11 47.82 Setting up libfreetype6:arm64 (2.12.1+dfsg-5+deb12u4) ...
+#11 47.83 Setting up libxcb-sync1:arm64 (1.15-1) ...
+#11 47.83 Setting up libgssapi-krb5-2:arm64 (1.20.1-2+deb12u5) ...
+#11 47.84 Setting up libxcb-dri2-0:arm64 (1.15-1) ...
+#11 47.84 Setting up libdrm2:arm64 (2.4.114-1+b1) ...
+#11 47.85 Setting up libxcb-randr0:arm64 (1.15-1) ...
+#11 47.85 Setting up libllvm15:arm64 (1:15.0.6-4+b1) ...
+#11 47.85 Setting up libx11-6:arm64 (2:1.8.4-2+deb12u2) ...
+#11 47.86 Setting up libharfbuzz0b:arm64 (6.0.0+dfsg-3) ...
+#11 47.86 Setting up libfontconfig1:arm64 (2.14.1-4) ...
+#11 47.86 Setting up libxkbfile1:arm64 (1:1.1.0-1) ...
+#11 47.87 Setting up libxcomposite1:arm64 (1:0.4.5-1) ...
+#11 47.87 Setting up libsm6:arm64 (2:1.2.3-1) ...
+#11 47.87 Setting up libxfont2:arm64 (1:2.0.6-1+deb12u1) ...
+#11 47.88 Setting up libavahi-client3:arm64 (0.8-10+deb12u1) ...
+#11 47.88 Setting up libdrm-amdgpu1:arm64 (2.4.114-1+b1) ...
+#11 47.88 Setting up libxcb-dri3-0:arm64 (1.15-1) ...
+#11 47.89 Setting up libx11-xcb1:arm64 (2:1.8.4-2+deb12u2) ...
+#11 47.90 Setting up fontconfig (2.14.1-4) ...
+#11 47.90 Regenerating fonts cache... done.
+#11 49.95 Setting up libdrm-nouveau2:arm64 (2.4.114-1+b1) ...
+#11 49.95 Setting up libxdamage1:arm64 (1:1.1.6-1) ...
+#11 49.96 Setting up libxpm4:arm64 (1:3.5.12-1.1+deb12u1) ...
+#11 49.97 Setting up libxrender1:arm64 (1:0.9.10-1.1) ...
+#11 49.97 Setting up libgbm1:arm64 (22.3.6-1+deb12u2) ...
+#11 49.98 Setting up libdrm-radeon1:arm64 (2.4.114-1+b1) ...
+#11 49.98 Setting up libpango-1.0-0:arm64 (1.50.12+ds-1) ...
+#11 49.99 Setting up libgl1-mesa-dri:arm64 (22.3.6-1+deb12u2) ...
+#11 50.00 Setting up fonts-wqy-zenhei (0.9.45-8) ...
+#11 50.02 Setting up libxext6:arm64 (2:1.3.4-1+b1) ...
+#11 50.02 Setting up xfonts-utils (1:7.7+6) ...
+#11 50.03 Setting up libcairo2:arm64 (1.16.0-7) ...
+#11 50.03 Setting up libxxf86vm1:arm64 (1:1.1.4-1+b2) ...
+#11 50.04 Setting up libxfixes3:arm64 (1:6.0.0-2) ...
+#11 50.05 Setting up libxrandr2:arm64 (2:1.5.2-2+b1) ...
+#11 50.05 Setting up libxt6:arm64 (1:1.2.1-1.1) ...
+#11 50.06 Setting up libcups2:arm64 (2.4.2-3+deb12u9) ...
+#11 50.06 Setting up xfonts-scalable (1:1.0.3-1.3) ...
+#11 50.09 Setting up libxmu6:arm64 (2:1.1.3-3) ...
+#11 50.10 Setting up libglx-mesa0:arm64 (22.3.6-1+deb12u2) ...
+#11 50.11 Setting up libxi6:arm64 (2:1.8-1+b1) ...
+#11 50.11 Setting up libglx0:arm64 (1.6.0-1) ...
+#11 50.12 Setting up libxaw7:arm64 (2:1.0.14-1) ...
+#11 50.12 Setting up libatspi2.0-0:arm64 (2.46.0-5) ...
+#11 50.13 Setting up libatk-bridge2.0-0:arm64 (2.46.0-5) ...
+#11 50.14 Setting up libgl1:arm64 (1.6.0-1) ...
+#11 50.14 Setting up x11-xkb-utils (7.7+7) ...
+#11 50.15 Setting up xserver-common (2:21.1.7-3+deb12u13) ...
+#11 50.16 Setting up xvfb (2:21.1.7-3+deb12u13) ...
+#11 50.16 Processing triggers for libc-bin (2.36-9+deb12u14) ...
+#11 50.28 Downloading Chrome Headless Shell 159.0.8154.6 (playwright chromium-headless-shell v1255) from https://cdn.playwright.dev/builds/cft/159.0.8154.6/linux-arm64/chrome-headless-shell-linux-arm64.zip
+#11 51.61 |                                                                                |   0% of 124.3 MiB
+#11 56.72 |■■■■■■■■                                                                        |  10% of 124.3 MiB
+#11 58.05 |■■■■■■■■■■■■■■■■                                                                |  20% of 124.3 MiB
+#11 58.92 |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 124.3 MiB
+#11 60.19 |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 124.3 MiB
+#11 61.59 |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 124.3 MiB
+#11 62.90 |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 124.3 MiB
+#11 63.79 |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 124.3 MiB
+#11 64.70 |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 124.3 MiB
+#11 65.66 |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 124.3 MiB
+#11 66.37 |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 124.3 MiB
+#11 67.84 Chrome Headless Shell 159.0.8154.6 (playwright chromium-headless-shell v1255) downloaded to /opt/chromium/chromium_headless_shell-1255
+#11 67.84 Downloading FFmpeg (playwright ffmpeg v1013) from https://cdn.playwright.dev/dbazure/download/playwright/builds/ffmpeg/1013/ffmpeg-linux-arm64.zip
+#11 68.89 |                                                                                |   0% of 1.9 MiB
+#11 69.19 |■■■■■■■■                                                                        |  10% of 1.9 MiB
+#11 69.49 |■■■■■■■■■■■■■■■■                                                                |  20% of 1.9 MiB
+#11 69.58 |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 1.9 MiB
+#11 69.58 |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 1.9 MiB
+#11 69.68 |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 1.9 MiB
+#11 69.72 |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 1.9 MiB
+#11 70.15 |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 1.9 MiB
+#11 70.24 |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 1.9 MiB
+#11 71.72 |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 1.9 MiB
+#11 71.72 |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 1.9 MiB
+#11 71.76 FFmpeg (playwright ffmpeg v1013) downloaded to /opt/chromium/ffmpeg-1013
+#11 DONE 72.5s
+
+#12 [stage-1 5/5] COPY frontend/tests/e2e/*.mjs ./
+#12 DONE 0.1s
+
+#13 exporting to image
+#13 exporting layers
+#13 exporting layers 11.1s done
+#13 exporting manifest sha256:ac192eb8e854c1edc33cfc792aa71345e317477716f89d2a40ee8e8c4b280359
+#13 exporting manifest sha256:ac192eb8e854c1edc33cfc792aa71345e317477716f89d2a40ee8e8c4b280359 done
+#13 exporting config sha256:a3aa474dd462ea9665189442ec968a5c50b167431272fa2244d0e25eef0cdf5e 0.0s done
+#13 exporting attestation manifest sha256:4a35bca46329cdddbddbe48a1dc9d5da6e45d298cf73bc288eaf50476ef9c7ad 0.0s done
+#13 exporting manifest list sha256:4857cee974c8194e9e7c79673072d387fb915bdff40f9181fb624c185cb881eb done
+#13 naming to docker.io/library/fintech-platform-e2e:latest done
+#13 unpacking to docker.io/library/fintech-platform-e2e:latest
+#13 unpacking to docker.io/library/fintech-platform-e2e:latest 4.5s done
+#13 DONE 15.8s
+
+#14 resolving provenance for metadata file
+#14 DONE 0.0s
+ Image fintech-platform-e2e Built
+Compose exit=0, elapsed_seconds=101.36
+Total reclaimed space: 0B
+ID						RECLAIMABLE	SIZE		LAST ACCESSED
+hn0ws9td7f6pt6r6i12pgbnes*              	true 		4.096kB   	Less than a second ago
+oq8ul5yyx8u7bf8boah1ttwi8               	true 	10.83kB   	Less than a second ago
+vk051cr4oj5mpxomtt7myk2ei*              	true 	4.096kB   	Less than a second ago
+2l6dyoh1qmehgmns8nkx0qmrq*              	true 	16.38kB   	Less than a second ago
+2b0ri0x8p5am4lalg7wbzlllp*              	true 	16.95MB   	Less than a second ago
+2121x7v4otr0i32p4odq1g7d3               	true 	869.7MB   	Less than a second ago
+tzmvd5cerp61gn87f7dy347r7               	true 	8.192kB   	Less than a second ago
+5h6imc2tysl4eqgyxmn3wnukr               	true 	17.56MB   	Less than a second ago
+z1p6f1nwj5ud5c9iqo3uzu4f8               	true 	94B       	Less than a second ago
+hogf09i359rwcrjpw4p8xjdyu               	true 	4.545kB   	Less than a second ago
+zfeft9q6xbrlcipz2ye7kt22t               	true 	8.971MB   	About a minute ago
+2j6qtj8tvri9k44n4e4ikzkoq               	true 	198.8MB   	About a minute ago
+ktp7rjl88lfaajx1kqhb35nb9               	true 	56.56kB   	About a minute ago
+4ht6mkcrzdkzphsur9qymgkvu               	true 	136.1MB   	About a minute ago
+Total:	1.248GB
+ Container fintech-platform-e2e-run-17ed1e2a0b8a Creating
+ Container fintech-platform-e2e-run-17ed1e2a0b8a Created
+PASS command KPIs match APIs; committed detector alert visible on live feed
+PASS radar canvas node click opened matching filing detail
+PASS isolated ring, picked member on canvas, inspected sidebar, scrubbed edges 191 -> 1
+PASS embedded workbench; four screenshots saved; no browser exceptions
+ Container fintech-platform-streamlit-1 Running
+ Container fintech-platform-frontend-1 Running
+ Container fintech-platform-neo4j-1 Recreate
+ Container fintech-platform-postgres-1 Recreate
+ Container fintech-platform-postgres-1 Recreated
+ Container fintech-platform-neo4j-1 Recreated
+ Container fintech-platform-bootstrap-1 Recreate
+ Container fintech-platform-bootstrap-1 Recreated
+ Container fintech-platform-backend-1 Recreate
+ Container fintech-platform-backend-1 Recreated
+ Container fintech-platform-postgres-1 Starting
+ Container fintech-platform-ml-base-1 Starting
+ Container fintech-platform-neo4j-1 Starting
+ Container fintech-platform-ml-base-1 Started
+ Container fintech-platform-postgres-1 Started
+ Container fintech-platform-neo4j-1 Started
+ Container fintech-platform-postgres-1 Waiting
+ Container fintech-platform-neo4j-1 Waiting
+ Container fintech-platform-ml-base-1 Waiting
+ Container fintech-platform-ml-base-1 Exited
+ Container fintech-platform-postgres-1 Healthy
+ Container fintech-platform-neo4j-1 Healthy
+ Container fintech-platform-bootstrap-1 Starting
+ Container fintech-platform-bootstrap-1 Started
+ Container fintech-platform-bootstrap-1 Waiting
+ Container fintech-platform-bootstrap-1 Exited
+ Container fintech-platform-backend-1 Starting
+ Container fintech-platform-backend-1 Started
+ Container fintech-platform-backend-1 Waiting
+ Container fintech-platform-backend-1 Healthy
+ Container fintech-platform-backend-1 Waiting
+ Container fintech-platform-streamlit-1 Waiting
+ Container fintech-platform-streamlit-1 Healthy
+ Container fintech-platform-backend-1 Healthy
+ Container fintech-platform-streamlit-1 Waiting
+ Container fintech-platform-backend-1 Waiting
+ Container fintech-platform-neo4j-1 Waiting
+ Container fintech-platform-frontend-1 Waiting
+ Container fintech-platform-postgres-1 Waiting
+ Container fintech-platform-ml-base-1 Waiting
+ Container fintech-platform-bootstrap-1 Waiting
+ Container fintech-platform-bootstrap-1 Exited
+ Container fintech-platform-postgres-1 Healthy
+ Container fintech-platform-frontend-1 Healthy
+ Container fintech-platform-streamlit-1 Healthy
+ Container fintech-platform-backend-1 Healthy
+ Container fintech-platform-ml-base-1 Exited
+ Container fintech-platform-neo4j-1 Healthy
+Live EDGAR: skipped (no real SEC_USER_AGENT in .env)
+uv run --frozen ruff check .
+All checks passed!
+cd frontend && npm run lint
+
+> fintech-command-center@0.1.0 lint
+> eslint src --max-warnings 0
+
+uv run --frozen mypy --strict
+Success: no issues found in 47 source files
+cd frontend && npm run typecheck
+
+> fintech-command-center@0.1.0 typecheck
+> tsc --noEmit
+
+bash infra/scripts/gate4.sh --repo-tests
+Docker 29.8.2 aarch64
+ Container fintech-platform-postgres-1 Running
+ Container fintech-platform-neo4j-1 Running
+ Container fintech-platform-postgres-1 Waiting
+ Container fintech-platform-neo4j-1 Waiting
+ Container fintech-platform-postgres-1 Healthy
+ Container fintech-platform-neo4j-1 Healthy
+Checked 104 packages in 9ms
+INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
+INFO  [alembic.runtime.migration] Will assume transactional DDL.
+INFO  [alembic.runtime.migration] Running upgrade  -> 0001, Initial insider schema, database invariants, role grants, and notifications.
+INFO  [alembic.runtime.migration] Running upgrade 0001 -> 0002, Record completed historical price fetches, including exchange holidays.
+{"run_id": 1, "seen": 853, "inserted": 264, "quarantined": 1}
+{"alerts": ["ZXQ00", "ZXQ01", "ZXQ02", "ZXQ03", "ZXQ04", "ZXQ05", "ZXQ06", "ZXQ07", "ZXQ08", "ZXQ09", "ZXQ40", "ZXQ42"]}
+..............................                                           [100%]
+30 passed in 8.45s
+All checks passed!
+Success: no issues found in 47 source files
+......                                                                   [100%]
+================================ tests coverage ================================
+______________ coverage: platform darwin, python 3.13.14-final-0 _______________
+
+Name                                    Stmts   Miss  Cover   Missing
+---------------------------------------------------------------------
+backend/src/app/__init__.py                 1      0   100%
+backend/src/app/api/v1/configs.py         130     25    81%   59-61, 97, 109, 111-114, 139, 145-154, 161, 171-173, 179-181
+backend/src/app/api/v1/insider.py         103     20    81%   75, 78, 80, 82, 84, 86, 89, 98-99, 108, 115-126, 140, 142, 147, 157, 159
+backend/src/app/api/v1/mule.py            136      3    98%   119, 184, 238
+backend/src/app/main.py                   196     20    90%   115-116, 140, 149, 199, 206-207, 214-216, 220-221, 253, 258-259, 272, 277-278, 288, 290
+backend/src/app/services/replay.py         41     27    34%   21-38, 42-57
+backend/src/app/services/transfers.py     130      4    97%   46, 48, 198, 221
+backend/src/app/settings.py                10      0   100%
+backend/src/app/ws/alerts.py               82     28    66%   59, 63, 66-71, 73, 78, 81-100
+---------------------------------------------------------------------
+TOTAL                                     829    127    85%
+Required test coverage of 80% reached. Total coverage: 84.68%
+6 passed, 82 warnings in 11.35s
+{'status': 'ok', 'postgres': True, 'neo4j': True, 'model_loaded': True, 'demo_mode': True, 'version': '0.1.0'}
+ok.....                                                                    [100%]
+5 passed in 1.36s
+PYTHONPATH=backend/src:edgar_pipeline/src:ml_pipeline/src .venv/bin/python infra/scripts/export_openapi.py
+cd frontend && ./node_modules/.bin/openapi-typescript ../backend/openapi.json -o src/api/generated/schema.d.ts
+✨ openapi-typescript 7.13.0
+🚀 ../backend/openapi.json → src/api/generated/schema.d.ts [32.1ms]
+Gate 4 PASSED
+infra/scripts/gate4.sh: line 24: 11936 Terminated: 15          uvicorn app.main:create_app --factory --port "$api_port" > "$scratch/api.log" 2>&1
+npm --prefix frontend test
+
+> fintech-command-center@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.12 /Users/ishan_mac/Documents/Codex/2026-11-21/remotio/fintech-platform/frontend
+
+
+ Test Files  1 passed (1)
+      Tests  7 passed (7)
+   Start at  02:57:36
+   Duration  258ms (transform 30ms, setup 0ms, import 103ms, tests 42ms, environment 0ms)
+
+Filesystem      Size    Used   Avail Capacity iused ifree %iused  Mounted on
+/dev/disk3s5   228Gi   188Gi   8.2Gi    96%    2.8M   86M    3%   /System/Volumes/Data
+Gate 6 PASSED

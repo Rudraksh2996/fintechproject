@@ -1,5 +1,53 @@
 # Build progress
 
+## Phase 6 — Gate 6 passed on macOS / OrbStack arm64
+
+The first clean checkout came directly from GitHub main at `523e1b1`. With a copy of
+`.env.example` and the demo volumes removed, Compose built and started the stack in
+**360.30 seconds**. The release candidate at `179d5f8` repeated the reset from a
+second clean Git clone in **217.72 seconds**. Both runs required zero manual setup.
+Postgres, Neo4j, the gateway, Streamlit and nginx became healthy. Bootstrap and the
+ML base one-shot exited 0. [First-clone output](infra/verification/phase6/initial-fresh-clone.log)
+
+```text
+Postgres, Neo4j, model, Streamlit, insider and mule API checks passed.
+Both nginx WebSocket upgrades and versioned heartbeats passed.
+PASS command KPIs match APIs; committed detector alert visible on live feed
+PASS radar canvas node click opened matching filing detail
+PASS isolated ring, picked member on canvas, inspected sidebar, scrubbed edges 191 -> 1
+PASS embedded workbench; four screenshots saved; no browser exceptions
+```
+
+Chromium ran in the e2e Compose profile with SwiftShader. The four
+[release screenshots](docs/screenshots/) were captured at 1440 × 1000.
+The live EDGAR check was skipped because the local SEC user agent is the example contact.
+
+The full [Gate 6 transcript](infra/verification/phase6/gate6-macos.log) includes
+the fresh build, health statuses, browser image build, builder prunes and the
+repo-wide `make lint typecheck test` run. The gate exited 0 with 8.2 GiB free.
+
+```text
+Live EDGAR: skipped (no real SEC_USER_AGENT in .env)
+All checks passed!
+Success: no issues found in 47 source files
+30 passed in 8.45s
+Required test coverage of 80% reached. Total coverage: 84.68%
+6 passed, 82 warnings in 11.35s
+5 passed in 1.36s
+Gate 4 PASSED
+      Tests  7 passed (7)
+Gate 6 PASSED
+```
+
+### Known limitations
+
+- Mule performance has been evaluated only on synthetic accounts, transfers and planted rings.
+- New accounts have limited transfer history. PR-AUC after one observed transfer was 0.329.
+  The cold-start curve uses one held-out fold with ten positive and thirty negative accounts.
+- Free Stooq and Yahoo Finance price histories can have missing symbols, missing dates or provider outages.
+- Bootstrap training uses CPU only. The reported durations were measured on this Mac.
+- The browser gate checks software-rendered WebGL interaction. It does not measure frame rate.
+
 ## Phase 5 — Gate 5 passed on macOS / OrbStack arm64
 
 Ran `bash infra/scripts/gate4.sh` after adding live ring crossing events, stable
@@ -647,19 +695,19 @@ unchanged in meaning and passes.
 - The Phase 1 checkpoint is committed with the gate blocker explicit in its message;
   this commit does not assert phase verification has completed.
 
-## Resume
+## Historical handoff before Gate 1
 
 Install/start Docker with Compose, copy `.env.example` to `.env`, install the locked tools,
 and run `bash infra/scripts/gate1.sh` against a disposable development database. Resolve
 any actual database/image failures before recording Gate 1 as passed or starting Phase 2.
 
-## Phases 2–6
+## Phases 2–6 at the initial Phase 1 checkpoint
 
 Not started because Gate 1 is blocked. There are no pipeline datasets, trained models,
 metrics, application endpoints, generated API types, user interfaces, or end-to-end
 results to report.
 
-## Known limitations
+## Historical limitations recorded before Gate 1
 
 - The full requested application is unfinished and cannot be described as production-ready.
 - All live database, container, migration-round-trip, permission, and Cypher checks remain pending.
