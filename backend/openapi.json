@@ -975,6 +975,10 @@
             "title": "Model Architecture",
             "type": "string"
           },
+          "model_version": {
+            "title": "Model Version",
+            "type": "string"
+          },
           "scoring_note": {
             "title": "Scoring Note",
             "type": "string"
@@ -987,6 +991,7 @@
         "required": [
           "version",
           "demo_mode",
+          "model_version",
           "model_architecture",
           "scoring_note"
         ],

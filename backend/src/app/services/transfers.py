@@ -1,6 +1,7 @@
 """Apply transfers atomically and rescore affected accounts from observed graph data."""
 
 import asyncio
+import hashlib
 import json
 from collections import Counter
 from pathlib import Path
@@ -82,6 +83,7 @@ class RuntimeModel:
     def __init__(self, directory: Path, seed: int, threshold: float) -> None:
         config = json.loads((directory / "model_config.json").read_text())
         scaler = json.loads((directory / "feature_scaler.json").read_text())
+        self.version = hashlib.sha256((directory / "model.pt").read_bytes()).hexdigest()[:12]
         self.model = Detector(config["width"], config["arch"])
         self.model.load_state_dict(
             torch.load(directory / "model.pt", map_location="cpu", weights_only=True)
@@ -95,7 +97,10 @@ class RuntimeModel:
             int(a): float(p) for a, p in zip(frame.index.tolist(), frame.probability, strict=True)
         }
 
-        self.initial_groups = {int(i): int(c) for i, c in frame.community.items()}
+        self.initial_groups = {
+            int(i): int(c)
+            for i, c in zip(frame.index.tolist(), frame.community.tolist(), strict=True)
+        }
         rings = pd.read_parquet(directory / "ring_scores.parquet")
         self.initial_risk = dict(zip(rings.community, rings.risk, strict=True))
 
@@ -125,7 +130,7 @@ class RuntimeModel:
             # Match updated Louvain groups to prior IDs by largest shared membership.
             overlaps = Counter(
                 (int(g), previous_groups[int(a)])
-                for a, g in frame.community.items()
+                for a, g in zip(frame.index.tolist(), frame.community.tolist(), strict=True)
                 if int(a) in previous_groups
             )
             matched: dict[int, int] = {}
@@ -145,7 +150,9 @@ class RuntimeModel:
             frame["community"] = frame.community.map(matched)
             members = frame.groupby("community").groups
             snapshots = [
-                RingSnapshot(**row, members=list(map(int, members[row["community"]])))
+                RingSnapshot.model_validate(
+                    {**row, "members": list(map(int, members[row["community"]]))}
+                )
                 for row in ring_scores(frame).to_dict("records")
             ]
             return probabilities, snapshots, frame

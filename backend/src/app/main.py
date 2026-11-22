@@ -63,6 +63,7 @@ class Health(BaseModel):
 class SystemInfo(BaseModel):
     version: str
     demo_mode: bool
+    model_version: str
     model_architecture: str
     scoring_note: str
 
@@ -121,7 +122,7 @@ def create_app() -> FastAPI:
         try:
             torch.set_num_threads(graph.torch_num_threads)
             model = await asyncio.to_thread(
-                RingScore, RuntimeModel, artifacts, graph.seed, graph.reporting_threshold
+                RuntimeModel, artifacts, graph.seed, graph.reporting_threshold
             )
             async with driver.session() as session:
                 await (
@@ -232,6 +233,7 @@ def create_app() -> FastAPI:
         return SystemInfo(
             version=app.version,
             demo_mode=config.demo_mode,
+            model_version=model.version if model else "unavailable",
             model_architecture=model.model.arch if model else "unavailable",
             scoring_note="Scores use currently observed transfers. New-account validation uses "
             "held-out accounts restored with their observed transfer history.",

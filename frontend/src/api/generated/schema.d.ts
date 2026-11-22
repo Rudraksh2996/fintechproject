@@ -798,6 +798,8 @@ export interface components {
             demo_mode: boolean;
             /** Model Architecture */
             model_architecture: string;
+            /** Model Version */
+            model_version: string;
             /** Scoring Note */
             scoring_note: string;
             /** Version */
