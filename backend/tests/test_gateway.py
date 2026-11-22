@@ -65,6 +65,13 @@ def test_new_transfer_emits_and_replay_is_idempotent(monkeypatch: pytest.MonkeyP
             base,
             base + 1,
         }
+        ring_event = socket.receive_json()
+        if ring_event["type"] == "account_scored":
+            ring_event = socket.receive_json()
+        assert ring_event["type"] == "ring_detected"
+        live_ring = ring_event["payload"]["community"]
+        assert client.get(f"/api/v1/mule/rings/{live_ring}/graph").json()["links"]
+        assert client.get(f"/api/v1/mule/accounts/{base}").json()["observed_transfers"] == 1
         again = client.post("/api/v1/mule/transactions", json=payload).json()
         assert again["replayed"] and again["scores"] == body["scores"]
         conflict = client.post("/api/v1/mule/transactions", json={**payload, "amount": 241})

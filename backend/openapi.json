@@ -909,6 +909,44 @@
         "title": "Ring",
         "type": "object"
       },
+      "RingScore": {
+        "properties": {
+          "community": {
+            "title": "Community",
+            "type": "integer"
+          },
+          "mean_probability": {
+            "title": "Mean Probability",
+            "type": "number"
+          },
+          "risk": {
+            "title": "Risk",
+            "type": "number"
+          },
+          "shared_infra_factor": {
+            "title": "Shared Infra Factor",
+            "type": "number"
+          },
+          "structural_factor": {
+            "title": "Structural Factor",
+            "type": "number"
+          },
+          "top_k": {
+            "title": "Top K",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "community",
+          "risk",
+          "mean_probability",
+          "structural_factor",
+          "shared_infra_factor",
+          "top_k"
+        ],
+        "title": "RingScore",
+        "type": "object"
+      },
       "StatusChange": {
         "properties": {
           "status": {
@@ -1123,6 +1161,13 @@
       },
       "TransferResult": {
         "properties": {
+          "detected_rings": {
+            "items": {
+              "$ref": "#/components/schemas/RingScore"
+            },
+            "title": "Detected Rings",
+            "type": "array"
+          },
           "replayed": {
             "title": "Replayed",
             "type": "boolean"

@@ -33,6 +33,7 @@ from app.api.v1.mule import routes as mule_routes
 from app.services.replay import replay
 from app.services.transfers import (
     AccountScore,
+    RingScore,
     RuntimeModel,
     TransferConflict,
     TransferInput,
@@ -72,6 +73,12 @@ class ScoreEvent(BaseModel):
     payload: AccountScore
 
 
+class RingEvent(BaseModel):
+    type: Literal["ring_detected"] = "ring_detected"
+    version: Literal[1] = 1
+    payload: RingScore
+
+
 def create_app() -> FastAPI:
     config = GatewaySettings()
     sql = Settings()
@@ -91,7 +98,7 @@ def create_app() -> FastAPI:
     )
     alerts = AlertHub(engine, sql.database_url(), config.database_timeout_seconds)
     model: RuntimeModel | None = None
-    subscribers: set[asyncio.Queue[ScoreEvent]] = set()
+    subscribers: set[asyncio.Queue[ScoreEvent | RingEvent]] = set()
 
     @asynccontextmanager
     async def lifespan(_: FastAPI) -> AsyncIterator[None]:
@@ -114,7 +121,7 @@ def create_app() -> FastAPI:
         try:
             torch.set_num_threads(graph.torch_num_threads)
             model = await asyncio.to_thread(
-                RuntimeModel, artifacts, graph.seed, graph.reporting_threshold
+                RingScore, RuntimeModel, artifacts, graph.seed, graph.reporting_threshold
             )
             async with driver.session() as session:
                 await (
@@ -253,6 +260,9 @@ def create_app() -> FastAPI:
                 if score.crossed_threshold:
                     for queue in subscribers:
                         queue.put_nowait(ScoreEvent(payload=score))
+            for ring in result.detected_rings:
+                for queue in subscribers:
+                    queue.put_nowait(RingEvent(payload=ring))
         return result
 
     @app.websocket("/ws/alerts")
@@ -265,7 +275,7 @@ def create_app() -> FastAPI:
             await ws.close(code=1008)
             return
         await ws.accept()
-        queue: asyncio.Queue[ScoreEvent] = asyncio.Queue()
+        queue: asyncio.Queue[ScoreEvent | RingEvent] = asyncio.Queue()
         subscribers.add(queue)
         try:
             while True:

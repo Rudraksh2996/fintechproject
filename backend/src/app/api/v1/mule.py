@@ -1,5 +1,6 @@
 """Bounded forensic queries on observed transfers, enriched with bootstrap scores."""
 
+import json
 from pathlib import Path
 from typing import Annotated, Literal
 
@@ -70,7 +71,18 @@ class Truth(BaseModel):
 def routes(driver: AsyncDriver, directory: Path, demo: bool) -> APIRouter:
     router = APIRouter(prefix="/api/v1/mule")
 
-    def members(ring_id: int) -> list[int]:
+    async def members(ring_id: int) -> list[int]:
+        async with driver.session() as session:
+            rows = await (
+                await session.run(
+                    "MATCH (r:CandidateRing) RETURN r.community AS id,r.members AS members"
+                )
+            ).data()
+        if rows:
+            for row in rows:
+                if row["id"] == ring_id:
+                    return list(map(int, row["members"]))
+            raise HTTPException(404, "Unknown candidate ring")
         frame = pd.read_parquet(directory / "scores.parquet", columns=["community"])
         ids = list(map(int, frame.index[frame.community == ring_id].tolist()))
         if not ids:
@@ -85,12 +97,22 @@ def routes(driver: AsyncDriver, directory: Path, demo: bool) -> APIRouter:
         ]
 
     @router.get("/rings")
-    def rings(
+    async def rings(
         min_risk: Annotated[float, Query(ge=0, le=100)] = 0,
         typology: str | None = None,
         limit: Annotated[int, Query(ge=1, le=500)] = 100,
     ) -> list[Ring]:
-        df = pd.read_parquet(directory / "ring_scores.parquet")
+        async with driver.session() as session:
+            live = await (
+                await session.run(
+                    "MATCH (r:CandidateRing) RETURN r{.*} AS ring ORDER BY r.risk DESC"
+                )
+            ).data()
+        df = (
+            pd.DataFrame([r["ring"] for r in live])
+            if live
+            else pd.read_parquet(directory / "ring_scores.parquet")
+        )
         result = [Ring.model_validate(row) for row in df[df.risk >= min_risk].to_dict("records")]
         if typology:
             if not demo:
@@ -98,7 +120,7 @@ def routes(driver: AsyncDriver, directory: Path, demo: bool) -> APIRouter:
             result = [
                 r
                 for r in result
-                if any(t.typology == typology for t in truth(members(r.community)))
+                if any(t.typology == typology for t in truth(await members(r.community)))
             ]
         return result[:limit]
 
@@ -154,13 +176,13 @@ def routes(driver: AsyncDriver, directory: Path, demo: bool) -> APIRouter:
 
     @router.get("/rings/{ring_id}/graph")
     async def ring_graph(ring_id: int, t0: int = 0, t1: int = 2**62) -> Graph:
-        return await network(members(ring_id), t0, t1, 3000)
+        return await network(await members(ring_id), t0, t1, 3000)
 
     @router.get("/ground-truth/{ring_id}")
-    def ground_truth(ring_id: int) -> list[Truth]:
+    async def ground_truth(ring_id: int) -> list[Truth]:
         if not demo:
             raise HTTPException(404, "Unavailable in live mode")
-        return truth(members(ring_id))
+        return truth(await members(ring_id))
 
     @router.get("/accounts/{account_id}")
     async def account(account_id: int) -> AccountDetail:
@@ -169,7 +191,7 @@ def routes(driver: AsyncDriver, directory: Path, demo: bool) -> APIRouter:
                 await session.run(
                     """
                 MATCH (a:Account {account_id:$id})
-                RETURN a.type AS type,a.probability AS score,
+                RETURN a.type AS type,a.probability AS score,a.scored_features AS scored_features,
                   [(a)-[:USED_DEVICE]->(d:Device)|d.device_id] AS devices,
                   [(a)-[:LOGGED_FROM]->(i:IP)|i.ip] AS ips,
                   COUNT { (a)-[:TRANSFERRED]-() } AS observed_transfers,
@@ -183,7 +205,11 @@ def routes(driver: AsyncDriver, directory: Path, demo: bool) -> APIRouter:
         df = pd.read_parquet(
             directory / "features.parquet", filters=[("account_id", "==", account_id)]
         )
-        attrs = df.to_dict("records")[0] if len(df) else {}
+        attrs = (
+            json.loads(row["scored_features"])
+            if row["scored_features"]
+            else (df.to_dict("records")[0] if len(df) else {})
+        )
         score = row["score"]
         if score is None:
             probs = pd.read_parquet(directory / "scores.parquet", columns=["probability"])
@@ -240,7 +266,7 @@ def routes(driver: AsyncDriver, directory: Path, demo: bool) -> APIRouter:
               WHERE a.account_id IN $ids AND b.account_id IN $ids
               RETURN toInteger(r.ts/3600)*3600 AS ts,count(r) AS transfers,sum(r.amount) AS amount
               ORDER BY ts""",
-                    ids=members(ring_id),
+                    ids=await members(ring_id),
                 )
             ).data()
         return [Period.model_validate(r) for r in rows]

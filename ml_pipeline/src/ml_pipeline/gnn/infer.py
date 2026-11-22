@@ -35,6 +35,10 @@ def score(directory: Path) -> None:
     )
     features["probability"] = prob
     features[["community", "probability"]].to_parquet(directory / "scores.parquet")
+    ring_scores(features).to_parquet(directory / "ring_scores.parquet", index=False)
+
+
+def ring_scores(features: pd.DataFrame) -> pd.DataFrame:
     groups = []
     for community, rows in features.groupby("community"):
         top = rows.nlargest(5, "probability")
@@ -53,6 +57,4 @@ def score(directory: Path) -> None:
                 "risk": 100 * (0.6 * member + 0.2 * structure + 0.2 * infra),
             }
         )
-    pd.DataFrame(groups).sort_values("risk", ascending=False).to_parquet(
-        directory / "ring_scores.parquet", index=False
-    )
+    return pd.DataFrame(groups).sort_values("risk", ascending=False)

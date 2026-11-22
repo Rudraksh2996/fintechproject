@@ -769,6 +769,21 @@ export interface components {
             /** Top K */
             top_k: number;
         };
+        /** RingScore */
+        RingScore: {
+            /** Community */
+            community: number;
+            /** Mean Probability */
+            mean_probability: number;
+            /** Risk */
+            risk: number;
+            /** Shared Infra Factor */
+            shared_infra_factor: number;
+            /** Structural Factor */
+            structural_factor: number;
+            /** Top K */
+            top_k: number;
+        };
         /** StatusChange */
         StatusChange: {
             /**
@@ -845,6 +860,8 @@ export interface components {
         };
         /** TransferResult */
         TransferResult: {
+            /** Detected Rings */
+            detected_rings?: components["schemas"]["RingScore"][];
             /** Replayed */
             replayed: boolean;
             /** Scores */
