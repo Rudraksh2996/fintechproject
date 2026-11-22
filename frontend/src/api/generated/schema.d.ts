@@ -363,6 +363,8 @@ export interface components {
             };
             /** Ips */
             ips: string[];
+            /** Observed Transfers */
+            observed_transfers: number;
         };
         /** AccountInput */
         AccountInput: {

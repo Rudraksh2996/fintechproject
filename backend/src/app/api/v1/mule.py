@@ -47,6 +47,7 @@ class Trail(BaseModel):
 
 
 class AccountDetail(BaseModel):
+    observed_transfers: int
     account: Node
     community: int | None
     features: dict[str, JsonValue]
@@ -171,6 +172,7 @@ def routes(driver: AsyncDriver, directory: Path, demo: bool) -> APIRouter:
                 RETURN a.type AS type,a.probability AS score,
                   [(a)-[:USED_DEVICE]->(d:Device)|d.device_id] AS devices,
                   [(a)-[:LOGGED_FROM]->(i:IP)|i.ip] AS ips,
+                  COUNT { (a)-[:TRANSFERRED]-() } AS observed_transfers,
                   reduce(total=0.0, amt IN [(a)-[r:TRANSFERRED]-()|r.amount]|total+amt) AS volume
                 """,
                     id=account_id,
@@ -187,6 +189,7 @@ def routes(driver: AsyncDriver, directory: Path, demo: bool) -> APIRouter:
             probs = pd.read_parquet(directory / "scores.parquet", columns=["probability"])
             score = float(probs.probability.to_dict()[account_id])
         return AccountDetail(
+            observed_transfers=row["observed_transfers"],
             account=Node(
                 account_id=account_id, type=row["type"], probability=score, volume=row["volume"]
             ),

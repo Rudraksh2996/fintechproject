@@ -37,9 +37,14 @@
             },
             "title": "Ips",
             "type": "array"
+          },
+          "observed_transfers": {
+            "title": "Observed Transfers",
+            "type": "integer"
           }
         },
         "required": [
+          "observed_transfers",
           "account",
           "community",
           "features",
