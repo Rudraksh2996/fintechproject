@@ -5,6 +5,10 @@ description = "Dual-engine financial threat and signal platform workspace"
 requires-python = ">=3.12,<3.14"
 dependencies = ["edgar-pipeline", "ml-pipeline", "fintech-gateway"]
 
+[tool.uv]
+# Match the CPU SciPy sampler in the Linux ML image.
+constraint-dependencies = ["numpy<2.5; sys_platform == 'linux'"]
+
 [tool.uv.workspace]
 members = ["edgar_pipeline", "ml_pipeline", "backend", "streamlit_workbench"]
 

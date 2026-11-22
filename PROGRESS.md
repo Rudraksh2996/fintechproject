@@ -1,5 +1,61 @@
 # Build progress
 
+## Phase 5 — Gate 5 passed on macOS / OrbStack arm64
+
+Ran `bash infra/scripts/gate4.sh` after adding live ring crossing events, stable
+candidate IDs, updated ring and account reads, and the observed-transfer count.
+Backend coverage reached 84.68%. Six backend and five workbench tests passed.
+Full output is in `infra/verification/phase5/gate4-regression.log`.
+
+Ran `bash infra/scripts/gate5.sh` with the built images and live data. Lint,
+strict TypeScript, seven Vitest cases, the production Vite build and the
+generated contract check passed. Headless Chromium exercised the nginx origin.
+
+```text
+Command center: real alerts and both live channels
+Radar: WebGL scene, feed selection and filing drilldown
+Mule: WebGL scene, ring isolation and time scrubber
+Cold-start badge and four measured PR-AUC values matched the API
+Workbench: live Streamlit iframe rendered through nginx
+Gate 5 PASSED
+```
+
+Full output is in `infra/verification/phase5/gate5-macos.log`. Accounts with
+fewer than ten observed transfers show a low-confidence badge and the curve from
+the model metrics endpoint. UI checks used system Chromium with SwiftShader.
+The release build warned about large lazy-loaded 3D chunks. No frame-rate
+benchmark was performed by this gate.
+
+**Runtime and storage.** The five long-running services have Compose health
+checks. The ML base and bootstrap are one-shot services. Inspection confirmed
+eight identical base layers in the backend and bootstrap images. The running
+workbench passed its research imports and rejected torch, PyG and ml_pipeline.
+The host already used one 978 MiB workspace environment. All 15 dependency
+folders the user elected to keep were preserved. No existing Docker volumes
+were removed. Cache cleanup included unused project images, regenerable
+download caches and browser HTTP/code cache entries. The first builder prune
+freed 0 B while Docker held the cache active. A later prune reclaimed 1.14 GB.
+
+Before cleanup the root filesystem showed 4.5 GiB free. A post-build check
+showed 11,155,496 KiB available (10.64 GiB). Docker reported these totals:
+
+| Resource | Before | After |
+|---|---:|---:|
+| Images | 3.371 GB | 3.956 GB |
+| Containers | 252.7 MB | 254 MB |
+| Local volumes | 668.6 MB | about 672 MB |
+| Build cache | 1.354 GB | 0 B |
+
+Before cleanup the largest images were bootstrap (1.63 GB), Neo4j (957 MB),
+PostgreSQL (639 MB) and the interrupted Streamlit image (211 MB reported).
+The largest build-cache entries were 599 MB, 265 MB and 214 MB.
+
+**Next gate.** Use a separate Compose project and newly allocated volumes
+for the Phase 6 clean-bootstrap test. Keep the existing project volumes.
+Add the Chromium-only E2E profile, complete the node-picking and live replay
+smoke cases, run the repository-wide checks, then record the full Gate 6 output.
+
+
 ## Phase 5 checkpoint — disk stop
 
 Gate 4 passed on main in `005190d`. Phase 5 is incomplete. The workspace had

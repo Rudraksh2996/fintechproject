@@ -45,6 +45,12 @@ services:
       retries: 30
       start_period: 30s
     restart: unless-stopped
+  ml-base:
+    image: fintech-platform-ml-base:latest
+    mem_limit: 32m
+    build:
+      context: .
+      dockerfile: infra/docker/ml-base.Dockerfile
   bootstrap:
     image: fintech-platform-bootstrap:latest
     pull_policy: never
@@ -53,6 +59,8 @@ services:
     build:
       context: .
       dockerfile: infra/docker/bootstrap.Dockerfile
+      additional_contexts:
+        ml_base: service:ml-base
     env_file: .env
     environment:
       TORCH_NUM_THREADS: ${TORCH_NUM_THREADS:-4}
@@ -63,10 +71,16 @@ services:
       - artifacts:/artifacts
     command: [python, /platform/bootstrap.py]
     depends_on:
+      ml-base: {condition: service_completed_successfully}
       postgres: {condition: service_healthy}
       neo4j: {condition: service_healthy}
   backend:
-    image: fintech-platform-bootstrap:latest
+    build:
+      context: .
+      dockerfile: infra/docker/backend.Dockerfile
+      additional_contexts:
+        ml_base: service:ml-base
+    image: fintech-platform-backend:latest
     pull_policy: never
     mem_limit: 1450m
     env_file: .env
@@ -103,6 +117,20 @@ services:
       test: [CMD, python, -c, "import urllib.request; assert urllib.request.urlopen('http://localhost:8501/workbench/_stcore/health').status==200"]
       interval: 10s
       retries: 20
+  frontend:
+    mem_limit: 128m
+    build:
+      context: .
+      dockerfile: infra/docker/frontend.Dockerfile
+    ports:
+      - "127.0.0.1:8080:8080"
+    depends_on:
+      backend: {condition: service_healthy}
+      streamlit: {condition: service_healthy}
+    healthcheck:
+      test: [CMD, wget, -q, -O, /dev/null, "http://127.0.0.1:8080/"]
+      interval: 5s
+      retries: 15
   schema:
     mem_limit: 384m
     profiles: [tools]

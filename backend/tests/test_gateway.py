@@ -79,3 +79,16 @@ def test_new_transfer_emits_and_replay_is_idempotent(monkeypatch: pytest.MonkeyP
             conflict.status_code == 409
             and conflict.headers["content-type"] == "application/problem+json"
         )
+        assert any(r["community"] == live_ring for r in client.get("/api/v1/mule/rings").json())
+        assert client.get("/api/v1/mule/rings?typology=structuring").json() == []
+        assert client.get(f"/api/v1/mule/ground-truth/{live_ring}").json() == []
+        assert client.get(f"/api/v1/mule/timeline?ring_id={live_ring}").json()
+        unknown = client.get("/api/v1/mule/rings/-1/graph")
+        assert unknown.status_code == 404 and unknown.json()["detail"] == "Unknown candidate ring"
+        subsequent = client.post(
+            "/api/v1/mule/transactions", json={**payload, "txn_id": base + 1, "new_accounts": []}
+        )
+        assert subsequent.status_code == 200, subsequent.text
+        assert subsequent.json()["detected_rings"] == []
+        updated = client.get(f"/api/v1/mule/accounts/{base}").json()
+        assert updated["community"] == live_ring and updated["observed_transfers"] == 2

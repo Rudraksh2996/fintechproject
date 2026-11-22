@@ -34,7 +34,8 @@ created_db=true
 alembic upgrade head
 edgar seed-demo
 edgar detect
-docker compose run --rm --no-deps -T bootstrap tar -C /artifacts -cf - model.pt feature_scaler.json model_config.json metrics.json features.parquet scores.parquet ring_scores.parquet labels.parquet | tar -xf - -C "$ARTIFACT_DIR"
+artifact_volume=$(docker compose config --format json | python -c 'import json,sys; print(json.load(sys.stdin)["volumes"]["artifacts"]["name"])')
+docker run --rm --pull=never --mount "type=volume,src=$artifact_volume,dst=/artifacts,readonly" fintech-platform-bootstrap:latest tar -C /artifacts -cf - model.pt feature_scaler.json model_config.json metrics.json features.parquet scores.parquet ring_scores.parquet labels.parquet | tar -xf - -C "$ARTIFACT_DIR"
 password=$(python -c 'import secrets; print(secrets.token_hex(16))')
 export GATE4_TEST_NEO4J_AUTH="neo4j/$password"
 docker run --rm -d --name "$graph" --memory 1050m -p 127.0.0.1::7687 \
